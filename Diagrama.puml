@@ -1,0 +1,20 @@
+@startuml proyectoVision
+
+note left of entrada: Prueba de agregar una nota
+class entrada{
+	propiedad1
+	propiedad2
+	metodo1()
+	metodo2()
+}
+
+class salida{
+	propiedad1
+	propiedad2
+	metodo1()
+	metodo2()
+}
+
+entrada -> salida
+
+@enduml
