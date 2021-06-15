@@ -3,7 +3,7 @@ video_frames/*
 johns/*
 faces/*
 docs/*
-ProyectoVision/*
+*.log
 src/*
 *.xml
 
