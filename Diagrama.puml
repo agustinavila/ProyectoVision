@@ -1,23 +1,80 @@
+'Generador de UML utilizando plantUML
+
 @startuml proyectoVision
 
 abstract class feeder{
 	Mat frame
 	actualizarFrame()
 	getFrame()
-	setFrame()
 	registrarObservador()
 	removerObservador()
 	actualizarObservadores()
-	getEstado()
-	setEstado()
 }
 
 class frameLogger{
 	Mat frame
 	string nombreArchivo
+	actualizar()
 	guardarFrame()
 }
-frameLogger<- feeder: observador
+feeder -> frameLogger
+
+feeder->extractorLandmarks
+
+abstract class extractorLandmarks{
+	'debe definir todos los datos necesarios
+	'y los metodos para extraer y registrar los datos
+
+	vector<vector<float>> landmarks
+	Mat frame
+	actualizar()
+	getLandmarks()
+}
+
+extractorLandmarks->normalizadorLandmarks
+
+class normalizadorLandmarks{
+	vector<vector<float>> landmarksOrig
+	vector<vector<float>> landmarksNorm
+	float angulo
+	float escala
+	float ancla
+}
+
+class analizadorSimetria{
+array simetrias
+calcularSimetria()
+}
+
+normalizadorLandmarks -> analizadorSimetria
+
+@enduml
+
+@startuml structs
+class datoBase <<struct>>{
+	'primer boceto de la estructura basica de cada frame
+	'para hacer registro de los datos?
+
+	Mat frame
+	int numeroFrame
+	string nombreArchivo
+	double timestamp
+	vector<vector<float>> features
+	float ancla
+	float angulo
+	float escala
+}
+@enduml
+@startuml feeder
+
+abstract class feeder{
+	Mat frame
+	actualizarFrame()
+	getFrame()
+	registrarObservador()
+	removerObservador()
+	actualizarObservadores()
+}
 
 class videoFeeder{
 	Mat frame
@@ -38,10 +95,10 @@ class kinectFeeder{
 	abrirArchivo()
 }
 feeder<|--kinectFeeder
+@enduml
 
-feeder->extractorLandmarks
-
-class extractorLandmarks{
+@startuml extractorLandmarks
+abstract class extractorLandmarks{
 	'debe definir todos los datos necesarios
 	'y los metodos para extraer y registrar los datos
 
@@ -50,59 +107,17 @@ class extractorLandmarks{
 	actualizar()
 	getLandmarks()
 }
-
-extractorLandmarks->normalizadorLandmarks
-class normalizadorLandmarks{
-	vector<vector<float>> landmarksOrig
-	vector<vector<float>> landmarksNorm
-	float angulo
-	float escala
-	float ancla
-}
-
-class analizadorSimetria{
-array simetrias
-calcularSimetria()
-}
-normalizadorLandmarks -> analizadorSimetria
-@enduml
-
-@startuml structs
-class datoBase <<struct>>{
-	'primer boceto de la estructura basica de cada frame
-	'para hacer registro de los datos?
-
-	Mat frame
-	int numeroFrame
-	string nombreArchivo
-	double timestamp
-	vector<vector<float>> features
-	float ancla
-	float angulo
-	float escala
-}
-
-
-
-@enduml
-
-@startuml feeder
-abstract class feeder{
-	Mat frame
-	actualizarFrame()
-	getFrame()
-	setFrame()
-	registrarObservador()
-	removerObservador()
-	actualizarObservadores()
-	getEstado()
-	setEstado()
-}
-note left of feeder::frame
-frame base en formato Mat
+note left of extractorLandmarks
+Debe proveerse un archivo 
+de entrenamiento para el extractor
 end note
 
-note right of feeder::actualizarFrame()
-método para actualizar el frame?
-end note
+class extractorLandmarksOpenCV{
+implementacion del extractor con openCV
+}
+extractorLandmarks<|-- extractorLandmarksOpenCV
+extractorLandmarks<|-- extractorLandmarksDlib
+class extractorLandmarksDlib{
+implementacion del extractor con dlib
+}
 @enduml
