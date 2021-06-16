@@ -6,6 +6,7 @@ El proyecto consiste en un programa capaz de obtener imagenes de distintos medio
 ## Definiciones
 
 ![Ejemplo del feeder](/Diagrama/feeder.png)
+
 Ejemplo en UML de la clase "feeder"
 
 ![Ejemplo del funcioamiento general](/Diagrama/proyectoVision.png).

@@ -1,5 +1,4 @@
 @startuml proyectoVision
-note "explicacion basica del flujo de trabajo" as N1
 
 abstract class feeder{
 	Mat frame
@@ -18,7 +17,7 @@ class frameLogger{
 	string nombreArchivo
 	guardarFrame()
 }
-feeder -> frameLogger: observador
+frameLogger<- feeder: observador
 
 class videoFeeder{
 	Mat frame
@@ -66,6 +65,9 @@ array simetrias
 calcularSimetria()
 }
 normalizadorLandmarks -> analizadorSimetria
+@enduml
+
+@startuml structs
 class datoBase <<struct>>{
 	'primer boceto de la estructura basica de cada frame
 	'para hacer registro de los datos?
