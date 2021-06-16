@@ -20,7 +20,7 @@ En el esquema anterior, las flechas indican "observadores de"
 + KinectFeeder, pensada para adquirir fotogramas de una kinect utilizando libfreenect2.
 
 Estas clases tendrán métodos para actualizar sus observadores ([FrameLogger](#clase-framelogger) y [ExtractorLandmarks](#clase-extractorlandmarks)).
-Además, tendrán un método para obtener fotogramas en un momento determinado[^2]?
+Además, tendrán un método para obtener fotogramas en un momento determinado(Es decir, usar algun tipo de semaforo para esperar a cuando el extractor se libere, y recien ahi proveerle otro fotograma? Entiendo que el cuello de botella será el extractor de landmarks)
 
 ![Ejemplo del Feeder](/Diagrama/feeder.png)
 
@@ -28,7 +28,7 @@ Ejemplo en UML de la clase "feeder"
 
 ### Clase FrameLogger
 
-Esta clase estará encargada de registrar los frames provistos por el [Feeder](#clase-feeder), ya que será un observador. Debe tener un metodo de actualizacion que consista en guardar el archivo de imagen en algun lugar en particular, con un nombre que lo identifique unicamente, y que de alguna manera quede linkeado a una "base de datos" [^1] .
+Esta clase estará encargada de registrar los frames provistos por el [Feeder](#clase-feeder), ya que será un observador. Debe tener un metodo de actualizacion que consista en guardar el archivo de imagen en algun lugar en particular, con un nombre que lo identifique unicamente, y que de alguna manera quede linkeado a una "base de datos" (Me falta definir cómo estará definida esa estructura con los datos necesarios).
 
 ### Clase ExtractorLandmarks
 
@@ -53,8 +53,5 @@ Además, el normalizador podria filtrar solo los landmarks necesarios para el ca
 
 Esta clase será la encargada de analizar los puntos de interés normalizados, haciendo algunos calculos geométricos y devolviendo distintas medidas sobre la simetria facial.
 En el [paper][1] de referencia, estas medidas se utilizan para luego alimentar un clasificador. Al no tener acceso a los datasets para poder "clasificar" distintos rostros, este ultimo paso se dificulta. Aun asi, debe ser posible obtener un puntaje analizando distintas medidas y comparando ambos lados del rostro.
-
-[^1]: Me falta definir cómo estará definida esa estructura con los datos necesarios.
-[^2]: Es decir, usar algun tipo de semaforo para esperar a cuando el extractor se libere, y recien ahi proveerle otro fotograma? Entiendo que el cuello de botella será el extractor de landmarks.
 
 [1]: https://www.mdpi.com/2076-3417/11/5/2435 "Facial Paralysis Detection on Images Using Key Point Analysis"
