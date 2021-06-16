@@ -2,26 +2,27 @@
 
 @startuml proyectoVision
 
-abstract class feeder{
+abstract class Feeder{
+
 	Mat frame
-	actualizarFrame()
 	getFrame()
 	registrarObservador()
 	removerObservador()
 	actualizarObservadores()
 }
 
-class frameLogger{
+class FrameLogger{
+	en realidad podria ser un metodo del Feeder
 	Mat frame
 	string nombreArchivo
 	actualizar()
 	guardarFrame()
 }
-feeder -> frameLogger
+Feeder -> FrameLogger
 
-feeder->extractorLandmarks
+Feeder->ExtractorLandmarks
 
-abstract class extractorLandmarks{
+abstract class ExtractorLandmarks{
 	'debe definir todos los datos necesarios
 	'y los metodos para extraer y registrar los datos
 
@@ -31,9 +32,9 @@ abstract class extractorLandmarks{
 	getLandmarks()
 }
 
-extractorLandmarks->normalizadorLandmarks
+ExtractorLandmarks->NormalizadorLandmarks
 
-class normalizadorLandmarks{
+class NormalizadorLandmarks{
 	vector<vector<float>> landmarksOrig
 	vector<vector<float>> landmarksNorm
 	float angulo
@@ -41,12 +42,12 @@ class normalizadorLandmarks{
 	float ancla
 }
 
-class analizadorSimetria{
+class AnalizadorSimetria{
 array simetrias
 calcularSimetria()
 }
 
-normalizadorLandmarks -> analizadorSimetria
+NormalizadorLandmarks -> AnalizadorSimetria
 
 @enduml
 
@@ -65,40 +66,39 @@ class datoBase <<struct>>{
 	float escala
 }
 @enduml
+
 @startuml feeder
 
-abstract class feeder{
+abstract class Feeder{
 	Mat frame
-	actualizarFrame()
 	getFrame()
 	registrarObservador()
 	removerObservador()
 	actualizarObservadores()
 }
 
-class videoFeeder{
+class VideoFeeder{
 	Mat frame
 	string nombreArchivo
 	abrirArchivo()
 }
-feeder<|--videoFeeder
+Feeder<|--VideoFeeder
 
-class webcamFeeder{
-	Mat frame
+class WebcamFeeder{
 }
-feeder<|--webcamFeeder
+Feeder<|--WebcamFeeder
 
-class kinectFeeder{
+class KinectFeeder{
 	'"tipoimagen" deberia servir para registrar RGB, IR o profundidad
 	Mat frame
 	array tipoimagen
 	abrirArchivo()
 }
-feeder<|--kinectFeeder
+Feeder<|--KinectFeeder
 @enduml
 
 @startuml extractorLandmarks
-abstract class extractorLandmarks{
+abstract class ExtractorLandmarks{
 	'debe definir todos los datos necesarios
 	'y los metodos para extraer y registrar los datos
 
@@ -112,12 +112,12 @@ Debe proveerse un archivo
 de entrenamiento para el extractor
 end note
 
-class extractorLandmarksOpenCV{
+class ExtractorLandmarksOpenCV{
 implementacion del extractor con openCV
 }
-extractorLandmarks<|-- extractorLandmarksOpenCV
-extractorLandmarks<|-- extractorLandmarksDlib
-class extractorLandmarksDlib{
+ExtractorLandmarks<|-- ExtractorLandmarksOpenCV
+ExtractorLandmarks<|-- ExtractorLandmarksDlib
+class ExtractorLandmarksDlib{
 implementacion del extractor con dlib
 }
 @enduml

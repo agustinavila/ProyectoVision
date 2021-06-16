@@ -3,13 +3,36 @@
 Proyecto final para las materias "Vision Artificial" y "Complementos de Informatica"
 El proyecto consiste en un programa capaz de obtener imagenes de distintos medios, detectar caras y analizar su simetria. Ademas, deberia ser capaz de generar reportes y mostrar fotogramas claves, donde la asimetria sea maxima o donde se detecte claramente cierta expresion facial (sonrisa, ceño fruncido, levantar cejas, etc). La idea de la implementación está basada en [este paper][1].
 
+## Tabla de contenidos
+
++ [Desarrollo](#desarrollo)
++ [Clases](#clases)
+  + [Clase feeder](#clase-feeder)
+    + [Clase VideoFeeder](#clase-videofeeder)
+    + [Clase WebcamFeeder](#clase-webcamfeeder)
+    + [Clase KinectFeeder](#clase-kinectfeeder)
+  + [Clase ExtractorLandmarks](#clase-extractorlandmarks)
+  + [Clase normalizadorLandmarks](#clase-normalizadorlandmarks)
+  + [Clase AnalizadorSimetria](#clase-analizadorsimetria)
+
 ## Desarrollo
 
 El software consistira de varias clases, "concatenadas" entre si utilizando un esquema de observadores.
 
 ![Esquema del funcionamiento general](/Diagrama/proyectoVision.png).
 
-En el esquema anterior, las flechas indican "observadores de"
+En el esquema anterior, las flechas indican "observadores de". Aun no se si esta implementacion es correcta, ya que seria muy propensa a cuellos de botella en caso de que algun paso falle.
+
+El sistema instanciará los objetos necesarios a partir de argumentos pasados al mismo, con las clases concretas necesarias segun el caso. Si no se pasan argumentos, deberia intentar abrir una webcam, y utilizar un archivo de entrenamiento por defecto.
+
+## Argumentos
+
++ `arg1` : Lo que hacer el arg1
++ `arg2` : Lo que hacer el arg2
+
+## Clases
+
+A continuacion, se detallan las distintas clases base que compondran al sistema.
 
 ### Clase Feeder
 
@@ -42,7 +65,6 @@ Estas dos clases utilizarían distintos algoritmos para la deteccion de puntos d
 ![Ejemplo del Feeder](/Diagrama/extractorLandmarks.png)
 
 Diagrama UML de la clase ExtractorLandmarks
-
 
 ### Clase NormalizadorLandmarks
 
