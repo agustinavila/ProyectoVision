@@ -1,10 +1,14 @@
-*.jpg
+# Carpetas locales:
 video_frames/*
 johns/*
 faces/*
 docs/*
-*.log
 src/*
+Release/*
+
+# Tipos de archivos:
+*.jpg
+*.log
 *.xml
 
 # Prerequisites
