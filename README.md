@@ -11,7 +11,7 @@ El software consistira de varias clases, "concatenadas" entre si utilizando un e
 
 En el esquema anterior, las flechas indican "observadores de"
 
-### Clase Feeder { : #feeder}
+### Clase Feeder
 
  Habrá una clase (por ahora llamada feeder, no se si es un nombre claro) encargada de obtener los fotogramas a analizar. De ésta se derivan tres clases (por ahora) que heredan algunos metodos base pero implementados con distintos fines. Las tres clases que heredan de Feeder, serán:
 
@@ -19,20 +19,20 @@ En el esquema anterior, las flechas indican "observadores de"
 + WebcamFeeder, pensada para adquirir fotogramas de una webcam
 + KinectFeeder, pensada para adquirir fotogramas de una kinect utilizando libfreenect2.
 
-Estas clases tendrán métodos para actualizar sus observadores ([FrameLogger](#framelogger) y [ExtractorLandmarks](#extractorlandmarks)).
+Estas clases tendrán métodos para actualizar sus observadores ([FrameLogger](#clase-framelogger) y [ExtractorLandmarks](#clase-extractorlandmarks)).
 Además, tendrán un método para obtener fotogramas en un momento determinado[^2]?
 
 ![Ejemplo del Feeder](/Diagrama/feeder.png)
 
 Ejemplo en UML de la clase "feeder"
 
-### Clase FrameLogger {: #framelogger }
+### Clase FrameLogger
 
-Esta clase estará encargada de registrar los frames provistos por el [Feeder](#feeder), ya que será un observador. Debe tener un metodo de actualizacion que consista en guardar el archivo de imagen en algun lugar en particular, con un nombre que lo identifique unicamente, y que de alguna manera quede linkeado a una "base de datos" [^1] .
+Esta clase estará encargada de registrar los frames provistos por el [Feeder](#clase-feeder), ya que será un observador. Debe tener un metodo de actualizacion que consista en guardar el archivo de imagen en algun lugar en particular, con un nombre que lo identifique unicamente, y que de alguna manera quede linkeado a una "base de datos" [^1] .
 
-### Clase ExtractorLandmarks {: #extractorlandmarks }
+### Clase ExtractorLandmarks
 
-Esta clase estará encargada de obtener los puntos de interés de un rostro a partir de las imágenes provistas por el [Feeder](#feeder). Esta clase abstracta en principio puede tener dos implementaciones:
+Esta clase estará encargada de obtener los puntos de interés de un rostro a partir de las imágenes provistas por el [Feeder](#clase-feeder). Esta clase abstracta en principio puede tener dos implementaciones:
 
 + clase ExtractorLandmarksOpenCV, utilizando openCV
 + clase ExtractorLandmarksDlib, utilizando dlib
@@ -44,12 +44,12 @@ Estas dos clases utilizarían distintos algoritmos para la deteccion de puntos d
 Diagrama UML de la clase ExtractorLandmarks
 
 
-### Clase NormalizadorLandmarks { : #normalizadorlandmarks}
+### Clase NormalizadorLandmarks
 
-Esta clase deberá normalizar los puntos de interés provistos por el [extractor de landmarks](#extractorlandmarks), es decir, en principio deberá corregir la inclinacion de la cabeza, y deberia "normalizar" los tamaños de los features, pudiendo tomar como referencias los puntos a mitad de cada oreja y el punto central de la pera. Con esto, todas las caras tendrían el mismo tamaño, lo cual podría ser util para una posible comparacion de fotogramas posteriormente (aun asi entiendo que no influiria en el calculo de simetria).
+Esta clase deberá normalizar los puntos de interés provistos por el [extractor de landmarks](#clase-extractorlandmarks), es decir, en principio deberá corregir la inclinacion de la cabeza, y deberia "normalizar" los tamaños de los features, pudiendo tomar como referencias los puntos a mitad de cada oreja y el punto central de la pera. Con esto, todas las caras tendrían el mismo tamaño, lo cual podría ser util para una posible comparacion de fotogramas posteriormente (aun asi entiendo que no influiria en el calculo de simetria).
 Además, el normalizador podria filtrar solo los landmarks necesarios para el calculo de simetria, reduciendo asi el tamaño de los datos guardados.
 
-### Clase AnalizadorSimetria { : #analizadorsimetria}
+### Clase AnalizadorSimetria
 
 Esta clase será la encargada de analizar los puntos de interés normalizados, haciendo algunos calculos geométricos y devolviendo distintas medidas sobre la simetria facial.
 En el [paper][1] de referencia, estas medidas se utilizan para luego alimentar un clasificador. Al no tener acceso a los datasets para poder "clasificar" distintos rostros, este ultimo paso se dificulta. Aun asi, debe ser posible obtener un puntaje analizando distintas medidas y comparando ambos lados del rostro.
