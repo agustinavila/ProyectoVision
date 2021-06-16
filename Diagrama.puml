@@ -1,20 +1,106 @@
 @startuml proyectoVision
+note "explicacion basica del flujo de trabajo" as N1
 
-note left of entrada: Prueba de agregar una nota
-class entrada{
-	propiedad1
-	propiedad2
-	metodo1()
-	metodo2()
+abstract class feeder{
+	Mat frame
+	actualizarFrame()
+	getFrame()
+	setFrame()
+	registrarObservador()
+	removerObservador()
+	actualizarObservadores()
+	getEstado()
+	setEstado()
 }
 
-class salida{
-	propiedad1
-	propiedad2
-	metodo1()
-	metodo2()
+class frameLogger{
+	Mat frame
+	string nombreArchivo
+	guardarFrame()
+}
+feeder -> frameLogger: observador
+
+class videoFeeder{
+	Mat frame
+	string nombreArchivo
+	abrirArchivo()
+}
+feeder<|--videoFeeder
+
+class webcamFeeder{
+	Mat frame
+}
+feeder<|--webcamFeeder
+
+class kinectFeeder{
+	'"tipoimagen" deberia servir para registrar RGB, IR o profundidad
+	Mat frame
+	array tipoimagen
+	abrirArchivo()
+}
+feeder<|--kinectFeeder
+
+feeder->extractorLandmarks
+
+class extractorLandmarks{
+	'debe definir todos los datos necesarios
+	'y los metodos para extraer y registrar los datos
+
+	vector<vector<float>> landmarks
+	Mat frame
+	actualizar()
+	getLandmarks()
 }
 
-entrada -> salida
+extractorLandmarks->normalizadorLandmarks
+class normalizadorLandmarks{
+	vector<vector<float>> landmarksOrig
+	vector<vector<float>> landmarksNorm
+	float angulo
+	float escala
+	float ancla
+}
 
+class analizadorSimetria{
+array simetrias
+calcularSimetria()
+}
+normalizadorLandmarks -> analizadorSimetria
+class datoBase <<struct>>{
+	'primer boceto de la estructura basica de cada frame
+	'para hacer registro de los datos?
+
+	Mat frame
+	int numeroFrame
+	string nombreArchivo
+	double timestamp
+	vector<vector<float>> features
+	float ancla
+	float angulo
+	float escala
+}
+
+
+
+@enduml
+
+@startuml feeder
+abstract class feeder{
+	Mat frame
+	actualizarFrame()
+	getFrame()
+	setFrame()
+	registrarObservador()
+	removerObservador()
+	actualizarObservadores()
+	getEstado()
+	setEstado()
+}
+note left of feeder::frame
+frame base en formato Mat
+end note
+
+note right of feeder::actualizarFrame()
+método para actualizar el frame?
+end note
 @enduml
