@@ -12,6 +12,7 @@
 #if !defined(FEEDER_H)
 #define FEEDER_H
 
+#include <iostream>
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 
@@ -22,26 +23,13 @@ class Feeder
 {
 	private:
 	Mat frame;
+
 	public:
-	/**
-	 * @brief Construye un nuevo objeto de la clase Feeder
-	 * 
-	 */
-	virtual Feeder();
-
-	/**
-	 * @brief Destruye el objeto de la clase Feeder
-	 * 
-	 */
+	Feeder();
 	virtual ~Feeder();
-	/**
-	 * @brief Devuelve la propiedad Frame 
-	 * 
-	 * @return Mat 
-	 */
-	Mat getFrame();
+	virtual Mat getFrame();
 
-}
+};
 
 
 #endif // FEEDER_H
