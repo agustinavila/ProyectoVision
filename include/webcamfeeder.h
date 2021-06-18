@@ -8,6 +8,8 @@
  * @copyright Copyright (c) 2021
  * 
  */
+#if !defined(WEBCAMFEEDER_H)
+#define WEBCAMFEEDER_H
 
 #include "feeder.h"
 #include <opencv2/videoio/videoio_c.h>
@@ -20,7 +22,6 @@
 using namespace std;
 using namespace cv;
 
-
 /**
  * @brief Sobrecarga de la clase Feeder para abrir una webcam
  * 
@@ -28,11 +29,14 @@ using namespace cv;
 class WebcamFeeder : public Feeder
 {
 private:
-    Mat frame;
-    int idx;
-    cv::VideoCapture cap;
+	Mat frame;
+	int idx;
+	cv::VideoCapture cap;
+
 public:
-	Mat getFrame();
 	WebcamFeeder(int idx = 0);
 	virtual ~WebcamFeeder();
+	virtual Mat getFrame();
 };
+
+#endif // WEBCAMFEEDER_H

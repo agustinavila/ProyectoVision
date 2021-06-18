@@ -21,16 +21,13 @@ using namespace cv;
 
 class Feeder
 {
-	private:
+private:
 	Mat frame;
 
-	public:
+public:
 	Feeder();
 	virtual ~Feeder();
 	virtual Mat getFrame();
-
 };
 
-
 #endif // FEEDER_H
-

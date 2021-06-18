@@ -13,6 +13,9 @@
 //TODO: Aceptar argumentos para el constructor
 //TODO:Eventualmente ver el tema de los codecs, segun la carga que representen para el cpu
 
+#if !defined(FRAMELOGGER_H)
+#define FRAMELOGGER_H
+
 #include "feeder.h"
 #include <opencv2/video/video.hpp>
 #include <opencv2/videoio.hpp>
@@ -22,18 +25,18 @@
 using namespace std;
 using namespace cv;
 
-
 class FrameLogger
 {
 private:
 	Mat frame;
 	string nombre;
-	double numero =0;
+	double numero = 0;
 	VideoWriter video;
+
 public:
 	FrameLogger();
 	~FrameLogger();
 	void log(const Mat &frame);
 };
 
-
+#endif // FRAMELOGGER_H

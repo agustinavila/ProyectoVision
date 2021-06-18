@@ -17,7 +17,7 @@ using namespace std;
  */
 Feeder::Feeder()
 {
-	cout << "Construyendo Feeder"<< endl;
+	cout << "Construyendo Feeder" << endl;
 }
 
 /**
@@ -26,7 +26,7 @@ Feeder::Feeder()
  */
 Feeder::~Feeder()
 {
-	cout << "Destruyendo Feeder"<<endl;
+	cout << "Destruyendo Feeder" << endl;
 }
 
 /**
@@ -36,8 +36,6 @@ Feeder::~Feeder()
  */
 Mat Feeder::getFrame()
 {
-	cout << "getFrame por defecto, no hace nada"<<endl;
+	cout << "getFrame por defecto, no hace nada" << endl;
 	return this->frame;
 }
-
-
