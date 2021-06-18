@@ -34,5 +34,5 @@ private:
 public:
 	Mat getFrame();
 	WebcamFeeder(int idx = 0);
-	virtual ~WebcamFeeder() override;
+	virtual ~WebcamFeeder();
 };

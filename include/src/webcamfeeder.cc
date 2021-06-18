@@ -8,8 +8,8 @@
  * @copyright Copyright (c) 2021
  * 
  */
-#include "feeder.h"
-#include "webcamfeeder.h"
+#include "../feeder.h"
+#include "../webcamfeeder.h"
 
 /**
  * @brief Construye un nuevo objeto de la clase Webcam Feeder:: Webcam Feeder
@@ -18,14 +18,14 @@
  */
 WebcamFeeder::WebcamFeeder(int idx)
 {
-	cout << "abriendo webcam";
+	cout << "Abriendo webcam..."<<endl;
 	if (!this->cap.open(idx))
     {
         cout << "No se detectó camara, verifique conexion"<<endl;
      
     }
-    this->cap.set(CV_CAP_PROP_FRAME_WIDTH, 1024);
-    this->cap.set(CV_CAP_PROP_FRAME_HEIGHT, 768);
+    // this->cap.set(CV_CAP_PROP_FRAME_WIDTH, 1024);
+    // this->cap.set(CV_CAP_PROP_FRAME_HEIGHT, 768);
 }
 
 /**
