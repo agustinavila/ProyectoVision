@@ -9,8 +9,6 @@
  * 
  */
 
-
-
 // includes
 #include <iostream>
 #include <opencv2/highgui/highgui.hpp>
@@ -22,33 +20,42 @@
 #include "feeder.h"
 #include "webcamfeeder.h"
 #include "framelogger.h"
+#include "extractorlandmarks.h"
+#include "extractorlandmarks_dlib.h"
 
 using namespace std;
 using namespace cv;
 
-
 int main(int argc, char *argv[])
 {
-//Definiciones de propiedades
-    char ch = 0;
+	//Definiciones de propiedades
+	char ch = 0;
 	Mat frame;
-//parseo de argumentos
+	std::vector<Point2f> landmarks;
+	//parseo de argumentos
 
-//instanciacion de objetos
+	//instanciacion de objetos
 	Feeder *ptrFeeder;
 	WebcamFeeder webcamFeeder;
 	ptrFeeder = &webcamFeeder;
 	FrameLogger logger;
+	ExtractorLandmarks *ptrExtractor;
+	ExtractorLandmarks extractorDlib; //No está funcionando ExtractorDlib.getLandmarks(), genera una violacion de segmento
+	ptrExtractor = &extractorDlib;
 
-//ejecutar las acciones / bucle
-    cout << "Presione q para finalizar"<<endl;
+	//ejecutar las acciones / bucle
+	cout << "Presione q para finalizar" << endl;
 	while (ch != 'q' && ch != 'Q')
-    {
-		frame=ptrFeeder->getFrame();
-		logger.log(frame);	//Guarda frames, segun parametros podria desactivarse o no
-		imshow("feeder",frame); 
+	{
+		frame = ptrFeeder->getFrame();
+		logger.log(frame); //Guarda frames, segun parametros podria desactivarse o no
+		imshow("feeder", frame);
+		landmarks = ptrExtractor->getLandmarks(frame);
+		if (landmarks.size() > 1)
+		{
+			cout << "Detectados " << landmarks.size() << " puntos!" << endl;
+		}
 		ch = waitKey(1);
 	}
-//RECONOCER SIGNALS PARA PARAR EJECUCION
-return 0;
+	return 0;
 }
