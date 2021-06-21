@@ -28,7 +28,7 @@ private:
 public:
 	ExtractorLandmarks();
 	virtual ~ExtractorLandmarks();
-	virtual std::vector<cv::Point2f> getLandmarks(cv::Mat &);
+	virtual std::vector<cv::Point2f> getLandmarks(cv::Mat);
 };
 
 #endif // EXTRACTORLANDMARKS_H

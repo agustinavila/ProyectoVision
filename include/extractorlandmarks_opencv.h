@@ -31,7 +31,7 @@ private:
 	Mat gray;
 	Ptr<face::Facemark> facemark;
 	CascadeClassifier faceDetector;
-	std::vector<Point2f> landmarks;
+	std::vector<cv::Point2f> landmarks;
 	/* data */
 public:
 	ExtractorLandmarksOpenCV();

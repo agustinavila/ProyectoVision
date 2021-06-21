@@ -30,7 +30,7 @@ ExtractorLandmarksDlib::~ExtractorLandmarksDlib()
 }
 
 //tengo una violacion de segmento con este metodo, revisar!!
-std::vector<cv::Point2f> ExtractorLandmarksDlib::getLandmarks(cv::Mat &frame)
+std::vector<cv::Point2f> ExtractorLandmarksDlib::getLandmarks(cv::Mat frame)
 {
 	cv_image<bgr_pixel> cimg(frame); //Convierte el Mat a un formato utilizable por dlib
 	std::vector<rectangle> faces = this->detector(cimg);
@@ -41,9 +41,9 @@ std::vector<cv::Point2f> ExtractorLandmarksDlib::getLandmarks(cv::Mat &frame)
 		this->landmarks.push_back((cv::Point2f(shape.part(i).x(), shape.part(i).y())));
 	}
 	//deberia chequear que hayan puntos?
-	if (this->landmarks.empty())
+	if (landmarks.empty())
 	{
-		this->landmarks.push_back(cv::Point2f(1, 2));
+		landmarks.push_back(cv::Point2f(1,1));
 	}
-	return this->landmarks;
+	return landmarks;
 }

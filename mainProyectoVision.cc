@@ -22,6 +22,7 @@
 #include "framelogger.h"
 #include "extractorlandmarks.h"
 #include "extractorlandmarks_dlib.h"
+#include "extractorlandmarks_opencv.h"
 
 using namespace std;
 using namespace cv;
@@ -40,13 +41,15 @@ int main(int argc, char *argv[])
 	ptrFeeder = &webcamFeeder;
 	FrameLogger logger;
 	ExtractorLandmarks *ptrExtractor;
-	ExtractorLandmarks extractorDlib; //No está funcionando ExtractorDlib.getLandmarks(), genera una violacion de segmento
-	ptrExtractor = &extractorDlib;
+	ExtractorLandmarksOpenCV extractorOpencv;
+	ptrExtractor = &extractorOpencv;
+	//ExtractorLandmarksDlib extractorDlib; //No está funcionando ExtractorDlib.getLandmarks(), genera una violacion de segmento
+	//ptrExtractor = &extractorDlib;
 
 	//ejecutar las acciones / bucle
 	cout << "Presione q para finalizar" << endl;
 	while (ch != 'q' && ch != 'Q')
-	{
+	{ 
 		frame = ptrFeeder->getFrame();
 		logger.log(frame); //Guarda frames, segun parametros podria desactivarse o no
 		imshow("feeder", frame);
@@ -55,6 +58,11 @@ int main(int argc, char *argv[])
 		{
 			cout << "Detectados " << landmarks.size() << " puntos!" << endl;
 		}
+		else
+		{
+			cout << "no se detecto ninguna cara"<<endl;
+ 		}
+		
 		ch = waitKey(1);
 	}
 	return 0;

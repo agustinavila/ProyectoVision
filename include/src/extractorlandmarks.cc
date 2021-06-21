@@ -22,7 +22,7 @@ ExtractorLandmarks::~ExtractorLandmarks()
 	cout << "Destructor abstracto de ExtractorLandmarks..." << endl;
 }
 
-std::vector<cv::Point2f> ExtractorLandmarks::getLandmarks(cv::Mat &)
+std::vector<cv::Point2f> ExtractorLandmarks::getLandmarks(cv::Mat)
 {
 	//cout << "funcion prototipo";
 	return this->landmarks;
