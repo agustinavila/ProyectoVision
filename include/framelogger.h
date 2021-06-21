@@ -36,7 +36,7 @@ private:
 public:
 	FrameLogger();
 	~FrameLogger();
-	void log(const Mat &frame);
+	void log(const Mat frame);
 };
 
 #endif // FRAMELOGGER_H

@@ -24,7 +24,7 @@ FrameLogger::~FrameLogger()
 	cout << "Video cerrado!" << endl;
 }
 
-void FrameLogger::log(const Mat &frame)
+void FrameLogger::log(const Mat frame)
 {
 	this->numero++; //Solo en caso de guardar secuencia de imagenes
 	this->video.write(frame);
