@@ -5,6 +5,7 @@ faces/*
 docs/*
 src/*
 Release/*
+Debug/*
 
 # Tipos de archivos:
 *.jpg
