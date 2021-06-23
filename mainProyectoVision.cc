@@ -1,7 +1,7 @@
 /**
  * @file mainProyectoVision.cc
  * @author Agustin Avila (tinto.avila@gmail.com)
- * @brief 
+ * @brief Archivo main del proyecto
  * @version 0.1
  * @date 2021-06-16
  * 
@@ -23,17 +23,25 @@
 #include "extractorlandmarks.h"
 #include "extractorlandmarks_dlib.h"
 #include "extractorlandmarks_opencv.h"
+#include "analizadorlandmarks.h"
 
 using namespace std;
 using namespace cv;
 
+/**
+ * @brief Funcion main del proyecto
+ * @todo Manejar argumentos de entrada
+ * @param argc 
+ * @param argv 
+ * @return int 
+ */
 int main(int argc, char *argv[])
 {
 	//Definiciones de propiedades
 	char ch = 0;
 	Mat frame;
 	std::vector<Point2f> landmarks;
-	//parseo de argumentos
+	//TODO: parseo de argumentos
 
 	//instanciacion de objetos
 	Feeder *ptrFeeder;
@@ -41,28 +49,30 @@ int main(int argc, char *argv[])
 	ptrFeeder = &webcamFeeder;
 	FrameLogger logger;
 	ExtractorLandmarks *ptrExtractor;
-	ExtractorLandmarksOpenCV extractorOpencv;
-	ptrExtractor = &extractorOpencv;
-	//ExtractorLandmarksDlib extractorDlib; //No está funcionando ExtractorDlib.getLandmarks(), genera una violacion de segmento
-	//ptrExtractor = &extractorDlib;
+	// ExtractorLandmarksOpenCV extractorOpencv;
+	// ptrExtractor = &extractorOpencv;
+	ExtractorLandmarksDlib extractorDlib;
+	ptrExtractor = &extractorDlib;
+	AnalizadorLandmarks analizadorLandmarks;
 
-	//ejecutar las acciones / bucle
 	cout << "Presione q para finalizar" << endl;
 	while (ch != 'q' && ch != 'Q')
 	{ 
 		frame = ptrFeeder->getFrame();
 		logger.log(frame); //Guarda frames, segun parametros podria desactivarse o no
-		imshow("feeder", frame);
 		landmarks = ptrExtractor->getLandmarks(frame);
 		if (landmarks.size() > 1)
 		{
 			cout << "Detectados " << landmarks.size() << " puntos!" << endl;
+			analizadorLandmarks.setLandmarks(landmarks);
+			analizadorLandmarks.normalizarLandmarks();
+			putText(frame, "Rostro detectado!",landmarks[16],1,2,Scalar(255,0,0));
 		}
 		else
 		{
 			cout << "no se detecto ninguna cara"<<endl;
  		}
-		
+		imshow("feeder", frame);
 		ch = waitKey(1);
 	}
 	return 0;
