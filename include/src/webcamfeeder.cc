@@ -44,7 +44,7 @@ WebcamFeeder::~WebcamFeeder()
  * 
  * @return Mat 
  */
-Mat WebcamFeeder::getFrame()
+const Mat WebcamFeeder::getFrame()
 {
     this->cap >> this->frame;
     return this->frame;

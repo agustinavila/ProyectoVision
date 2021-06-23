@@ -43,7 +43,7 @@ ExtractorLandmarksDlib::~ExtractorLandmarksDlib()
  * @param frame objeto Mat a analizar 
  * @return std::vector<cv::Point2f> 
  */
-std::vector<cv::Point2f> ExtractorLandmarksDlib::getLandmarks(cv::Mat frame)
+const std::vector<cv::Point2f> ExtractorLandmarksDlib::getLandmarks(const cv::Mat &frame)
 {
 	cv_image<bgr_pixel> cimg(frame); //Convierte el Mat a un formato utilizable por dlib
 	std::vector<rectangle> faces = this->detector(cimg);

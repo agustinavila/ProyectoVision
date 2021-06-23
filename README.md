@@ -12,23 +12,21 @@ El proyecto consiste en un programa capaz de obtener imagenes de distintos medio
     + [Clase WebcamFeeder](#clase-webcamfeeder)
     + [Clase KinectFeeder](#clase-kinectfeeder)
   + [Clase ExtractorLandmarks](#clase-extractorlandmarks)
-  + [Clase normalizadorLandmarks](#clase-normalizadorlandmarks)
-  + [Clase AnalizadorSimetria](#clase-analizadorsimetria)
+    + [Clase ExtractorLandmarksOpenCV](#clase-extractorlandmarksopencv)
+    + [Clase ExtractorLandmarksDlib](#clase-extractorlandmarksdlib)
+  + [Clase analizadorLandmarks](#clase-normalizadorlandmarks)
 
 ## Desarrollo
 
-El software consistira de varias clases, "concatenadas" entre si utilizando un esquema de observadores.
+El software consiste en varias clases concatenadas entre si.
 
 ![Esquema del funcionamiento general](/Diagrama/proyectoVision.png).
 
-En el esquema anterior, las flechas indican "observadores de". Aun no se si esta implementacion es correcta, ya que seria muy propensa a cuellos de botella en caso de que algun paso falle.
-
-El sistema instanciará los objetos necesarios a partir de argumentos pasados al mismo, con las clases concretas necesarias segun el caso. Si no se pasan argumentos, deberia intentar abrir una webcam, y utilizar un archivo de entrenamiento por defecto.
+El sistema instancia los objetos necesarios a partir de argumentos pasados al mismo(Falta), con las clases concretas necesarias segun el caso. Si no se pasan argumentos, intenta abrir una webcam y utilizar un archivo de entrenamiento por defecto.
 
 ## Argumentos
 
-+ `arg1` : Lo que hacer el arg1
-+ `arg2` : Lo que hacer el arg2
+*no esta realizado aun.*
 
 ## Clases
 
@@ -36,14 +34,13 @@ A continuacion, se detallan las distintas clases base que compondran al sistema.
 
 ### Clase Feeder
 
- Habrá una clase (por ahora llamada feeder, no se si es un nombre claro) encargada de obtener los fotogramas a analizar. De ésta se derivan tres clases (por ahora) que heredan algunos metodos base pero implementados con distintos fines. Las tres clases que heredan de Feeder, serán:
+ Clase encargada de obtener los fotogramas a analizar. De ésta se derivan tres clases para proveer frames de distintos medios. Las tres clases que heredan de Feeder, serán:
 
-+ VideoFeeder, pensada para trabajar con videos
-+ WebcamFeeder, pensada para adquirir fotogramas de una webcam
++ VideoFeeder, pensada para trabajar con videos.
++ WebcamFeeder, pensada para adquirir fotogramas de una webcam.
 + KinectFeeder, pensada para adquirir fotogramas de una kinect utilizando libfreenect2.
 
-Estas clases tendrán métodos para actualizar sus observadores ([FrameLogger](#clase-framelogger) y [ExtractorLandmarks](#clase-extractorlandmarks)).
-Además, tendrán un método para obtener fotogramas en un momento determinado(Es decir, usar algun tipo de semaforo para esperar a cuando el extractor se libere, y recien ahi proveerle otro fotograma? Entiendo que el cuello de botella será el extractor de landmarks)
+Estas clases tendrán un método general para devolver un fotograma del tipo `cv::Mat` que serán utilizados por los objetos de las clases ([FrameLogger](#clase-framelogger) y [ExtractorLandmarks](#clase-extractorlandmarks)).
 
 ![Ejemplo del Feeder](/Diagrama/feeder.png)
 
@@ -51,29 +48,42 @@ Ejemplo en UML de la clase "feeder"
 
 ### Clase FrameLogger
 
-Esta clase estará encargada de registrar los frames provistos por el [Feeder](#clase-feeder), ya que será un observador. Debe tener un metodo de actualizacion que consista en guardar el archivo de imagen en algun lugar en particular, con un nombre que lo identifique unicamente, y que de alguna manera quede linkeado a una "base de datos" (Me falta definir cómo estará definida esa estructura con los datos necesarios).
+Esta clase está encargada de registrar los frames provistos por el [Feeder](#clase-feeder). Por el momento, va registrando los fotogramas en un video por defecto. Debe tener un metodo de actualizacion que consista en guardar el archivo de imagen en algun lugar en particular, con un nombre que lo identifique unicamente, y que de alguna manera quede linkeado a una "base de datos".
 
 ### Clase ExtractorLandmarks
 
-Esta clase estará encargada de obtener los puntos de interés de un rostro a partir de las imágenes provistas por el [Feeder](#clase-feeder). Esta clase abstracta en principio puede tener dos implementaciones:
+Esta clase está encargada de obtener los puntos de interés de un rostro a partir de las imágenes provistas por el [Feeder](#clase-feeder). Esta clase abstracta en principio tiene dos implementaciones:
 
 + clase ExtractorLandmarksOpenCV, utilizando openCV
 + clase ExtractorLandmarksDlib, utilizando dlib
 
 Estas dos clases utilizarían distintos algoritmos para la deteccion de puntos de interes, basados en distintos papers y con distintos entrenamientos.
 
+#### Clase ExtractorLandmarksOpenCV
+
+Esta clase está basada en las librerias de openCV.
+
+#### Clase ExtractorLandmarksDlib
+
+Esta clase está basada en las librerias de dlib
+
 ![Ejemplo del Feeder](/Diagrama/extractorLandmarks.png)
 
 Diagrama UML de la clase ExtractorLandmarks
 
-### Clase NormalizadorLandmarks
+### Clase AnalizadorLandmarks
 
-Esta clase deberá normalizar los puntos de interés provistos por el [extractor de landmarks](#clase-extractorlandmarks), es decir, en principio deberá corregir la inclinacion de la cabeza, y deberia "normalizar" los tamaños de los features, pudiendo tomar como referencias los puntos a mitad de cada oreja y el punto central de la pera. Con esto, todas las caras tendrían el mismo tamaño, lo cual podría ser util para una posible comparacion de fotogramas posteriormente (aun asi entiendo que no influiria en el calculo de simetria).
-Además, el normalizador podria filtrar solo los landmarks necesarios para el calculo de simetria, reduciendo asi el tamaño de los datos guardados.
-
-### Clase AnalizadorSimetria
-
-Esta clase será la encargada de analizar los puntos de interés normalizados, haciendo algunos calculos geométricos y devolviendo distintas medidas sobre la simetria facial.
+Esta clase normaliza los puntos de interés provistos por el [extractor de landmarks](#clase-extractorlandmarks), es decir, corrige la inclinacion de la cabeza, tomando como referencias los puntos a mitad de cada oreja. Con esto, calcula la simetria de la cara basándose en algunos puntos particulares(Elegidos medio aleatoriamente)
+Respecto a la simetria, la clase será la encargada de analizar los puntos de interés normalizados, haciendo algunos calculos geométricos y devolviendo distintas medidas sobre la simetria facial.
 En el [paper][1] de referencia, estas medidas se utilizan para luego alimentar un clasificador. Al no tener acceso a los datasets para poder "clasificar" distintos rostros, este ultimo paso se dificulta. Aun asi, debe ser posible obtener un puntaje analizando distintas medidas y comparando ambos lados del rostro.
+Además, el normalizador podria filtrar solo los landmarks necesarios para el calculo de simetria, reduciendo asi el tamaño de los datos guardados.
+También debería devolver un vector con cada parte de la cara detectada (es decir, segmentar cejas, ojos, boca, nariz...).
+
+## Por Hacer
+
++ [ ] Logger de informacion relevante
++ [ ] Pasarle argumentos
++ [ ] Terminar VideoFeeder
++ [ ] Terminar KinectFeeder
 
 [1]: https://www.mdpi.com/2076-3417/11/5/2435 "Facial Paralysis Detection on Images Using Key Point Analysis"

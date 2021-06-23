@@ -32,7 +32,7 @@ private:
 public:
 	Feeder();
 	virtual ~Feeder();
-	virtual Mat getFrame();
+	virtual const Mat getFrame();
 };
 
 #endif // FEEDER_H

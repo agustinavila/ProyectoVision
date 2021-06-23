@@ -40,7 +40,7 @@ private:
 public:
 	ExtractorLandmarksOpenCV();
 	virtual ~ExtractorLandmarksOpenCV();
-	virtual std::vector<cv::Point2f> getLandmarks(cv::Mat);
+	virtual const std::vector<cv::Point2f> getLandmarks(const cv::Mat &);
 };
 
 #endif // EXTRACTORLANDMARKS_OPENCV_H

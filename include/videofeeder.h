@@ -38,7 +38,7 @@ private:
 public:
 	VideoFeeder(string nombre = "output");
 	virtual ~VideoFeeder();
-	virtual Mat getFrame();
+	virtual const Mat getFrame();
 };
 
 #endif // VIDEOFEEDER_H

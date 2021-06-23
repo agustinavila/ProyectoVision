@@ -40,7 +40,7 @@ ExtractorLandmarksOpenCV::~ExtractorLandmarksOpenCV()
  * @param frame objeto Mat a analizar 
  * @return std::vector<cv::Point2f> 
  */
-std::vector<cv::Point2f> ExtractorLandmarksOpenCV::getLandmarks(cv::Mat frame)
+const std::vector<cv::Point2f> ExtractorLandmarksOpenCV::getLandmarks(const cv::Mat &frame)
 {
 	vector<Rect> faces;
 	Mat gray;

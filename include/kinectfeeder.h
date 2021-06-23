@@ -43,7 +43,7 @@ private:
 	public:
 	KinectFeeder(/* args */);
 	virtual ~KinectFeeder();
-	virtual Mat getFrame();
+	virtual const Mat getFrame();
 };
 
 #endif // KINECTFEEDER_H

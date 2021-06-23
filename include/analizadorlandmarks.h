@@ -30,39 +30,31 @@ class AnalizadorLandmarks
 private:
 	std::vector<Point2f> landmarks;
 	std::vector<Point2f> landmarksNorm;
-/**
- * @brief Landmarks sectorizador por region de la cara.
- * @details Los distintos vectores son:
- * 0: Quijada
- * 1: ceja izquierda
- * 2: ceja derecha
- * 3: nariz
- * 4: ojo izq
- * 5: ojo derecho
- * 6: boca
- */
+	/**
+ 	* @brief Landmarks sectorizador por region de la cara.
+ 	* @details Los distintos vectores son:
+ 	* 0: Quijada
+ 	* 1: ceja izquierda
+ 	* 2: ceja derecha
+ 	* 3: nariz
+ 	* 4: ojo izq
+ 	* 5: ojo derecho
+ 	* 6: boca
+ 	*/
 	std::vector<std::vector<Point2f>> landmarksRegion;
 	float rotacion;
+	float asimetria;
 
 public:
 	AnalizadorLandmarks(/* args */);
 	~AnalizadorLandmarks();
-	void setLandmarks(std::vector<Point2f>);
-	/**
-	 * @brief Devuelve la propiedad Landmarks 
-	 * 
-	 * @return std::vector<Point2f> 
-	 */
-	std::vector<Point2f> getLandmarks() { return this->landmarks; };
-	/**
-	 * @brief Devuelve la propiedad Norm Landmarks 
-	 * 
-	 * @return std::vector<Point2f> 
-	 */
+	void setLandmarks(const std::vector<Point2f> &);
+	const std::vector<Point2f> getLandmarks() { return this->landmarks; };
 	std::vector<Point2f> getNormLandmarks() { return this->landmarksNorm; };
-	inline float calcularAngulo(Point2f,Point2f);
-	inline float calcularPendiente(Point2f,Point2f);
-	void calcularAsimetria();
+	inline const float calcularAngulo(const Point2f &, const Point2f &);
+	inline const float calcularPendiente(const Point2f &, const Point2f &);
+	inline const float calcularMax(const float &, const float &);
+	const float calcularAsimetria();
 	void normalizarLandmarks();
 };
 

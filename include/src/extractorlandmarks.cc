@@ -28,7 +28,7 @@ ExtractorLandmarks::~ExtractorLandmarks()
  * @param cv::Mat Frame a analizar
  * @return std::vector<cv::Point2f> 
  */
-std::vector<cv::Point2f> ExtractorLandmarks::getLandmarks(cv::Mat)
+const std::vector<cv::Point2f> ExtractorLandmarks::getLandmarks(const cv::Mat &frame)
 {
 	return this->landmarks;
 }

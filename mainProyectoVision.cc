@@ -41,6 +41,7 @@ int main(int argc, char *argv[])
 	char ch = 0;
 	Mat frame;
 	std::vector<Point2f> landmarks;
+	float asimetria;
 	//TODO: parseo de argumentos
 
 	//instanciacion de objetos
@@ -66,7 +67,9 @@ int main(int argc, char *argv[])
 			cout << "Detectados " << landmarks.size() << " puntos!" << endl;
 			analizadorLandmarks.setLandmarks(landmarks);
 			analizadorLandmarks.normalizarLandmarks();
-			putText(frame, "Rostro detectado!",landmarks[16],1,2,Scalar(255,0,0));
+			asimetria=analizadorLandmarks.calcularAsimetria();
+			cout << "Asimetria: "<< asimetria << endl;
+			putText(frame, "Rostro detectado!",landmarks[16],1,1,Scalar(255,0,0));
 		}
 		else
 		{

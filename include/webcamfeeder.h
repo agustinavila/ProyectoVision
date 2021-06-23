@@ -36,7 +36,7 @@ private:
 public:
 	WebcamFeeder(int idx = 0);
 	virtual ~WebcamFeeder();
-	virtual Mat getFrame();
+	virtual const Mat getFrame();
 };
 
 #endif // WEBCAMFEEDER_H

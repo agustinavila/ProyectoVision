@@ -12,30 +12,17 @@
 #include "../feeder.h"
 using namespace std;
 
-/**
- * @brief Construye un nuevo objeto de la clase Feeder:: Feeder
- * 
- */
 Feeder::Feeder()
 {
 	cout << "Construyendo Feeder" << endl;
 }
 
-/**
- * @brief Destruye el objeto de la clase Feeder:: Feeder
- * 
- */
 Feeder::~Feeder()
 {
 	cout << "Destruyendo Feeder" << endl;
 }
 
-/**
- * @brief 
- * 
- * @return Mat 
- */
-Mat Feeder::getFrame()
+const Mat Feeder::getFrame()
 {
 	cout << "getFrame por defecto, no hace nada" << endl;
 	return this->frame;

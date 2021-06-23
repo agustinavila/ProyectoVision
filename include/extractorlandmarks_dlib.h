@@ -41,7 +41,7 @@ private:
 public:
 	ExtractorLandmarksDlib();
 	virtual ~ExtractorLandmarksDlib();
-	virtual std::vector<cv::Point2f> getLandmarks(cv::Mat);
+	virtual const std::vector<cv::Point2f> getLandmarks(const cv::Mat &);
 };
 
 #endif // EXTRACTORLANDMARKSDLIB_H
