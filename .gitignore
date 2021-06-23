@@ -1,16 +1,17 @@
 # Carpetas locales:
-video_frames/*
-johns/*
-faces/*
 docs/*
-src/*
 Release/*
 Debug/*
+data/*
+.cproject
+.project
+*.prefs
 
 # Tipos de archivos:
 *.jpg
 *.log
 *.xml
+*.avi
 
 # Prerequisites
 *.d
