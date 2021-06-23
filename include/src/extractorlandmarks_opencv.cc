@@ -1,7 +1,7 @@
 /**
  * @file extractorlandmarks_opencv.cc
  * @author Agustin Avila (tinto.avila@gmail.com)
- * @brief 
+ * @brief Implementacion de la clase concreta ExtractorLandmarksOpenCV
  * @version 0.1
  * @date 2021-06-18
  * 
@@ -12,6 +12,10 @@
 #include "../extractorlandmarks.h"
 #include "../extractorlandmarks_opencv.h"
 
+/**
+ * @brief Construye un nuevo objeto de la clase ExtractorLandmarksOpenCV
+ * 
+ */
 ExtractorLandmarksOpenCV::ExtractorLandmarksOpenCV()
 {
 	cout << "constructor del extractor de openCV... ";
@@ -21,11 +25,21 @@ ExtractorLandmarksOpenCV::ExtractorLandmarksOpenCV()
 	cout << "listo!" << endl;
 }
 
+/**
+ * @brief Destruye el objeto de la clase ExtractorLandmarksOpenCV
+ * 
+ */
 ExtractorLandmarksOpenCV::~ExtractorLandmarksOpenCV()
 {
 	this->landmarks.clear();
 }
 
+/**
+ * @brief Método que analiza un frame y devuelve los landmarks de un solo rostro
+ * 
+ * @param frame objeto Mat a analizar 
+ * @return std::vector<cv::Point2f> 
+ */
 std::vector<cv::Point2f> ExtractorLandmarksOpenCV::getLandmarks(cv::Mat frame)
 {
 	vector<Rect> faces;

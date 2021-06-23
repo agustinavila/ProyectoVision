@@ -1,7 +1,7 @@
 /**
  * @file webcamfeeder.cc
  * @author Agustin Avila (tinto.avila@gmail.com)
- * @brief 
+ * @brief implementacion de la clase concreta WebcamFeeder
  * @version 0.1
  * @date 2021-06-17
  * 

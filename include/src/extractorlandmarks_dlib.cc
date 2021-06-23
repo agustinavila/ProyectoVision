@@ -1,7 +1,7 @@
 /**
- * @file extractorkandmarks_dlib.cc
+ * @file extractorlandmarks_dlib.cc
  * @author Agustin Avila (tinto.avila@gmail.com)
- * @brief 
+ * @brief Implementacion de la clase concreta ExtractorLandmarks_dlib
  * @version 0.1
  * @date 2021-06-18
  * 
@@ -12,6 +12,10 @@
 #include "../extractorlandmarks.h"
 #include "../extractorlandmarks_dlib.h"
 
+/**
+ * @brief Construye un nuevo objeto de la clase ExtractorLandmarksDlib
+ * 
+ */
 ExtractorLandmarksDlib::ExtractorLandmarksDlib()
 {
 	cout << "Generando el extractor de landmarks con dlib...";
@@ -21,6 +25,10 @@ ExtractorLandmarksDlib::ExtractorLandmarksDlib()
 	cout << " listo!" << endl;
 }
 
+/**
+ * @brief Destruye el objeto de la clase ExtractorLandmarksDlib
+ * 
+ */
 ExtractorLandmarksDlib::~ExtractorLandmarksDlib()
 {
 	cout << "Destruyendo el extractor de landmarks con dlib...";
@@ -29,20 +37,26 @@ ExtractorLandmarksDlib::~ExtractorLandmarksDlib()
 	cout << "listo!" << endl;
 }
 
-//tengo una violacion de segmento con este metodo, revisar!!
+/**
+ * @brief Método que analiza un frame y devuelve los landmarks de un solo rostro
+ * 
+ * @param frame objeto Mat a analizar 
+ * @return std::vector<cv::Point2f> 
+ */
 std::vector<cv::Point2f> ExtractorLandmarksDlib::getLandmarks(cv::Mat frame)
 {
 	cv_image<bgr_pixel> cimg(frame); //Convierte el Mat a un formato utilizable por dlib
 	std::vector<rectangle> faces = this->detector(cimg);
-	full_object_detection shape(this->pose_model(cimg, faces[0]));
 	this->landmarks.clear();
+	if (!faces.empty())
+	{
+	full_object_detection shape(this->pose_model(cimg, faces[0]));
 	for (unsigned int i = 0; i < shape.num_parts(); ++i)
 	{
 		this->landmarks.push_back((cv::Point2f(shape.part(i).x(), shape.part(i).y())));
 	}
+	} else {
 	//deberia chequear que hayan puntos?
-	if (landmarks.empty())
-	{
 		landmarks.push_back(cv::Point2f(1,1));
 	}
 	return landmarks;

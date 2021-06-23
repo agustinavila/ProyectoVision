@@ -1,7 +1,7 @@
 /**
  * @file feeder.h
  * @author Agustin Avila (tinto.avila@gmail.com)
- * @brief header de la clase abstracta feeder
+ * @brief header de la clase abstracta Feeder
  * @version 0.1
  * @date 2021-06-16
  * 
@@ -19,6 +19,11 @@
 using namespace std;
 using namespace cv;
 
+
+/**
+ * @brief Clase abstracta para proveer Mats
+ * 
+ */
 class Feeder
 {
 private:

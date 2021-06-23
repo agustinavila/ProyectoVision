@@ -22,8 +22,13 @@ ExtractorLandmarks::~ExtractorLandmarks()
 	cout << "Destructor abstracto de ExtractorLandmarks..." << endl;
 }
 
+/**
+ * @brief Metodo para obtener landmarks de un Mat 
+ * 
+ * @param cv::Mat Frame a analizar
+ * @return std::vector<cv::Point2f> 
+ */
 std::vector<cv::Point2f> ExtractorLandmarks::getLandmarks(cv::Mat)
 {
-	//cout << "funcion prototipo";
 	return this->landmarks;
 }

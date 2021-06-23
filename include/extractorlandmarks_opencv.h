@@ -1,7 +1,7 @@
 /**
  * @file extractorlandmarks_opencv.h
  * @author Agustin Avila (tinto.avila@gmail.com)
- * @brief 
+ * @brief Declaracion de la clase concreta ExtractorLandmarksOpenCV
  * @version 0.1
  * @date 2021-06-18
  * 
@@ -25,6 +25,10 @@ using namespace std;
 using namespace cv;
 //using namespace cv::face;
 
+/**
+ * @brief Clase concreta para extraer landmarks utilizando openCV
+ * 
+ */
 class ExtractorLandmarksOpenCV : public ExtractorLandmarks
 {
 private:

@@ -1,7 +1,7 @@
 /**
  * @file extractorlandmarks_dlib.h
  * @author Agustin Avila (tinto.avila@gmail.com)
- * @brief 
+ * @brief Declaracion de la clase concreta ExtractorLandmarksDlib
  * @version 0.1
  * @date 2021-06-18
  * 
@@ -27,6 +27,10 @@
 using namespace dlib;
 using namespace std;
 
+/**
+ * @brief Clase concreta para extraer landmarks usando dlib
+ * 
+ */
 class ExtractorLandmarksDlib : public ExtractorLandmarks
 {
 private:

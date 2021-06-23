@@ -1,7 +1,7 @@
 /**
  * @file extractorlandmarks.h
  * @author Agustin Avila (tinto.avila@gmail.com)
- * @brief Clase abstracta para la obtencion de landmarks
+ * @brief Declaracion de la clase abstracta ExtractorLandmarks
  * @version 0.1
  * @date 2021-06-17
  * 
@@ -20,6 +20,11 @@
 
 using namespace std;
 
+
+/**
+ * @brief Clase abstracta para extraer landmarks de un Mat
+ * 
+ */
 class ExtractorLandmarks
 {
 private:

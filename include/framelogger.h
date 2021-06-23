@@ -1,7 +1,7 @@
 /**
  * @file framelogger.h
  * @author Agustin Avila (tinto.avila@gmail.com)
- * @brief 
+ * @brief Declaracion de la clase FrameLogger
  * @version 0.1
  * @date 2021-06-17
  * 
@@ -25,6 +25,12 @@
 using namespace std;
 using namespace cv;
 
+/**
+ * @brief Clase para guardar los frames. Por defecto genera un video
+ * @todo generar constructor para trabajar con secuencias de imagenes.
+ * Aceptar argumentos para el constructor.
+ * Eventualmente ver el tema de los codecs, segun la carga que representen para el cpu.
+ */
 class FrameLogger
 {
 private:
