@@ -47,6 +47,6 @@ const std::vector<Landmarks> ExtractorLandmarksOpenCV::getLandmarks(const cv::Ma
 	cvtColor(frame, gray, COLOR_BGR2GRAY);
 	faceDetector.detectMultiScale(gray, faces);
 	facemark->fit(frame, faces, landmarksSerie);
-	landmarks=parseLandmarks(landmarksSerie);
+	landmarks = parseLandmarks(landmarksSerie);
 	return landmarks;
 }

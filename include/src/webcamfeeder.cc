@@ -18,13 +18,13 @@
  */
 WebcamFeeder::WebcamFeeder(int idx)
 {
-	cout << "Abriendo webcam...";
-	if (!cap.open(idx))
+    cout << "Abriendo webcam...";
+    if (!cap.open(idx))
     {
-        cout << "No se detectó camara, verifique conexion"<<endl;
-     
+        cout << "No se detectó camara, verifique conexion" << endl;
     }
-    else cout << "webcam abierta!"<<endl;
+    else
+        cout << "webcam abierta!" << endl;
     // this->cap.set(CV_CAP_PROP_FRAME_WIDTH, 1024);
     // this->cap.set(CV_CAP_PROP_FRAME_HEIGHT, 768);
 }
@@ -35,9 +35,9 @@ WebcamFeeder::WebcamFeeder(int idx)
  */
 WebcamFeeder::~WebcamFeeder()
 {
-	cout << "Liberando Webcam...";
-	cap.release();
-	cout << " webcam liberada"<<endl;
+    cout << "Liberando Webcam...";
+    cap.release();
+    cout << " webcam liberada" << endl;
 }
 
 /**

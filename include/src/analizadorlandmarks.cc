@@ -9,7 +9,6 @@
  * 
  */
 
-
 #include "../analizadorlandmarks.h"
 
 /**
@@ -38,7 +37,7 @@ AnalizadorLandmarks::~AnalizadorLandmarks()
  */
 void AnalizadorLandmarks::setLandmarks(const vector<Landmarks> &lm)
 {
-	this->landmarks=lm;
+	this->landmarks = lm;
 }
 
 /**
@@ -50,11 +49,12 @@ void AnalizadorLandmarks::setLandmarks(const vector<Landmarks> &lm)
  */
 inline const float AnalizadorLandmarks::calcularAngulo(const Point2f &a, const Point2f &b)
 {
-	if ((a.x-b.x)!=0)
+	if ((a.x - b.x) != 0)
 	{
-	return atan((a.y-b.y)/(a.x-b.x))*180/CV_PI;
+		return atan((a.y - b.y) / (a.x - b.x)) * 180 / CV_PI;
 	}
-	else return 0;
+	else
+		return 0;
 }
 
 /**
@@ -66,7 +66,7 @@ inline const float AnalizadorLandmarks::calcularAngulo(const Point2f &a, const P
  */
 inline const float AnalizadorLandmarks::calcularPendiente(const Point2f &a, const Point2f &b)
 {
-	return abs((a.x-b.x)/(a.y-b.y));
+	return abs((a.x - b.x) / (a.y - b.y));
 }
 
 /**
@@ -75,28 +75,29 @@ inline const float AnalizadorLandmarks::calcularPendiente(const Point2f &a, cons
  */
 void AnalizadorLandmarks::normalizarLandmarks()
 {
-Mat matrizRotacion;
-landmarksNorm.clear();
-std::vector<Landmarks>::const_iterator cii;
-Landmarks l, lNorm;
-for(cii=landmarks.begin();cii!=landmarks.end();cii++){
-	l=*cii;
-		cout << "menton";
-	for(std::vector<Point2f>::const_iterator asd=l.menton.begin();asd!=l.menton.end();asd++){
-	cout << *asd << "\t";
+	Mat matrizRotacion;
+	landmarksNorm.clear();
+	if (!landmarks[0].empty())
+	{
+		std::vector<Landmarks>::const_iterator cii;
+		Landmarks l, lNorm;
+		for (cii = landmarks.begin(); cii != landmarks.end(); cii++)
+		{
+			l = *cii;
+			lNorm.rotacion = calcularAngulo(*l.menton.begin(), *l.menton.end());
+			matrizRotacion = getRotationMatrix2D(l.menton[0], lNorm.rotacion, l.escala);
+			transform(l.menton, lNorm.menton, matrizRotacion);
+			transform(l.cejaIzq, lNorm.cejaIzq, matrizRotacion);
+			transform(l.cejaDer, lNorm.cejaDer, matrizRotacion);
+			transform(l.ojoIzq, lNorm.ojoIzq, matrizRotacion);
+			transform(l.ojoDer, lNorm.ojoDer, matrizRotacion);
+			transform(l.nariz, lNorm.nariz, matrizRotacion);
+			transform(l.boca, lNorm.boca, matrizRotacion);
+			landmarksNorm.push_back(lNorm);
+		}
 	}
-	cout << endl;
-	lNorm.rotacion=calcularAngulo(*l.menton.begin(),*l.menton.end());
-	matrizRotacion=getRotationMatrix2D(l.menton[0],lNorm.rotacion,l.escala);
-	transform(l.menton,lNorm.menton,matrizRotacion);
-	transform(l.cejaIzq,lNorm.cejaIzq,matrizRotacion);
-	transform(l.cejaDer,lNorm.cejaDer,matrizRotacion);
-	transform(l.ojoIzq,lNorm.ojoIzq,matrizRotacion);
-	transform(l.ojoDer,lNorm.ojoDer,matrizRotacion);
-	transform(l.nariz,lNorm.nariz,matrizRotacion);
-	transform(l.boca,lNorm.boca,matrizRotacion);
-	landmarksNorm.push_back(lNorm);
-}
+	else
+		landmarksNorm[0].vacio = 1;
 }
 
 /**
@@ -108,7 +109,12 @@ const float AnalizadorLandmarks::calcularAsimetria()
 {
 	//Estoy usando un float, podria ser un vector y luego sumar los puntos
 	//Los valores estan elegidos un poco "a ojo"
-	float asimetria=1;
+	float asimetria = 1;
+	if (!landmarksNorm[0].empty())
+	{
+		cout << "hay vectores para analizar!" << endl;
+	}
+
 	return asimetria;
 }
 
@@ -121,7 +127,7 @@ const float AnalizadorLandmarks::calcularAsimetria()
  */
 inline const float AnalizadorLandmarks::calcularMax(const float &a, const float &b)
 {
-	if (a>b)
+	if (a > b)
 	{
 		return a;
 	}
@@ -129,5 +135,4 @@ inline const float AnalizadorLandmarks::calcularMax(const float &a, const float 
 	{
 		return b;
 	}
-	
 }

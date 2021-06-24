@@ -21,9 +21,3 @@ Feeder::~Feeder()
 {
 	cout << "Destruyendo Feeder" << endl;
 }
-
-const Mat Feeder::getFrame()
-{
-	cout << "getFrame por defecto, no hace nada" << endl;
-	return this->frame;
-}

@@ -47,6 +47,6 @@ VideoFeeder::~VideoFeeder()
  */
 const Mat VideoFeeder::getFrame()
 {
-    cap >> frame;
-    return frame;
+	cap >> frame;
+	return frame;
 }

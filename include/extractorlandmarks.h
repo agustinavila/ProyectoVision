@@ -35,7 +35,7 @@ public:
 	ExtractorLandmarks();
 	virtual ~ExtractorLandmarks();
 	const std::vector<Landmarks> parseLandmarks(const std::vector<std::vector<cv::Point2f>> &);
-	virtual const std::vector<Landmarks> getLandmarks(const cv::Mat &);
+	virtual const std::vector<Landmarks> getLandmarks(const cv::Mat &) = 0;
 };
 
 #endif // EXTRACTORLANDMARKS_H

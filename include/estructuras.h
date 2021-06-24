@@ -20,9 +20,9 @@ using namespace cv;
 
 struct Landmarks
 {
-	bool vacio=0;
-	float escala=1;
-	float rotacion=0;
+	bool vacio = 0;
+	float escala = 1;
+	float rotacion = 0;
 	std::vector<Point2f> menton;
 	std::vector<Point2f> ojoIzq;
 	std::vector<Point2f> ojoDer;
@@ -30,9 +30,7 @@ struct Landmarks
 	std::vector<Point2f> cejaDer;
 	std::vector<Point2f> boca;
 	std::vector<Point2f> nariz;
-	inline const bool empty(){return vacio;};
+	inline const bool empty() { return vacio; };
 };
-
-
 
 #endif // ESTRUCTURAS_H

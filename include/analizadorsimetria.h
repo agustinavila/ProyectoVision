@@ -29,28 +29,32 @@
 #include "analizadorlandmarks.h"
 #include "estructuras.h"
 
+using namespace std;
+using namespace cv;
+
 class AnalizadorSimetria
 {
 private:
-float asimetria;
+	float asimetria;
 	Mat frame;
-	// Feeder *ptrFeeder;
-	// ExtractorLandmarksD *ptrExtractor;
-	WebcamFeeder feeder;
-	ExtractorLandmarksDlib extractor;
+	Feeder *ptrFeeder;
+	ExtractorLandmarks *ptrExtractor;
 	AnalizadorLandmarks analizadorLandmarks;
 	FrameLogger logger;
 	std::vector<Landmarks> landmarks;
 	std::vector<Landmarks> landmarksNorm;
+
 public:
-	AnalizadorSimetria(/* args */);
+	AnalizadorSimetria(Feeder *, ExtractorLandmarks *);
+	AnalizadorSimetria();
 	~AnalizadorSimetria();
-	Mat getFrame(){return frame;};
-	const float getAsimetria(){return asimetria;};
+	Mat getFrame() { return frame; };
+	const float getAsimetria() { return asimetria; };
+	const std::vector<Landmarks> getLandmarks() { return landmarks; };
+	const std::vector<Landmarks> getLandmarksNorm() { return landmarks; };
+	void setFeeder(Feeder *);
+	void setExtractor(ExtractorLandmarks *);
 	void step();
 };
-
-
-
 
 #endif // ANALIZADORSIMETRIA_H

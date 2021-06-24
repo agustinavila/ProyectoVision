@@ -11,39 +11,54 @@
 
 #include "../analizadorsimetria.h"
 
-AnalizadorSimetria::AnalizadorSimetria(/* args */)
+AnalizadorSimetria::AnalizadorSimetria(Feeder *feeder = new WebcamFeeder, ExtractorLandmarks *extractor = new ExtractorLandmarksDlib): ptrFeeder(feeder), ptrExtractor(extractor)
 {
-	cout << "En el constructor del objeto de analizadorSimetria"<<endl;
-	// WebcamFeeder webcamFeeder;
-	// this->ptrFeeder = &webcamFeeder;
-	// ExtractorLandmarksOpenCV extractorOpencv;
-	// ptrExtractor = &extractorOpencv;
-	// ExtractorLandmarksDlib extractorDlib;
-	// this->ptrExtractor = &extractorDlib;
-}
+	cout << "En el constructor del objeto de analizadorSimetria por defecto" << endl;
 
+}
+AnalizadorSimetria::AnalizadorSimetria()
+{
+	cout << "En el constructor del objeto de analizadorSimetria por defecto" << endl;
+	this->ptrFeeder=new WebcamFeeder;
+	this->ptrExtractor=new ExtractorLandmarksDlib;
+
+}
 AnalizadorSimetria::~AnalizadorSimetria()
 {
-cout<<"destructor del analizador?"<<endl;
+	delete this->ptrExtractor;
+	delete this->ptrFeeder;
+
+	cout << "destructor del analizador?" << endl;
 }
 
 void AnalizadorSimetria::step()
 {
-		frame = feeder.getFrame();
-		logger.log(frame); //Guarda frames, segun parametros podria desactivarse o no
-		landmarks = extractor.getLandmarks(frame);
-		if (!landmarks[0].empty())
-		{
-			cout << "Detectados " << landmarks.size() << " rostros!" << endl;
-			analizadorLandmarks.setLandmarks(landmarks);
-			analizadorLandmarks.normalizarLandmarks();
-			asimetria=analizadorLandmarks.calcularAsimetria();
-			cout << "Asimetria: "<< asimetria << endl;
-			putText(frame, "Rostro detectado!",*landmarks[0].menton.end(),1,1,Scalar(255,0,0));
-			drawContours(frame,landmarks[0].ojoDer,-1,Scalar(255,0,0));
-		}
-		else
-		{
-			cout << "no se detecto ninguna cara"<<endl;
- 		}	
+	frame = ptrFeeder->getFrame();
+	logger.log(frame); //Guarda frames, segun parametros podria desactivarse o no
+	landmarks = ptrExtractor->getLandmarks(frame);
+	if (!landmarks[0].vacio)
+	{
+		cout << "Detectados " << landmarks.size() << " rostros!" << endl;
+		analizadorLandmarks.setLandmarks(landmarks);
+		analizadorLandmarks.normalizarLandmarks();
+		asimetria = analizadorLandmarks.calcularAsimetria();
+		cout << "Asimetria: " << asimetria << endl;
+
+	}
+	else
+	{
+		cout << "no se detecto ninguna cara" << endl;
+	}
+}
+
+void AnalizadorSimetria::setExtractor(ExtractorLandmarks *extractor)
+{
+	delete this->ptrExtractor;
+	this->ptrExtractor = extractor;
+}
+
+void AnalizadorSimetria::setFeeder(Feeder *feeder)
+{
+	delete this->ptrFeeder;
+	this->ptrFeeder = feeder;
 }

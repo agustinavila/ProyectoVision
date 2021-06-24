@@ -50,10 +50,15 @@ const std::vector<Landmarks> ExtractorLandmarksDlib::getLandmarks(const cv::Mat 
 	Landmarks l;
 	landmarksSerie.clear();
 	landmarks.clear();
+	if (faces.empty())
+	{
+		l.vacio=1;
+		landmarks.push_back(l);
+	}else{
 	for (long unsigned int i = 0; i < faces.size(); ++i)
 	{
-	full_object_detection shape;
-		shape=(pose_model(cimg, faces[i]));
+		full_object_detection shape;
+		shape = (pose_model(cimg, faces[i]));
 		std::vector<Point2f> cara;
 		for (unsigned int i = 0; i < shape.num_parts(); ++i)
 		{
@@ -61,11 +66,7 @@ const std::vector<Landmarks> ExtractorLandmarksDlib::getLandmarks(const cv::Mat 
 		}
 		landmarksSerie.push_back(cara);
 	}
-			cout << "menton";
-	for(std::vector<Point2f>::const_iterator asd=l.menton.begin();asd!=l.menton.end();asd++){
-	cout << *asd << "\t";
-	}
-	cout << endl;
 	landmarks = parseLandmarks(landmarksSerie);
+	}
 	return landmarks;
 }
