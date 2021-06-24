@@ -18,7 +18,7 @@
  */
 AnalizadorLandmarks::AnalizadorLandmarks()
 {
-	cout << "constructor del analizador" << endl;
+	cout << "Construyendo el analizador de landmarks..." << endl;
 }
 
 /**
@@ -36,7 +36,7 @@ AnalizadorLandmarks::~AnalizadorLandmarks()
  * 
  * @param vector<Point2f>lm 
  */
-void AnalizadorLandmarks::setLandmarks(const vector<Point2f> &lm)
+void AnalizadorLandmarks::setLandmarks(const vector<Landmarks> &lm)
 {
 	this->landmarks=lm;
 }
@@ -76,12 +76,27 @@ inline const float AnalizadorLandmarks::calcularPendiente(const Point2f &a, cons
 void AnalizadorLandmarks::normalizarLandmarks()
 {
 Mat matrizRotacion;
-this->landmarksNorm.clear();
-this->rotacion=calcularAngulo(this->landmarks[0],this->landmarks[16]);
-matrizRotacion=getRotationMatrix2D(this->landmarks[0],this->rotacion,1);
-transform(this->landmarks,this->landmarksNorm,matrizRotacion);
-//cout <<"rotacion: "<<this->rotacion<<"\t"<<"izq original: "<<this->landmarks[0]<<"\t";
-//cout<<"izq rotado: "<<this->landmarksNorm[0]<<"\t"<<"der orig: "<<this->landmarks[16]<<"\t"<< "der modif: "<<this->landmarksNorm[16]<<endl;
+landmarksNorm.clear();
+std::vector<Landmarks>::const_iterator cii;
+Landmarks l, lNorm;
+for(cii=landmarks.begin();cii!=landmarks.end();cii++){
+	l=*cii;
+		cout << "menton";
+	for(std::vector<Point2f>::const_iterator asd=l.menton.begin();asd!=l.menton.end();asd++){
+	cout << *asd << "\t";
+	}
+	cout << endl;
+	lNorm.rotacion=calcularAngulo(*l.menton.begin(),*l.menton.end());
+	matrizRotacion=getRotationMatrix2D(l.menton[0],lNorm.rotacion,l.escala);
+	transform(l.menton,lNorm.menton,matrizRotacion);
+	transform(l.cejaIzq,lNorm.cejaIzq,matrizRotacion);
+	transform(l.cejaDer,lNorm.cejaDer,matrizRotacion);
+	transform(l.ojoIzq,lNorm.ojoIzq,matrizRotacion);
+	transform(l.ojoDer,lNorm.ojoDer,matrizRotacion);
+	transform(l.nariz,lNorm.nariz,matrizRotacion);
+	transform(l.boca,lNorm.boca,matrizRotacion);
+	landmarksNorm.push_back(lNorm);
+}
 }
 
 /**
@@ -93,27 +108,8 @@ const float AnalizadorLandmarks::calcularAsimetria()
 {
 	//Estoy usando un float, podria ser un vector y luego sumar los puntos
 	//Los valores estan elegidos un poco "a ojo"
-	this->asimetria=1;
-	// f15:Maximo valor de cocientes entre puntos externos de ojos y centro de boca: (F y G en el paper)
-	float F=norm(landmarksNorm[37]-landmarksNorm[58]);
-	float G=norm(landmarksNorm[46]-landmarksNorm[58]);
-	this->asimetria*=calcularMax(F/G,G/F);
-	
-	// f16: Maximo valor entre cociente de distancias de labios inferior(Pl y Ql en el paper)
-	float Pl=norm(landmarksNorm[50]-landmarksNorm[60]);
-	float Ql=norm(landmarksNorm[54]-landmarksNorm[56]);
-	this->asimetria*=calcularMax(Pl/Ql,Ql/Pl);
-
-	// f17: Maximo valor entre cociente de distancias de labios superior?(Pu y Qu en el paper)
-	float Pu=norm(landmarksNorm[51]-landmarksNorm[59]);
-	float Qu=norm(landmarksNorm[53]-landmarksNorm[57]);
-	this->asimetria*=calcularMax(Pu/Qu,Qu/Pu);
-
-	// Maximo valor de cocientes entre puntos superiores de quijada y comisuras de labios
-	float d1=norm(landmarksNorm[1]-landmarksNorm[49]);
-	float d2=norm(landmarksNorm[17]-landmarksNorm[55]);
-	this->asimetria*=calcularMax(d1/d2,d2/d1);
-	return this->asimetria;
+	float asimetria=1;
+	return asimetria;
 }
 
 /**

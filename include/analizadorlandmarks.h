@@ -17,6 +17,7 @@
 //#include <math.h>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/core/core.hpp>
+#include "estructuras.h"
 
 using namespace std;
 using namespace cv;
@@ -28,29 +29,15 @@ using namespace cv;
 class AnalizadorLandmarks
 {
 private:
-	std::vector<Point2f> landmarks;
-	std::vector<Point2f> landmarksNorm;
-	/**
- 	* @brief Landmarks sectorizador por region de la cara.
- 	* @details Los distintos vectores son:
- 	* 0: Quijada
- 	* 1: ceja izquierda
- 	* 2: ceja derecha
- 	* 3: nariz
- 	* 4: ojo izq
- 	* 5: ojo derecho
- 	* 6: boca
- 	*/
-	std::vector<std::vector<Point2f>> landmarksRegion;
-	float rotacion;
-	float asimetria;
+	std::vector<Landmarks> landmarks;
+	std::vector<Landmarks> landmarksNorm;
 
 public:
 	AnalizadorLandmarks(/* args */);
 	~AnalizadorLandmarks();
-	void setLandmarks(const std::vector<Point2f> &);
-	const std::vector<Point2f> getLandmarks() { return this->landmarks; };
-	std::vector<Point2f> getNormLandmarks() { return this->landmarksNorm; };
+	void setLandmarks(const std::vector<Landmarks> &);
+	const std::vector<Landmarks> getLandmarks() { return this->landmarks; };
+	std::vector<Landmarks> getNormLandmarks() { return this->landmarksNorm; };
 	inline const float calcularAngulo(const Point2f &, const Point2f &);
 	inline const float calcularPendiente(const Point2f &, const Point2f &);
 	inline const float calcularMax(const float &, const float &);

@@ -19,9 +19,9 @@
 ExtractorLandmarksDlib::ExtractorLandmarksDlib()
 {
 	cout << "Generando el extractor de landmarks con dlib...";
-	this->detector = get_frontal_face_detector();
+	detector = get_frontal_face_detector();
 	//el constructor deberia poder tomar como argumento el archivo entrenado
-	deserialize("shape_predictor_68_face_landmarks.dat") >> this->pose_model;
+	deserialize("shape_predictor_68_face_landmarks.dat") >> pose_model;
 	cout << " listo!" << endl;
 }
 
@@ -33,7 +33,7 @@ ExtractorLandmarksDlib::~ExtractorLandmarksDlib()
 {
 	cout << "Destruyendo el extractor de landmarks con dlib...";
 	//deberia eliminar el vector?
-	this->landmarks.clear();
+	landmarks.clear();
 	cout << "listo!" << endl;
 }
 
@@ -43,21 +43,29 @@ ExtractorLandmarksDlib::~ExtractorLandmarksDlib()
  * @param frame objeto Mat a analizar 
  * @return std::vector<cv::Point2f> 
  */
-const std::vector<cv::Point2f> ExtractorLandmarksDlib::getLandmarks(const cv::Mat &frame)
+const std::vector<Landmarks> ExtractorLandmarksDlib::getLandmarks(const cv::Mat &frame)
 {
 	cv_image<bgr_pixel> cimg(frame); //Convierte el Mat a un formato utilizable por dlib
-	std::vector<rectangle> faces = this->detector(cimg);
-	this->landmarks.clear();
-	if (!faces.empty())
+	std::vector<rectangle> faces = detector(cimg);
+	Landmarks l;
+	landmarksSerie.clear();
+	landmarks.clear();
+	for (long unsigned int i = 0; i < faces.size(); ++i)
 	{
-	full_object_detection shape(this->pose_model(cimg, faces[0]));
-	for (unsigned int i = 0; i < shape.num_parts(); ++i)
-	{
-		this->landmarks.push_back((cv::Point2f(shape.part(i).x(), shape.part(i).y())));
+	full_object_detection shape;
+		shape=(pose_model(cimg, faces[i]));
+		std::vector<Point2f> cara;
+		for (unsigned int i = 0; i < shape.num_parts(); ++i)
+		{
+			cara.push_back((cv::Point2f(shape.part(i).x(), shape.part(i).y())));
+		}
+		landmarksSerie.push_back(cara);
 	}
-	} else {
-	//deberia chequear que hayan puntos?
-		landmarks.push_back(cv::Point2f(1,1));
+			cout << "menton";
+	for(std::vector<Point2f>::const_iterator asd=l.menton.begin();asd!=l.menton.end();asd++){
+	cout << *asd << "\t";
 	}
+	cout << endl;
+	landmarks = parseLandmarks(landmarksSerie);
 	return landmarks;
 }

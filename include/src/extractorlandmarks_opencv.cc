@@ -19,9 +19,9 @@
 ExtractorLandmarksOpenCV::ExtractorLandmarksOpenCV()
 {
 	cout << "constructor del extractor de openCV... ";
-	this->faceDetector.load("../../haarcascade_frontalface_alt2.xml");
-	this->facemark = face::createFacemarkLBF();
-	this->facemark->loadModel("../../lbfmodel.yaml");
+	faceDetector.load("../../haarcascade_frontalface_alt2.xml");
+	facemark = face::createFacemarkLBF();
+	facemark->loadModel("../../lbfmodel.yaml");
 	cout << "listo!" << endl;
 }
 
@@ -31,7 +31,7 @@ ExtractorLandmarksOpenCV::ExtractorLandmarksOpenCV()
  */
 ExtractorLandmarksOpenCV::~ExtractorLandmarksOpenCV()
 {
-	this->landmarks.clear();
+	landmarks.clear();
 }
 
 /**
@@ -40,24 +40,13 @@ ExtractorLandmarksOpenCV::~ExtractorLandmarksOpenCV()
  * @param frame objeto Mat a analizar 
  * @return std::vector<cv::Point2f> 
  */
-const std::vector<cv::Point2f> ExtractorLandmarksOpenCV::getLandmarks(const cv::Mat &frame)
+const std::vector<Landmarks> ExtractorLandmarksOpenCV::getLandmarks(const cv::Mat &frame)
 {
 	vector<Rect> faces;
 	Mat gray;
 	cvtColor(frame, gray, COLOR_BGR2GRAY);
-	this->faceDetector.detectMultiScale(gray, faces);
-	std::vector<std::vector<cv::Point2f>> landmarksVector;
-	this->facemark->fit(frame, faces, landmarksVector);
-	this->landmarks.clear();
-	if (landmarksVector.empty())
-	{
-		landmarks.push_back(Point2f(1,1));
-	}
-	else
-	{
-		/* code */
-	this->landmarks=landmarksVector[0];
-	}
-	
-	return this->landmarks;
+	faceDetector.detectMultiScale(gray, faces);
+	facemark->fit(frame, faces, landmarksSerie);
+	landmarks=parseLandmarks(landmarksSerie);
+	return landmarks;
 }

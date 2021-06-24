@@ -20,6 +20,7 @@
 // #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 #include "extractorlandmarks.h"
+#include "estructuras.h"
 
 using namespace std;
 using namespace cv;
@@ -35,12 +36,12 @@ private:
 	Mat gray;
 	Ptr<face::Facemark> facemark;
 	CascadeClassifier faceDetector;
-	std::vector<cv::Point2f> landmarks;
-	/* data */
+	std::vector<std::vector<cv::Point2f>> landmarksSerie;
+	std::vector<Landmarks> landmarks;
 public:
 	ExtractorLandmarksOpenCV();
 	virtual ~ExtractorLandmarksOpenCV();
-	virtual const std::vector<cv::Point2f> getLandmarks(const cv::Mat &);
+	virtual const std::vector<Landmarks> getLandmarks(const cv::Mat &);
 };
 
 #endif // EXTRACTORLANDMARKS_OPENCV_H

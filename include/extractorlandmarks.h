@@ -17,6 +17,7 @@
 #include <iostream>
 #include <string>
 #include <array>
+#include "estructuras.h"
 
 using namespace std;
 
@@ -28,12 +29,13 @@ using namespace std;
 class ExtractorLandmarks
 {
 private:
-	std::vector<cv::Point2f> landmarks;
+	std::vector<Landmarks> landmarks;
 	/* data */
 public:
 	ExtractorLandmarks();
 	virtual ~ExtractorLandmarks();
-	virtual const std::vector<cv::Point2f> getLandmarks(const cv::Mat &);
+	const std::vector<Landmarks> parseLandmarks(const std::vector<std::vector<cv::Point2f>> &);
+	virtual const std::vector<Landmarks> getLandmarks(const cv::Mat &);
 };
 
 #endif // EXTRACTORLANDMARKS_H

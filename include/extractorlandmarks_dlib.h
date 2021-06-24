@@ -36,12 +36,13 @@ class ExtractorLandmarksDlib : public ExtractorLandmarks
 private:
 	frontal_face_detector detector;
 	shape_predictor pose_model;
-	std::vector<cv::Point2f> landmarks;
+	std::vector<std::vector<cv::Point2f>> landmarksSerie;
+	std::vector<Landmarks> landmarks;
 
 public:
 	ExtractorLandmarksDlib();
 	virtual ~ExtractorLandmarksDlib();
-	virtual const std::vector<cv::Point2f> getLandmarks(const cv::Mat &);
+	virtual const std::vector<Landmarks> getLandmarks(const cv::Mat &);
 };
 
 #endif // EXTRACTORLANDMARKSDLIB_H
