@@ -21,28 +21,20 @@ int main(int argc, char *argv[])
 {
 	char ch = 0;
 	std::vector<Landmarks> landmarks;
-	AnalizadorSimetria *analizador = new AnalizadorSimetria(new WebcamFeeder, new ExtractorLandmarksDlib);
+	AnalizadorSimetria analizador;// = new AnalizadorSimetria;
+	analizador.setFeeder(new KinectFeeder);
+	analizador.setExtractor(new ExtractorLandmarksOpenCV);
 	Mat frame;
 	cout << "Presione q para finalizar" << endl;
 	while (ch != 'q' && ch != 'Q')
-	{ 
-		analizador->step();
-		frame=analizador->getFrame();
-		landmarks=analizador->getLandmarks();
+	{
+		cout <<"1...";
+		frame = analizador.step();
+		cout<<"7..."<<endl;
+		landmarks = analizador.getLandmarks();
+		if (!landmarks.front().vacio){
 		putText(frame, "Rostro detectado!", landmarks.front().menton.back(), 1, 1, Scalar(255, 0, 0));
-		// drawContours(frame, landmarks[0].ojoDer, -1, Scalar(255, 0, 0));
-		imshow("feeder", frame);
-		ch = waitKey(1);
-	}
-	ch=0;
-	analizador->setExtractor(new ExtractorLandmarksOpenCV);
-		while (ch != 'q' && ch != 'Q')
-	{ 
-		analizador->step();
-		frame=analizador->getFrame();
-		landmarks=analizador->getLandmarks();
-		// putText(frame, "Rostro detectado!", *landmarks[0].menton.end(), 1, 1, Scalar(255, 0, 0));
-		// drawContours(frame, landmarks[0].ojoDer, -1, Scalar(255, 0, 0));
+		}
 		imshow("feeder", frame);
 		ch = waitKey(1);
 	}

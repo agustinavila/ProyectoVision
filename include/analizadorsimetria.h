@@ -22,6 +22,7 @@
 #include <opencv2/core/core.hpp>
 #include "feeder.h"
 #include "webcamfeeder.h"
+#include "kinectfeeder.h"
 #include "framelogger.h"
 #include "extractorlandmarks.h"
 #include "extractorlandmarks_dlib.h"
@@ -37,6 +38,7 @@ class AnalizadorSimetria
 private:
 	float asimetria;
 	Mat frame;
+	Mat frameReducido;
 	Feeder *ptrFeeder;
 	ExtractorLandmarks *ptrExtractor;
 	AnalizadorLandmarks analizadorLandmarks;
@@ -54,7 +56,8 @@ public:
 	const std::vector<Landmarks> getLandmarksNorm() { return landmarks; };
 	void setFeeder(Feeder *);
 	void setExtractor(ExtractorLandmarks *);
-	void step();
+	void reducirMat(float);
+	Mat step();
 };
 
 #endif // ANALIZADORSIMETRIA_H

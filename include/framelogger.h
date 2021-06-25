@@ -34,14 +34,17 @@ using namespace cv;
 class FrameLogger
 {
 private:
-	Mat frame;
-	string nombre;
+	string nombre_;
+	bool rec = 0;
 	double numero = 0;
 	VideoWriter video;
 
 public:
 	FrameLogger();
+	FrameLogger(string);
 	~FrameLogger();
+	void startVideoLog();
+	void stopVideoLog();
 	void log(const Mat &);
 };
 

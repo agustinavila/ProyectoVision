@@ -45,28 +45,31 @@ ExtractorLandmarksDlib::~ExtractorLandmarksDlib()
  */
 const std::vector<Landmarks> ExtractorLandmarksDlib::getLandmarks(const cv::Mat &frame)
 {
+	
 	cv_image<bgr_pixel> cimg(frame); //Convierte el Mat a un formato utilizable por dlib
 	std::vector<rectangle> faces = detector(cimg);
-	Landmarks l;
-	landmarksSerie.clear();
-	landmarks.clear();
 	if (faces.empty())
 	{
+		landmarks.clear();
+		Landmarks l;
 		l.vacio=1;
 		landmarks.push_back(l);
-	}else{
-	for (long unsigned int i = 0; i < faces.size(); ++i)
-	{
-		full_object_detection shape;
-		shape = (pose_model(cimg, faces[i]));
-		std::vector<Point2f> cara;
-		for (unsigned int i = 0; i < shape.num_parts(); ++i)
-		{
-			cara.push_back((cv::Point2f(shape.part(i).x(), shape.part(i).y())));
-		}
-		landmarksSerie.push_back(cara);
 	}
-	landmarks = parseLandmarks(landmarksSerie);
+	else
+	{
+		landmarksSerie.clear();
+		for (long unsigned int i = 0; i < faces.size(); ++i)
+		{
+			full_object_detection shape;
+			shape = (pose_model(cimg, faces[i]));
+			std::vector<Point2f> cara;
+			for (unsigned int i = 0; i < shape.num_parts(); ++i)
+			{
+				cara.push_back((cv::Point2f(shape.part(i).x(), shape.part(i).y())));
+			}
+			landmarksSerie.push_back(cara);
+			landmarks = parseLandmarks(landmarksSerie);
+		}
 	}
 	return landmarks;
 }

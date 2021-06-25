@@ -16,9 +16,9 @@
  * @brief Construye un nuevo objeto de la clase Kinect Feeder:: Kinect Feeder
  * 
  */
-KinectFeeder::KinectFeeder()
+KinectFeeder::KinectFeeder() //: listener(libfreenect2::Frame::Color)
 {
-	if(this->freenect2.enumerateDevices() == 0)
+	if(freenect2.enumerateDevices() == 0)
 	{
 		std::cout << "no device connected!" << std::endl;
 	}
@@ -33,19 +33,19 @@ KinectFeeder::KinectFeeder()
 
 	if (this->pipeline)
 	{
-		this->dev = this->freenect2.openDevice(serial, this->pipeline);
+		this->dev = freenect2.openDevice(serial, this->pipeline);
 	}
 	else
 	{
-		this->dev = this->freenect2.openDevice(serial);
+		this->dev = freenect2.openDevice(serial);
 	}
 		if (this->dev == 0)
 	{
 		cout << "failure opening device!" << endl;
 	}
-	this->listener=libfreenect2::SyncMultiFrameListener(Frame::Color);
-	this->dev->setColorFrameListener(this->listener);
-	this->dev->start();
+	listener = new libfreenect2::SyncMultiFrameListener(libfreenect2::Frame::Color);
+	this->dev->setColorFrameListener(listener);
+	this->dev->startStreams(1,0);
 	cout << "device serial: " << this->dev->getSerialNumber() << endl;
 	cout << "device firmware: " << this->dev->getFirmwareVersion() << endl;
 
@@ -58,9 +58,9 @@ KinectFeeder::KinectFeeder()
  */
 KinectFeeder::~KinectFeeder()
 {
-	this->listener.release(this->frames);
-	dev->stop();
-	dev->close();
+	this->listener->release(frames);
+	this->dev->stop();
+	this->dev->close();
 	std::cout << "Goodbye World!" << std::endl;
 }
 
@@ -71,9 +71,23 @@ KinectFeeder::~KinectFeeder()
  */
 const Mat KinectFeeder::getFrame()
 {
-	Mat frame;
-	this->listener.waitForNewFrame(frames);
-	Frame *rgb = frames[Frame::Color];
-	cv::Mat(rgb->height, rgb->width, CV_8UC4, rgb->data).copyTo(frame);
+	// Mat frameOrig;
+	cout<<"3...";
+	listener->waitForNewFrame(frames,10);
+	libfreenect2::Frame *rgb = frames[libfreenect2::Frame::Color];
+	// libfreenect2::Frame *rgb; //= frames[libfreenect2::Frame::Color];
+	// rgb->
+	 cout<<"4...";
+	// listener->onNewFrame(Frame::Color, rgb);
+	frame= cv::Mat(rgb->height, rgb->width, CV_8UC4, rgb->data).clone();
+	 cout<<"5...";
+	// cout<<"6...";
+	// cv::Mat(rgb->height, rgb->width, CV_8UC4, rgb->data).copyTo(frameOrig);
+	// std::vector<Mat> rgbChannels(3);
+	// split(frameOrig, rgbChannels);
+	// rgbChannels.pop_back();
+	// merge(rgbChannels, frameOrig);
+	// resize(frameOrig,frame,Size(),0.3,0.3);
+	this->listener->release(frames);
 	return frame;
 }

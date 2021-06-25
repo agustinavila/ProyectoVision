@@ -51,6 +51,7 @@ const std::vector<Landmarks> ExtractorLandmarks::parseLandmarks(const std::vecto
 			}
 			l.ojoIzq.push_back(vec.at(40));
 			l.ojoIzq.push_back(vec.at(41));
+			l.vacio=0;
 			landmarks.push_back(l);
 		}
 	}

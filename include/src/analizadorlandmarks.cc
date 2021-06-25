@@ -77,15 +77,15 @@ void AnalizadorLandmarks::normalizarLandmarks()
 {
 	Mat matrizRotacion;
 	landmarksNorm.clear();
-	if (!landmarks[0].empty())
+	if (!landmarks.front().empty())
 	{
 		std::vector<Landmarks>::const_iterator cii;
 		Landmarks l, lNorm;
 		for (cii = landmarks.begin(); cii != landmarks.end(); cii++)
 		{
 			l = *cii;
-			lNorm.rotacion = calcularAngulo(*l.menton.begin(), *l.menton.end());
-			matrizRotacion = getRotationMatrix2D(l.menton[0], lNorm.rotacion, l.escala);
+			lNorm.rotacion = calcularAngulo(l.menton.front(), l.menton.back());
+			matrizRotacion = getRotationMatrix2D(l.menton.front(), lNorm.rotacion, l.escala);
 			transform(l.menton, lNorm.menton, matrizRotacion);
 			transform(l.cejaIzq, lNorm.cejaIzq, matrizRotacion);
 			transform(l.cejaDer, lNorm.cejaDer, matrizRotacion);
@@ -97,7 +97,7 @@ void AnalizadorLandmarks::normalizarLandmarks()
 		}
 	}
 	else
-		landmarksNorm[0].vacio = 1;
+		landmarksNorm.front().vacio = 1;
 }
 
 /**
@@ -110,9 +110,9 @@ const float AnalizadorLandmarks::calcularAsimetria()
 	//Estoy usando un float, podria ser un vector y luego sumar los puntos
 	//Los valores estan elegidos un poco "a ojo"
 	float asimetria = 1;
-	if (!landmarksNorm[0].empty())
+	if (!landmarksNorm.front().empty())
 	{
-		cout << "hay vectores para analizar!" << endl;
+		//aca deberia calcular la asimetria
 	}
 
 	return asimetria;

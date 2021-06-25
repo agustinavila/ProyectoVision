@@ -16,11 +16,15 @@
  */
 FrameLogger::FrameLogger()
 {
+	nombre_="out.avi";
 	//el nombre esta hardcodeado por ahora, tendria que tomar un nombre como parametro
 	//y ademas adjuntarle un timestamp por si acaso
-	video.open("outcpp.avi", VideoWriter::fourcc('M', 'J', 'P', 'G'), 10, Size(640, 480));
 }
-
+FrameLogger::FrameLogger(string nombre="outcpp.avi") : nombre_(nombre)
+{
+	//el nombre esta hardcodeado por ahora, tendria que tomar un nombre como parametro
+	//y ademas adjuntarle un timestamp por si acaso
+}
 /**
  * @brief Destruye el objeto de la clase FrameLogger
  * 
@@ -32,6 +36,23 @@ FrameLogger::~FrameLogger()
 	cout << "Video cerrado!" << endl;
 }
 
+void FrameLogger::startVideoLog()
+{
+	if(rec){
+	stopVideoLog();
+	}
+	video.open(nombre_, VideoWriter::fourcc('M', 'J', 'P', 'G'), 10, Size(640, 480));
+	rec=1;
+}
+
+void FrameLogger::stopVideoLog()
+{
+	if (rec){
+		video.release();
+	}
+	else cout <<"Ningun video abierto"<<endl;
+}
+
 /**
  * @brief Agrega un fotograma al video final
  * 
@@ -39,6 +60,9 @@ FrameLogger::~FrameLogger()
  */
 void FrameLogger::log(const Mat &frame)
 {
+	if (!rec){
+		startVideoLog();
+	}
 	numero++; //Solo en caso de guardar secuencia de imagenes
 	video.write(frame);
 	//cout << "frame numero " << numero << endl;

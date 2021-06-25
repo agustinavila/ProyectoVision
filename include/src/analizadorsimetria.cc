@@ -31,24 +31,25 @@ AnalizadorSimetria::~AnalizadorSimetria()
 	cout << "destructor del analizador?" << endl;
 }
 
-void AnalizadorSimetria::step()
+Mat AnalizadorSimetria::step()
 {
+	cout <<"2...";
 	frame = ptrFeeder->getFrame();
 	logger.log(frame); //Guarda frames, segun parametros podria desactivarse o no
 	landmarks = ptrExtractor->getLandmarks(frame);
-	if (!landmarks[0].vacio)
+	if (!landmarks.front().vacio)
 	{
 		cout << "Detectados " << landmarks.size() << " rostros!" << endl;
 		analizadorLandmarks.setLandmarks(landmarks);
 		analizadorLandmarks.normalizarLandmarks();
 		asimetria = analizadorLandmarks.calcularAsimetria();
 		cout << "Asimetria: " << asimetria << endl;
-
 	}
 	else
 	{
 		cout << "no se detecto ninguna cara" << endl;
 	}
+	return frame;
 }
 
 void AnalizadorSimetria::setExtractor(ExtractorLandmarks *extractor)
@@ -61,4 +62,9 @@ void AnalizadorSimetria::setFeeder(Feeder *feeder)
 {
 	delete this->ptrFeeder;
 	this->ptrFeeder = feeder;
+}
+
+void AnalizadorSimetria::reducirMat(float escala = 30)
+{
+resize(frame, frameReducido, Size(), escala/100, escala/100);
 }
