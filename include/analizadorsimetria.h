@@ -33,30 +33,146 @@
 using namespace std;
 using namespace cv;
 
+/**
+ * @brief Enumeracion de los distintos tipos de feeder posibles
+ * 
+ */
+	enum TipoFeeder {
+		KINECTFEEDER,
+		WEBCAMFEEDER,
+		VIDEOFEEDER
+	};
+
+	/**
+	 * @brief Enumeracion de los distintos tipos de extractores posibles
+	 * 
+	 */
+	enum TipoExtractor {
+		DLIB,
+		OPENCV
+	};
+
+
+/**
+ * @brief Clase principal del programa
+ * 
+ */
 class AnalizadorSimetria
 {
 private:
+	/**
+	 * @brief Propiedad que cuantiza la asimetria de un rostro
+	 * 
+	 */
 	float asimetria;
+
+	/**
+	 * @brief Propiedad de tipo Mat que contiene el ultimo fotograma obtenido
+	 * 
+	 */
 	Mat frame;
-	Mat frameReducido;
+
+	/**
+	 * @brief Puntero de la clase abstracta Feeder apuntando a la implementacion concreta
+	 * 
+	 */
 	Feeder *ptrFeeder;
+
+	/**
+	 * @brief Puntero de clase abstracta ExtractorLandmarks que apunta a la implementacion concreta
+	 * 
+	 */
 	ExtractorLandmarks *ptrExtractor;
+
+	/**
+	 * @brief Objeto que analiza y normaliza los landmarks
+	 * 
+	 */
 	AnalizadorLandmarks analizadorLandmarks;
+
+	/**
+	 * @brief Logger de fotogramas. Por el momento va registrando en un video
+	 * 
+	 */
 	FrameLogger logger;
+
+	/**
+	 * @brief Vector de landmarks actual, "crudos" como se obtuvieron del extractor
+	 * 
+	 */
 	std::vector<Landmarks> landmarks;
+
+	/**
+	 * @brief Vector de landmarks normalizado
+	 * 
+	 */
 	std::vector<Landmarks> landmarksNorm;
 
 public:
+
+	/**
+	 * @brief Construye un nuevo objeto de la clase Analizador Simetria
+	 * 
+	 */
 	AnalizadorSimetria(Feeder *, ExtractorLandmarks *);
+
+	/**
+	 * @brief Construye un nuevo objeto de la clase Analizador Simetria
+	 * 
+	 */
 	AnalizadorSimetria();
+
+	/**
+	 * @brief Destruye el objeto de la clase Analizador Simetria
+	 * 
+	 */
 	~AnalizadorSimetria();
+
+	/**
+	 * @brief Devuelve la propiedad Frame 
+	 * 
+	 * @return Mat 
+	 */
 	Mat getFrame() { return frame; };
+
+	/**
+	 * @brief Devuelve la propiedad Asimetria 
+	 * 
+	 * @return const float 
+	 */
 	const float getAsimetria() { return asimetria; };
+
+	/**
+	 * @brief Devuelve la propiedad Landmarks 
+	 * 
+	 * @return const std::vector<Landmarks> 
+	 */
 	const std::vector<Landmarks> getLandmarks() { return landmarks; };
+	
+	/**
+	 * @brief Devuelve la propiedad Landmarks Norm 
+	 * 
+	 * @return const std::vector<Landmarks> 
+	 */
 	const std::vector<Landmarks> getLandmarksNorm() { return landmarks; };
-	void setFeeder(Feeder *);
-	void setExtractor(ExtractorLandmarks *);
-	void reducirMat(float);
+	
+	/**
+	 * @brief Setea el objeto Feeder del analizador
+	 * 
+	 */
+	void setFeeder(TipoFeeder);
+	
+	/**
+	 * @brief Setea el tipo concreto de Extractor del analizador
+	 * 
+	 */
+	void setExtractor(TipoExtractor);
+	
+	/**
+	 * @brief Funcion principal a llamar para operar la clase
+	 * 
+	 * @return Mat 
+	 */
 	Mat step();
 };
 

@@ -29,13 +29,33 @@ using namespace cv;
 class WebcamFeeder : public Feeder
 {
 private:
+/**
+ * @brief 
+ * 
+ */
 	Mat frame;
 	int idx;
 	cv::VideoCapture cap;
 
 public:
+/**
+ * @brief Construye un nuevo objeto de la clase Webcam Feeder
+ * 
+ * @param idx 
+ */
 	WebcamFeeder(int idx = 0);
+
+	/**
+	 * @brief Destruye el objeto de la clase Webcam Feeder
+	 * 
+	 */
 	virtual ~WebcamFeeder();
+	
+	/**
+	 * @brief Devuelve la propiedad Frame 
+	 * 
+	 * @return const Mat 
+	 */
 	virtual const Mat getFrame();
 };
 

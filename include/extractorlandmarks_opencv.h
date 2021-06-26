@@ -33,14 +33,49 @@ using namespace cv;
 class ExtractorLandmarksOpenCV : public ExtractorLandmarks
 {
 private:
-	Mat gray;
+
+	/**
+	 * @brief Objeto Facemark de openCV
+	 * 
+	 */
 	Ptr<face::Facemark> facemark;
+	
+	/**
+	 * @brief Detector de rostros provisto por openCV
+	 * 
+	 */
 	CascadeClassifier faceDetector;
+	
+	/**
+	 * @brief Vector de vectores de puntos, como los provee openCV
+	 * 
+	 */
 	std::vector<std::vector<cv::Point2f>> landmarksSerie;
+	
+	/**
+	 * @brief Vector de Landmarks obtenido del frame
+	 * 
+	 */
 	std::vector<Landmarks> landmarks;
 public:
+	
+	/**
+	 * @brief Construye un nuevo objeto de la clase Extractor Landmarks OpenCV
+	 * 
+	 */
 	ExtractorLandmarksOpenCV();
+	
+	/**
+	 * @brief Destruye el objeto de la clase Extractor Landmarks OpenCV
+	 * 
+	 */
 	virtual ~ExtractorLandmarksOpenCV();
+	
+	/**
+	 * @brief Obtiene los landmarks del frame
+	 * 
+	 * @return const std::vector<Landmarks> 
+	 */
 	virtual const std::vector<Landmarks> getLandmarks(const cv::Mat &);
 };
 

@@ -21,19 +21,18 @@ int main(int argc, char *argv[])
 {
 	char ch = 0;
 	std::vector<Landmarks> landmarks;
-	AnalizadorSimetria analizador;// = new AnalizadorSimetria;
-	analizador.setFeeder(new KinectFeeder);
-	analizador.setExtractor(new ExtractorLandmarksOpenCV);
+	AnalizadorSimetria analizador;// = new AnalizadorSimetria
+	analizador.setFeeder(KINECTFEEDER);
+	analizador.setExtractor(OPENCV);
 	Mat frame;
 	cout << "Presione q para finalizar" << endl;
 	while (ch != 'q' && ch != 'Q')
 	{
-		cout <<"1...";
 		frame = analizador.step();
-		cout<<"7..."<<endl;
 		landmarks = analizador.getLandmarks();
 		if (!landmarks.front().vacio){
-		putText(frame, "Rostro detectado!", landmarks.front().menton.back(), 1, 1, Scalar(255, 0, 0));
+
+		putText(frame, "<- Este tipo entro a la beca CIN", landmarks.front().menton.back(), 2, 1, Scalar(255, 0, 0));
 		}
 		imshow("feeder", frame);
 		ch = waitKey(1);

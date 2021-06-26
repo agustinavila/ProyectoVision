@@ -27,11 +27,32 @@ using namespace cv;
 class Feeder
 {
 private:
+
+/**
+ * @brief Estructura que contiene el frame actual
+ * 
+ */
 	Mat frame;
 
 public:
+
+/**
+ * @brief Construye un nuevo objeto de la clase abstracta Feeder
+ * 
+ */
 	Feeder();
+
+	/**
+	 * @brief Destruye el objeto de la clase virtual Feeder
+	 * 
+	 */
 	virtual ~Feeder();
+
+	/**
+	 * @brief Devuelve el frame actual 
+	 * 
+	 * @return const Mat 
+	 */
 	virtual const Mat getFrame() = 0;
 };
 

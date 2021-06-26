@@ -26,11 +26,15 @@ using namespace cv;
 
 /**
  * @brief Sobrecarga de la clase Feeder para abrir un archivo de video
- * 
+ * @todo Todavia no esta terminado, abre la webcam...
  */
 class VideoFeeder : public Feeder
 {
 private:
+/**
+ * @brief 
+ * 
+ */
 	Mat frame;
 	cv::VideoCapture cap;
 	string nombreVideo;

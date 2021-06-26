@@ -34,17 +34,64 @@ using namespace cv;
 class FrameLogger
 {
 private:
+/**
+ * @brief Nombre base para utilizar con el archivo
+ * 
+ */
 	string nombre_;
+	/**
+	 * @brief flag para indicar si se esta logeando o no
+	 * 
+	 */
 	bool rec = 0;
+
+	/**
+	 * @brief contador para tener un registro de fotogramas
+	 * 
+	 */
 	double numero = 0;
+
+	/**
+	 * @brief Objeto Videowriter de Opencv
+	 * 
+	 */
 	VideoWriter video;
 
 public:
+/**
+ * @brief Construye un nuevo objeto de la clase Frame Logger
+ * 
+ */
 	FrameLogger();
+
+/**
+ * @brief Construye un nuevo objeto de la clase Frame Logger
+ * 
+ */
 	FrameLogger(string);
+
+/**
+ * @brief Destruye el objeto de la clase Frame Logger
+ * 
+ */
 	~FrameLogger();
+
+/**
+ * @brief Metodo para empezar a grabar video
+ * 
+ */
 	void startVideoLog();
+
+/**
+ * @brief Metodo para detener la grabacion
+ * 
+ */
 	void stopVideoLog();
+
+/**
+ * @brief Agrega un frame al video
+ * 
+ */
 	void log(const Mat &);
 };
 

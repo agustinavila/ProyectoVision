@@ -18,6 +18,10 @@
 using namespace std;
 using namespace cv;
 
+/**
+ * @brief Estructura para almacenar los landmarks, discriminados segun rasgo facial
+ * 
+ */
 struct Landmarks
 {
 	bool vacio = 0;

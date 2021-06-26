@@ -12,10 +12,6 @@
 #include "../feeder.h"
 #include "../kinectfeeder.h"
 
-/**
- * @brief Construye un nuevo objeto de la clase Kinect Feeder:: Kinect Feeder
- * 
- */
 KinectFeeder::KinectFeeder() //: listener(libfreenect2::Frame::Color)
 {
 	if(freenect2.enumerateDevices() == 0)
@@ -52,10 +48,6 @@ KinectFeeder::KinectFeeder() //: listener(libfreenect2::Frame::Color)
 
 }
 
-/**
- * @brief Destruye el objeto de la clase Kinect Feeder:: Kinect Feeder
- * 
- */
 KinectFeeder::~KinectFeeder()
 {
 	this->listener->release(frames);
@@ -64,30 +56,17 @@ KinectFeeder::~KinectFeeder()
 	std::cout << "Goodbye World!" << std::endl;
 }
 
-/**
- * @brief Obtiene y devuelve un frame de la kinect
- * 
- * @return Mat 
- */
 const Mat KinectFeeder::getFrame()
 {
-	// Mat frameOrig;
-	cout<<"3...";
+	Mat frameOrig;
 	listener->waitForNewFrame(frames,10);
 	libfreenect2::Frame *rgb = frames[libfreenect2::Frame::Color];
-	// libfreenect2::Frame *rgb; //= frames[libfreenect2::Frame::Color];
-	// rgb->
-	 cout<<"4...";
-	// listener->onNewFrame(Frame::Color, rgb);
 	frame= cv::Mat(rgb->height, rgb->width, CV_8UC4, rgb->data).clone();
-	 cout<<"5...";
-	// cout<<"6...";
-	// cv::Mat(rgb->height, rgb->width, CV_8UC4, rgb->data).copyTo(frameOrig);
-	// std::vector<Mat> rgbChannels(3);
-	// split(frameOrig, rgbChannels);
-	// rgbChannels.pop_back();
-	// merge(rgbChannels, frameOrig);
-	// resize(frameOrig,frame,Size(),0.3,0.3);
 	this->listener->release(frames);
+	// cv::Mat(rgb->height, rgb->width, CV_8UC4, rgb->data).copyTo(frameOrig);
+	std::vector<Mat> rgbChannels(4);
+	split(frame, rgbChannels);
+	rgbChannels.pop_back();
+	merge(rgbChannels, frame);
 	return frame;
 }

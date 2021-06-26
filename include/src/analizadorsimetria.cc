@@ -52,19 +52,23 @@ Mat AnalizadorSimetria::step()
 	return frame;
 }
 
-void AnalizadorSimetria::setExtractor(ExtractorLandmarks *extractor)
+void AnalizadorSimetria::setExtractor(TipoExtractor extractor_)
 {
 	delete this->ptrExtractor;
-	this->ptrExtractor = extractor;
+	  if (extractor_ == DLIB)
+	  this->ptrExtractor= new ExtractorLandmarksDlib;
+	  else if(extractor_ == OPENCV)
+	  this->ptrExtractor= new ExtractorLandmarksOpenCV;
 }
 
-void AnalizadorSimetria::setFeeder(Feeder *feeder)
+void AnalizadorSimetria::setFeeder(TipoFeeder feeder_)
 {
 	delete this->ptrFeeder;
-	this->ptrFeeder = feeder;
-}
+	  if (feeder_ == KINECTFEEDER)
+	  this->ptrFeeder= new KinectFeeder;
+	  else if (feeder_ == WEBCAMFEEDER)
+	  this->ptrFeeder = new WebcamFeeder;
+	  //else if (feeder_ == VIDEOFEEDER)
+	  //this->ptrFeeder = new VideoFeeder;
 
-void AnalizadorSimetria::reducirMat(float escala = 30)
-{
-resize(frame, frameReducido, Size(), escala/100, escala/100);
 }

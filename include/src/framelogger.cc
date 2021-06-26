@@ -10,25 +10,19 @@
  */
 #include "../framelogger.h"
 
-/**
- * @brief Construye un nuevo objeto de la clase FrameLogger
- * 
- */
 FrameLogger::FrameLogger()
 {
 	nombre_="out.avi";
 	//el nombre esta hardcodeado por ahora, tendria que tomar un nombre como parametro
 	//y ademas adjuntarle un timestamp por si acaso
 }
+
 FrameLogger::FrameLogger(string nombre="outcpp.avi") : nombre_(nombre)
 {
 	//el nombre esta hardcodeado por ahora, tendria que tomar un nombre como parametro
 	//y ademas adjuntarle un timestamp por si acaso
 }
-/**
- * @brief Destruye el objeto de la clase FrameLogger
- * 
- */
+
 FrameLogger::~FrameLogger()
 {
 	cout << "Cerrando video...";
@@ -53,11 +47,6 @@ void FrameLogger::stopVideoLog()
 	else cout <<"Ningun video abierto"<<endl;
 }
 
-/**
- * @brief Agrega un fotograma al video final
- * 
- * @param frame 
- */
 void FrameLogger::log(const Mat &frame)
 {
 	if (!rec){

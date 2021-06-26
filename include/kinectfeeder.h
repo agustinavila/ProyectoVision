@@ -35,16 +35,61 @@ using namespace libfreenect2;
 class KinectFeeder : public Feeder
 {
 private:
+/**
+ * @brief Mat con el fotograma actual
+ * 
+ */
 	Mat frame;
+
+	/**
+	 * @brief Objeto base de la libreria freenect2
+	 * 
+	 */
 	Freenect2 freenect2;
+
+	/**
+	 * @brief Puntero al objeto del dispositivo abierto por freenect2
+	 * 
+	 */
 	Freenect2Device *dev = NULL;
+
+	/**
+	 * @brief Puntero al pipeline para procesar la informacion
+	 * 
+	 */
 	PacketPipeline  *pipeline = NULL;
+
+	/**
+	 * @brief Objeto framelistener, el encargado de recibir nuevos frames
+	 * 
+	 */
 	SyncMultiFrameListener *listener;
+
+	/**
+	 * @brief Objeto que contiene todos los frames de la kinect
+	 * 
+	 */
 	FrameMap frames;
 
 	public:
-	KinectFeeder(/* args */);
+
+	/**
+	 * @brief Construye un nuevo objeto de la clase Kinect Feeder
+	 * 
+	 */
+	KinectFeeder();
+
+	/**
+	 * @brief Destruye el objeto de la clase Kinect Feeder
+	 * 
+	 */
 	virtual ~KinectFeeder();
+
+	/**
+	 * @brief Devuelve el frame actual de la kinect
+	 * 
+	 * @return const Mat 
+	 */
 	virtual const Mat getFrame();
 };
 

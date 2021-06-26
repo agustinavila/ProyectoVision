@@ -34,14 +34,49 @@ using namespace std;
 class ExtractorLandmarksDlib : public ExtractorLandmarks
 {
 private:
+	/**
+	 * @brief Detector de rostros
+	 * 
+	 */
 	frontal_face_detector detector;
+
+	/**
+	 * @brief Analizador de formas generico
+	 * 
+	 */
 	shape_predictor pose_model;
+
+	/**
+	 * @brief Landmarks "crudos", sin estructura. Podrian ser de utilidad
+	 * 
+	 */
 	std::vector<std::vector<cv::Point2f>> landmarksSerie;
+
+	/**
+	 * @brief Landmarks obtenidos estructurados
+	 * 
+	 */
 	std::vector<Landmarks> landmarks;
 
 public:
+
+	/**
+	 * @brief Construye un nuevo objeto de la clase Extractor Landmarks Dlib
+	 * 
+	 */
 	ExtractorLandmarksDlib();
+
+	/**
+	 * @brief Destruye el objeto de la clase Extractor Landmarks Dlib
+	 * 
+	 */
 	virtual ~ExtractorLandmarksDlib();
+
+	/**
+	 * @brief Obtiene y devuelve los landmarks
+	 * 
+	 * @return const std::vector<Landmarks> 
+	 */
 	virtual const std::vector<Landmarks> getLandmarks(const cv::Mat &);
 };
 

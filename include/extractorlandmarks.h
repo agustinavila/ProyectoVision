@@ -29,12 +29,38 @@ using namespace std;
 class ExtractorLandmarks
 {
 private:
+
+/**
+ * @brief Propiedad de las clases, vector de landmarks obtenidos
+ * 
+ */
 	std::vector<Landmarks> landmarks;
-	/* data */
 public:
+
+/**
+ * @brief Construye un nuevo objeto de la clase abstracta Extractor Landmarks
+ * 
+ */
 	ExtractorLandmarks();
+
+	/**
+	 * @brief Destruye el objeto de la clase Extractor Landmarks
+	 * 
+	 */
 	virtual ~ExtractorLandmarks();
+
+	/**
+	 * @brief Método para convertir los landmarks "crudos" a una estructura con distintos rasgos
+	 * 
+	 * @return const std::vector<Landmarks> 
+	 */
 	const std::vector<Landmarks> parseLandmarks(const std::vector<std::vector<cv::Point2f>> &);
+
+	/**
+	 * @brief Devuelve la propiedad Landmarks 
+	 * 
+	 * @return const std::vector<Landmarks> 
+	 */
 	virtual const std::vector<Landmarks> getLandmarks(const cv::Mat &) = 0;
 };
 

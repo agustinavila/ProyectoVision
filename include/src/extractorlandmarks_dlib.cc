@@ -12,10 +12,6 @@
 #include "../extractorlandmarks.h"
 #include "../extractorlandmarks_dlib.h"
 
-/**
- * @brief Construye un nuevo objeto de la clase ExtractorLandmarksDlib
- * 
- */
 ExtractorLandmarksDlib::ExtractorLandmarksDlib()
 {
 	cout << "Generando el extractor de landmarks con dlib...";
@@ -25,10 +21,6 @@ ExtractorLandmarksDlib::ExtractorLandmarksDlib()
 	cout << " listo!" << endl;
 }
 
-/**
- * @brief Destruye el objeto de la clase ExtractorLandmarksDlib
- * 
- */
 ExtractorLandmarksDlib::~ExtractorLandmarksDlib()
 {
 	cout << "Destruyendo el extractor de landmarks con dlib...";
@@ -37,15 +29,8 @@ ExtractorLandmarksDlib::~ExtractorLandmarksDlib()
 	cout << "listo!" << endl;
 }
 
-/**
- * @brief Método que analiza un frame y devuelve los landmarks de un solo rostro
- * 
- * @param frame objeto Mat a analizar 
- * @return std::vector<cv::Point2f> 
- */
 const std::vector<Landmarks> ExtractorLandmarksDlib::getLandmarks(const cv::Mat &frame)
 {
-	
 	cv_image<bgr_pixel> cimg(frame); //Convierte el Mat a un formato utilizable por dlib
 	std::vector<rectangle> faces = detector(cimg);
 	if (faces.empty())
