@@ -1,7 +1,7 @@
 /**
  * @file mainProyectoVision.cc
  * @author Agustin Avila (tinto.avila@gmail.com)
- * @brief Archivo main del proyecto
+ * @brief Archivo con un programa ejemplificando el uso de la clase AnalizadorSimetria
  * @version 0.1
  * @date 2021-06-16
  * 
@@ -21,9 +21,7 @@ int main(int argc, char *argv[])
 {
 	char ch = 0;
 	std::vector<Landmarks> landmarks;
-	AnalizadorSimetria analizador;// = new AnalizadorSimetria
-	//analizador.setFeeder(KINECTFEEDER);
-	//analizador.setExtractor(OPENCV);
+	AnalizadorSimetria analizador;
 	Mat frame;
 	cout << "Presione q para finalizar" << endl;
 	while (ch != 'q' && ch != 'Q')

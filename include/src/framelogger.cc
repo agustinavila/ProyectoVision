@@ -35,14 +35,14 @@ FrameLogger::FrameLogger(const string &nombre, const TipoFeeder &feeder)
 	if (feeder == WEBCAMFEEDER)
 	{
 		nombreVideo = nombre.substr(0, posFin) + "_WebCam_" + timestamp + strExt;
-		cout << "Comenzando a grabar en el archivo "<<nombreVideo<<endl;
+		cout << "Comenzando a grabar en el archivo " << nombreVideo << endl;
 		video.open(nombreVideo, VideoWriter::fourcc('M', 'J', 'P', 'G'), 10, Size(640, 480));
 	}
 	else if (feeder == KINECTFEEDER)
 	{
 		nombreVideo = nombre.substr(0, posFin) + "_Kinect_" + timestamp + strExt;
-		cout << "Comenzando a grabar en el archivo "<<nombreVideo<<endl;
-		video.open(nombreVideo, VideoWriter::fourcc('M', 'J', 'P', 'G'), 10, Size(1920,1080));
+		cout << "Comenzando a grabar en el archivo " << nombreVideo << endl;
+		video.open(nombreVideo, VideoWriter::fourcc('M', 'J', 'P', 'G'), 10, Size(1920, 1080));
 	}
 	// else if (feeder == VIDEOFEEDER)
 	// {

@@ -9,13 +9,8 @@
  * 
  */
 
-#include "../extractorlandmarks.h"
 #include "../extractorlandmarks_opencv.h"
 
-/**
- * @brief Construye un nuevo objeto de la clase ExtractorLandmarksOpenCV
- * 
- */
 ExtractorLandmarksOpenCV::ExtractorLandmarksOpenCV(const std::vector<string> &nombres)
 {
 	nombreCascade = nombres.front();
@@ -41,21 +36,11 @@ ExtractorLandmarksOpenCV::ExtractorLandmarksOpenCV(const std::vector<string> &no
 	}
 }
 
-/**
- * @brief Destruye el objeto de la clase ExtractorLandmarksOpenCV
- * 
- */
 ExtractorLandmarksOpenCV::~ExtractorLandmarksOpenCV()
 {
 	landmarks.clear();
 }
 
-/**
- * @brief Método que analiza un frame y devuelve los landmarks de un solo rostro
- * 
- * @param frame objeto Mat a analizar 
- * @return std::vector<cv::Point2f> 
- */
 const std::vector<Landmarks> ExtractorLandmarksOpenCV::getLandmarks(const cv::Mat &frame)
 {
 	vector<Rect> faces;
@@ -63,7 +48,7 @@ const std::vector<Landmarks> ExtractorLandmarksOpenCV::getLandmarks(const cv::Ma
 	float escala;
 	bool reescalado = 0;
 	Mat frameRed;
-	if (frame.size().width > 800)
+	if (frame.size().width > 800) //Si está en fullHD lo reescala
 	{
 		escala = 2;
 		reescalado = 1;

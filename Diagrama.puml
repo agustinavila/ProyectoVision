@@ -1,5 +1,44 @@
 'Generador de UML utilizando plantUML
 
+@startuml AnalizadorSimetria
+
+class AnalizadorSimetria {
+	- float asimetria
+	- Mat frame
+	- vector<Landmarks> landmarks
+	- vector<Landmarks> landmarksNorm
+	metodos()
+}
+
+abstract class Feeder{
+	propiedades
+	metodos()
+}
+
+abstract class ExtractorLandmarks{
+	propiedades
+	metodos()
+}
+
+class FrameLogger{
+	propiedades
+	metodos()
+}
+
+class AnalizadorLandmarks {
+	propiedades
+	metodos()
+}
+AnalizadorSimetria *.. Feeder
+AnalizadorSimetria *.. ExtractorLandmarks
+AnalizadorSimetria *.. FrameLogger
+AnalizadorSimetria *.. AnalizadorLandmarks
+
+@enduml
+
+
+
+
 @startuml proyectoVision
 
 abstract class Feeder{

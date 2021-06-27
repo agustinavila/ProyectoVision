@@ -14,55 +14,78 @@
 
 ExtractorLandmarksDlib::ExtractorLandmarksDlib(const std::vector<string> &nombres)
 {
-	nombreDetector=nombres.front();
+	nombreDetector = nombres.front();
 	cout << "Generando el extractor de landmarks con dlib...";
 	detector = get_frontal_face_detector();
-	//el constructor deberia poder tomar como argumento el archivo entrenado
 	try
 	{
-	deserialize(nombreDetector) >> pose_model;
-	cout << " listo!" << endl;
+		deserialize(nombreDetector) >> predictorforma;
+		cout << " listo!" << endl;
 	}
-	catch(const MiExcepcion& e)
+	catch (const MiExcepcion &e)
 	{
 		std::cerr << e.what() << '\n';
 	}
-	
 }
 
 ExtractorLandmarksDlib::~ExtractorLandmarksDlib()
 {
 	cout << "Destruyendo el extractor de landmarks con dlib...";
-	//deberia eliminar el vector?
 	landmarks.clear();
 	cout << "listo!" << endl;
 }
 
 const std::vector<Landmarks> ExtractorLandmarksDlib::getLandmarks(const cv::Mat &frame)
 {
-	cv_image<bgr_pixel> cimg(frame); //Convierte el Mat a un formato utilizable por dlib
-	std::vector<rectangle> faces = detector(cimg);
-	if (faces.empty())
+	float escala;
+	bool reescalado = 0;
+	cv_image<bgr_pixel> cimg;
+	if (frame.size().width > 800) //Si está en fullHD lo reescala
+	{
+		Mat frameRed;
+		escala = 2;
+		reescalado = 1;
+		resize(frame, frameRed, Size(), 1 / escala, 1 / escala);
+		cimg = cv_image<bgr_pixel>(frameRed); //Convierte el Mat a un formato utilizable por dlib
+	}
+	else
+	{
+		cimg = cv_image<bgr_pixel>(frame); //Convierte el Mat a un formato utilizable por dlib
+	}
+	std::vector<dlib::rectangle> caras = detector(cimg); //rectangulos con las caras detectadas
+	if (caras.empty())
 	{
 		landmarks.clear();
 		Landmarks l;
-		l.vacio=1;
+		l.vacio = 1; //marca la estructura como vacia y la devuelve
 		landmarks.push_back(l);
 	}
 	else
 	{
 		landmarksSerie.clear();
-		for (long unsigned int i = 0; i < faces.size(); ++i)
+		for (long unsigned int i = 0; i < caras.size(); ++i)
 		{
 			full_object_detection shape;
-			shape = (pose_model(cimg, faces[i]));
+			shape = (predictorforma(cimg, caras[i]));
 			std::vector<Point2f> cara;
-			for (unsigned int i = 0; i < shape.num_parts(); ++i)
+			if (reescalado)
 			{
-				cara.push_back((cv::Point2f(shape.part(i).x(), shape.part(i).y())));
+				for (unsigned int i = 0; i < shape.num_parts(); ++i)
+				{
+					//lo convierte a un vector de vectores de landmarks para posteriormente pasarlo a la estructura
+					cara.push_back((cv::Point2f(shape.part(i).x() * escala, shape.part(i).y() * escala)));
+					//para optimizarse, se podría convertir directamente a la estructura
+				}
+			}
+			else
+			{
+				for (unsigned int i = 0; i < shape.num_parts(); ++i) //se duplica el codigo para evitar la multiplicacion
+				{
+					cara.push_back((cv::Point2f(shape.part(i).x(), shape.part(i).y())));
+				}
 			}
 			landmarksSerie.push_back(cara);
-			landmarks = parseLandmarks(landmarksSerie);
+			landmarks = parseLandmarks(landmarksSerie); //se pasa del vector de vectores al vector de estructuras
 		}
 	}
 	return landmarks;

@@ -1,0 +1,42 @@
+%YAML:1.0
+---
+# Tipo de feeder, los tipos provistos son:
+# 0 -> Webcam
+# 1 -> Kinect RGB
+# 2 -> Video
+tipoFeeder: 0
+
+# Si se eligio el feeder de video, abrirá el siguiente archivo:
+# Si no lo encuentra o no se especifica, intentará abrir el video por defecto
+nombreVideoEntrada: "video.avi"
+
+# Tipo de extractor de landmarks, los posibles son:
+# 1 -> extractor de dlib
+# 2 -> extractor de opencv
+tipoExtractor: 1
+
+# Nombre del archivo dat con el modelo del predictor para dlib:
+nombreDetectorDlib: "data/shape_predictor_68_face_landmarks.dat"
+
+# Nombre del Haar Cascade xml para el extractor de openCV:
+nombreCascadeOpenCV: "data/haarcascade_frontalface_alt2.xml"
+
+# Nombre del modelo lbf para openCV:
+nombreLBF: "data/lbfmodel.yaml"
+
+# Habilita o deshabilita el log de video 
+habilitarVideoLog: 1
+# Nombre del video en el cual guardar
+# A este nombre, se le agrega el tipo de dispositivo y un timestamp
+nombreVideoSalida: "Log.avi"
+
+
+# Habilita o deshabilita el log de landmarks
+habilitarLandmarksLog: 0
+# Nombre del archivo en el cual escribir:
+# Tambien deberia estar automatizado agregando timestamp
+nombreLandmarksLog: "logLandmarks.yaml"
+
+# Guardar estado al salir:
+guardarEstado: 0
+

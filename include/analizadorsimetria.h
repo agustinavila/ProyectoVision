@@ -1,7 +1,7 @@
 /**
  * @file analizadorsimetria.h
  * @author Agustin Avila (tinto.avila@gmail.com)
- * @brief Clase maestra del proyecto
+ * @brief Archivo de cabecera de la clase base del proyecto
  * @version 0.1
  * @date 2021-06-23
  * 
@@ -15,43 +15,42 @@
 #include <iostream>
 #include <vector>
 #include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/videoio/videoio_c.h>
-#include <opencv2/imgproc/types_c.h>
-#include <opencv2/video/video.hpp>
 #include <opencv2/core/core.hpp>
-#include "feeder.h"
-#include "webcamfeeder.h"
-#include "kinectfeeder.h"
-#include "videofeeder.h"
-#include "framelogger.h"
-#include "extractorlandmarks.h"
-#include "extractorlandmarks_dlib.h"
-#include "extractorlandmarks_opencv.h"
-#include "analizadorlandmarks.h"
-#include "estructuras.h"
+#include "feeder.h"					   //Clase abstracta Feeder
+#include "webcamfeeder.h"			   //Clase concreta de Feeder para webcam
+#include "kinectfeeder.h"			   //Clase concreta de Feeder para Kinect
+#include "videofeeder.h"			   //Clase concreta de Feeder para un video
+#include "framelogger.h"			   //Clase Frame logger
+#include "extractorlandmarks.h"		   //Clase abstracta de extractor de landmarks
+#include "extractorlandmarks_dlib.h"   //Clase concreta del extractor usando dlib
+#include "extractorlandmarks_opencv.h" //Clase concreta del extractor usando openCV
+#include "analizadorlandmarks.h"	   //Clase para analizar simetria - métodos incompletos
+#include "estructuras.h"			   //Estructuras, enums, excepciones
 
 using namespace std;
 using namespace cv;
 
-
-
-
 /**
- * @brief Clase principal del programa
- * 
+ * @brief Clase principal del programa. 
+ * @details Se construye pasándole un archivo de configuración (por defecto "config.yaml"),
+ * el cual es encargado de elegir el tipo de feeder y extractor a utilizar. La clase además provee
+ * distintos métodos para seleccionar el tipo de feeder o extractor a utilizar.
+ * Además, permite iniciar o detener el registro en video o de landmarks.
+ * Una vez inicializada, su método principal es step(), el cual devuelve un nuevo frame,
+ * y si está habilitado el log y el extractor de landmarks, agrega el fotograma al video
+ * y analiza los nuevos landmarks.
  */
 class AnalizadorSimetria
 {
 private:
 	/**
-	 * @brief Propiedad que cuantiza la asimetria de un rostro
+	 * @brief Propiedad que cuantiza la asimetria de un rostro.
 	 * 
 	 */
 	float asimetria;
 
 	/**
-	 * @brief Propiedad de tipo Mat que contiene el ultimo fotograma obtenido
+	 * @brief Propiedad de tipo cv::Mat que contiene el ultimo fotograma obtenido
 	 * 
 	 */
 	Mat frame;
@@ -87,36 +86,82 @@ private:
 	std::vector<Landmarks> landmarks;
 
 	/**
-	 * @brief Vector de landmarks normalizado
+	 * @brief Vector de landmarks normalizado.
 	 * 
 	 */
 	std::vector<Landmarks> landmarksNorm;
-	string nombreFrameLogger;
-	FileStorage fs;
-	string nombreConf = "config.yaml";
-	string nombreModeloDlib = "shape_predictor_68_face_landmarks.dat";
-	string nombreCascadeOpenCV = "haarcascade_frontalface_alt2.xml";
-	string nombreLBFOpenCV = "lbfmodel.yaml";
-	string nombreVideoFeeder = "video.avi";
-	float threshold=2;
-	TipoFeeder tipoFeeder;
-	bool grabarHabilitado=0;
-
-
-public:
 
 	/**
-	 * @brief Construye un nuevo objeto de la clase Analizador Simetria
+	 * @brief objeto de openCV que administra el fichero de configuracion.
 	 * 
 	 */
-	// AnalizadorSimetria(Feeder *, ExtractorLandmarks *);
+	FileStorage fs;
 
 	/**
-	 * @brief Construye un nuevo objeto de la clase Analizador Simetria
+	 * @brief Nombre por defecto del archivo de salida.
+	 * 
+	 */
+	string nombreFrameLogger = "Salida.avi";
+
+	/**
+	 * @brief Nombre del archivo de configuracion.
+	 * 
+	 */
+	string nombreConf = "config.yaml";
+
+	/**
+	 * @brief Nombre del archivo del predictor utilizado por dlib
+	 * 
+	 */
+	string nombreModeloDlib = "data/shape_predictor_68_face_landmarks.dat";
+
+	/**
+	 * @brief Nombre del archivo del detector de rostros de openCV
+	 * 
+	 */
+	string nombreCascadeOpenCV = "data/haarcascade_frontalface_alt2.xml";
+
+	/**
+	 * @brief Nombre del archivo del detector de landmarks utilizado por openCV
+	 * 
+	 */
+	string nombreLBFOpenCV = "data/lbfmodel.yaml";
+
+	/**
+	 * @brief Nombre del archivo de salida del logger de video.
+	 * 
+	 */
+	string nombreVideoFeeder = "video.avi";
+
+	/**
+	 * @brief Nivel de umbral de asimetria para registrar o no un rostro 
+	 * 
+	 */
+	float threshold = 2;
+
+	/**
+	 * @brief Tipo de feeder siendo utilizado
+	 * 
+	 */
+	TipoFeeder tipoFeeder;
+
+	/**
+	 * @brief Bandera para habilitar/deshabilitar el log de video
+	 * 
+	 */
+	bool grabarHabilitado = 0;
+
+public:
+	/**
+	 * @brief Construye un nuevo objeto de la clase Analizador Simetria. Utiliza valores por defecto
 	 * 
 	 */
 	AnalizadorSimetria();
 
+	/**
+	 * @brief Construye un nuevo objeto de la clase Analizador Simetria, proveyendole un archivo de configuración
+ 	* 
+ 	*/
 	AnalizadorSimetria(string &);
 
 	/**
@@ -126,59 +171,103 @@ public:
 	~AnalizadorSimetria();
 
 	/**
-	 * @brief Devuelve la propiedad Frame 
+	 * @brief Devuelve el último frame obtenido 
 	 * 
-	 * @return Mat 
+	 * @return Mat - objeto del tipo cv::Mat conteniendo el fotograma actual
 	 */
 	Mat getFrame() { return frame; };
 
 	/**
-	 * @brief Devuelve la propiedad Asimetria 
+	 * @brief Devuelve la última asimetria calculada 
 	 * 
-	 * @return const float 
+	 * @return const float - Asimetria calculada
 	 */
 	const float getAsimetria() { return asimetria; };
 
 	/**
-	 * @brief Devuelve la propiedad Landmarks 
+	 * @brief Devuelve el ultimo vector de Landmarks calculado
 	 * 
-	 * @return const std::vector<Landmarks> 
+	 * @return const std::vector<Landmarks> - Vector de Landmarks
 	 */
 	const std::vector<Landmarks> getLandmarks() { return landmarks; };
-	
-	/**
-	 * @brief Devuelve la propiedad Landmarks Norm 
-	 * 
-	 * @return const std::vector<Landmarks> 
-	 */
-	const std::vector<Landmarks> getLandmarksNorm() { return landmarks; };
-	
-	/**
-	 * @brief Setea el objeto Feeder del analizador
-	 * 
-	 */
-	void setFeeder(TipoFeeder);
-	
-	TipoFeeder getFeeder() {return ptrFeeder->getFeeder();};
 
 	/**
-	 * @brief Setea el tipo concreto de Extractor del analizador
+	 * @brief Devuelve el último vector de Landmarks normalizado
 	 * 
+	 * @return const std::vector<Landmarks> - Vector de Landmarks normalizado 
+	 */
+	const std::vector<Landmarks> getLandmarksNorm() { return landmarks; };
+
+	/**
+	 * @brief Setea tipo concreto de Feeder del analizador
+	 * 
+	 * @details Genera un nuevo objeto de algun Feeder concreto.
+	 * Si se elige el mismo tipo de feeder que el actual, no hace nada.
+	 * Si no, elimina el que se estaba utilizando y genera uno nuevo.
+	 */
+	void setFeeder(TipoFeeder);
+
+	/**
+	 * @brief Devuelve el tipo concreto de Feeder utilizado
+	 * 
+	 * @return TipoFeeder 
+	 */
+	TipoFeeder getFeeder() { return ptrFeeder->getFeeder(); };
+
+	/**
+	 * @brief Setea el tipo concreto de Extractor del analizador.
+	 * 
+	 * @details Genera un nuevo objeto de un ExtractoLandmarks concreto.
+	 * Si se elige el mismo tipo que el ya establecido, no hace nada.
+	 * Si no, elimina el que se estaba utilizando y genera uno nuevo.
 	 */
 	void setExtractor(TipoExtractor);
-	
-	TipoExtractor getExtractor() {return ptrExtractor->getExtractor();};
-	
+
 	/**
-	 * @brief Funcion principal a llamar para operar la clase
+	 * @brief Devuelve el tipo de  ExtractorLandmarks utilizado. 
+	 * 
+	 * @return TipoExtractor 
+	 */
+	TipoExtractor getExtractor() { return ptrExtractor->getExtractor(); };
+
+	/**
+	 * @brief Método principal a llamar para operar la clase.
+	 * 
+	 * @details Este método es el encargado de actualizar toda la clase.
+	 * Si hay un feeder definido, intenta obtener un nuevo frame.
+	 * Si el log está habilitado, le envia el frame al logger.
+	 * Si hay un  extractor de landmarks, obtiene los landmarks.
+	 * En caso de obtener un rostro, actualiza las propiedades de la clase
+	 * y finalmente calcula la asimetría. 
 	 * 
 	 * @return Mat 
 	 */
 	Mat step();
 
-	void empezarLog(const TipoFeeder&);
+	/**
+	 * @brief Método para invocar un FrameLogger y comenzar la grabación.
+	 * 
+	 */
+	void empezarLog(const TipoFeeder &);
+
+	/**
+	 * @brief Método para detener la grabación del FrameLogger
+	 * 
+	 */
 	void stopLog();
-	void setNombreLog(const string &nombre) {this->nombreFrameLogger=nombre;};
+
+	/**
+	 * @brief Setea el nombre base del video del logger.
+	 * 
+	 * @param nombre - Nombre base del video de salida del logger
+	 */
+	void setNombreLog(const string &nombre) { this->nombreFrameLogger = nombre; };
+
+	/**
+	 * @brief Método encargado de cargar el archivo de configuración y definir las propiedades del objeto
+	 * 
+	 * @param nombreConf - Nombre del archivo de configuración.
+	 */
 	void cargarConfiguracion(const string &);
 };
 

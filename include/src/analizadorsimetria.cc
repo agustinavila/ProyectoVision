@@ -18,7 +18,7 @@
 
 AnalizadorSimetria::AnalizadorSimetria()
 {
-	cout << "En el constructor del objeto de analizadorSimetria por defecto" << endl;
+	cout << "Construyendo objeto de Analizador Simetria..." << endl;
 	try
 	{
 		cargarConfiguracion(nombreConf);
@@ -64,22 +64,23 @@ Mat AnalizadorSimetria::step()
 	{
 		frame = ptrFeeder->getFrame();
 	}
-	if (ptrLogger !=NULL)
+	if (ptrLogger != NULL)
 	{
 		ptrLogger->log(frame); //Guarda frames, segun parametros podria desactivarse o no
 	}
-	if (ptrExtractor!=NULL){
-	landmarks = ptrExtractor->getLandmarks(frame);
-	if (!landmarks.front().vacio)
+	if (ptrExtractor != NULL)
 	{
-		analizadorLandmarks.setLandmarks(landmarks);
-		analizadorLandmarks.normalizarLandmarks();
-		asimetria = analizadorLandmarks.calcularAsimetria();
-	}
-	else
-	{
-		//	cout << "no se detecto ninguna cara" << endl;
-	}
+		landmarks = ptrExtractor->getLandmarks(frame);
+		if (!landmarks.front().vacio)
+		{
+			analizadorLandmarks.setLandmarks(landmarks);
+			analizadorLandmarks.normalizarLandmarks();
+			asimetria = analizadorLandmarks.calcularAsimetria();
+		}
+		else
+		{
+			//	cout << "no se detecto ninguna cara" << endl;
+		}
 	}
 	return frame;
 }
@@ -91,6 +92,11 @@ void AnalizadorSimetria::setExtractor(TipoExtractor extractor_)
 		if (extractor_ != ptrExtractor->getExtractor())
 		{
 			delete this->ptrExtractor;
+		}
+		else
+		{
+			cout << "Ya se esta utilizando el extractor solicitado" << endl;
+			return;
 		}
 	}
 	try
@@ -125,6 +131,11 @@ void AnalizadorSimetria::setFeeder(TipoFeeder feeder_)
 		if (tipoFeeder != ptrFeeder->getFeeder())
 		{
 			delete this->ptrFeeder;
+		}
+		else
+		{
+			cout << "Ya se está utilizando el Feeder solicitado" << endl;
+			return;
 		}
 	}
 	try
