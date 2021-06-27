@@ -12,13 +12,22 @@
 #include "../extractorlandmarks.h"
 #include "../extractorlandmarks_dlib.h"
 
-ExtractorLandmarksDlib::ExtractorLandmarksDlib()
+ExtractorLandmarksDlib::ExtractorLandmarksDlib(const std::vector<string> &nombres)
 {
+	nombreDetector=nombres.front();
 	cout << "Generando el extractor de landmarks con dlib...";
 	detector = get_frontal_face_detector();
 	//el constructor deberia poder tomar como argumento el archivo entrenado
-	deserialize("shape_predictor_68_face_landmarks.dat") >> pose_model;
+	try
+	{
+	deserialize(nombreDetector) >> pose_model;
 	cout << " listo!" << endl;
+	}
+	catch(const MiExcepcion& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
 }
 
 ExtractorLandmarksDlib::~ExtractorLandmarksDlib()

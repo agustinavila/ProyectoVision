@@ -16,13 +16,29 @@
  * @brief Construye un nuevo objeto de la clase ExtractorLandmarksOpenCV
  * 
  */
-ExtractorLandmarksOpenCV::ExtractorLandmarksOpenCV()
+ExtractorLandmarksOpenCV::ExtractorLandmarksOpenCV(const std::vector<string> &nombres)
 {
+	nombreCascade = nombres.front();
+	nombreLBF = nombres.at(1);
 	cout << "constructor del extractor de openCV... ";
-	faceDetector.load("haarcascade_frontalface_alt2.xml");
-	facemark = face::createFacemarkLBF();
-	facemark->loadModel("lbfmodel.yaml");
-	cout << "listo!" << endl;
+	try
+	{
+		faceDetector.load(nombreCascade);
+	}
+	catch (const MiExcepcion &e)
+	{
+		std::cerr << e.what() << ": " << nombreCascade << endl;
+	}
+	try
+	{
+		facemark = face::createFacemarkLBF();
+		facemark->loadModel("lbfmodel.yaml");
+		cout << "listo!" << endl;
+	}
+	catch (const MiExcepcion &e)
+	{
+		std::cerr << e.what() << ": " << nombreLBF << endl;
+	}
 }
 
 /**
@@ -46,16 +62,18 @@ const std::vector<Landmarks> ExtractorLandmarksOpenCV::getLandmarks(const cv::Ma
 	Mat gray;
 	float escala;
 	bool reescalado = 0;
-		Mat frameRed;
+	Mat frameRed;
 	if (frame.size().width > 800)
 	{
 		escala = 2;
-		reescalado=1;
+		reescalado = 1;
 		resize(frame, frameRed, Size(), 1 / escala, 1 / escala);
 		cvtColor(frameRed, gray, COLOR_BGR2GRAY);
-	} else {
-	escala=1;
-	cvtColor(frame, gray, COLOR_BGR2GRAY);
+	}
+	else
+	{
+		escala = 1;
+		cvtColor(frame, gray, COLOR_BGR2GRAY);
 	}
 	faceDetector.detectMultiScale(gray, faces);
 	if (faces.empty())
@@ -79,8 +97,10 @@ const std::vector<Landmarks> ExtractorLandmarksOpenCV::getLandmarks(const cv::Ma
 					*punto *= escala;
 				}
 			}
-		} else {
-		facemark->fit(frame, faces, landmarksSerie);
+		}
+		else
+		{
+			facemark->fit(frame, faces, landmarksSerie);
 		}
 		landmarks = parseLandmarks(landmarksSerie);
 	}

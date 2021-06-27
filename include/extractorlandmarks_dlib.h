@@ -58,19 +58,23 @@ private:
 	 */
 	std::vector<Landmarks> landmarks;
 
+	string nombreDetector = "shape_predictor_68_face_landmarks.dat";
+
 public:
 
 	/**
 	 * @brief Construye un nuevo objeto de la clase Extractor Landmarks Dlib
 	 * 
 	 */
-	ExtractorLandmarksDlib();
+	ExtractorLandmarksDlib(const std::vector<string> &);
 
 	/**
 	 * @brief Destruye el objeto de la clase Extractor Landmarks Dlib
 	 * 
 	 */
 	virtual ~ExtractorLandmarksDlib();
+
+	virtual const TipoExtractor getExtractor() {return DLIB;};
 
 	/**
 	 * @brief Obtiene y devuelve los landmarks

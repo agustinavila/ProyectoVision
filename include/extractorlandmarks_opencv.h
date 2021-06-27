@@ -57,19 +57,25 @@ private:
 	 * 
 	 */
 	std::vector<Landmarks> landmarks;
+
+	string nombreCascade;
+	string nombreLBF;
+
 public:
 	
 	/**
 	 * @brief Construye un nuevo objeto de la clase Extractor Landmarks OpenCV
 	 * 
 	 */
-	ExtractorLandmarksOpenCV();
+	ExtractorLandmarksOpenCV(const std::vector<string> &);
 	
 	/**
 	 * @brief Destruye el objeto de la clase Extractor Landmarks OpenCV
 	 * 
 	 */
 	virtual ~ExtractorLandmarksOpenCV();
+
+	virtual const TipoExtractor getExtractor() {return OPENCV;};
 	
 	/**
 	 * @brief Obtiene los landmarks del frame

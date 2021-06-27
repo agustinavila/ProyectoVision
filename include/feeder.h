@@ -15,6 +15,7 @@
 #include <iostream>
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
+#include "estructuras.h"
 
 using namespace std;
 using namespace cv;
@@ -40,13 +41,15 @@ public:
  * @brief Construye un nuevo objeto de la clase abstracta Feeder
  * 
  */
-	Feeder();
+	Feeder(){};
 
 	/**
 	 * @brief Destruye el objeto de la clase virtual Feeder
 	 * 
 	 */
-	virtual ~Feeder();
+	virtual ~Feeder(){};
+
+	virtual const TipoFeeder getFeeder() = 0;
 
 	/**
 	 * @brief Devuelve el frame actual 

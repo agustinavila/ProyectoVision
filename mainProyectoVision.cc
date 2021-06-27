@@ -22,8 +22,8 @@ int main(int argc, char *argv[])
 	char ch = 0;
 	std::vector<Landmarks> landmarks;
 	AnalizadorSimetria analizador;// = new AnalizadorSimetria
-	analizador.setFeeder(KINECTFEEDER);
-	analizador.setExtractor(OPENCV);
+	//analizador.setFeeder(KINECTFEEDER);
+	//analizador.setExtractor(OPENCV);
 	Mat frame;
 	cout << "Presione q para finalizar" << endl;
 	while (ch != 'q' && ch != 'Q')
@@ -31,11 +31,30 @@ int main(int argc, char *argv[])
 		frame = analizador.step();
 		landmarks = analizador.getLandmarks();
 		if (!landmarks.front().vacio){
-
-		putText(frame, "<- Este tipo entro a la beca CIN", landmarks.front().menton.back(), 2, 1, Scalar(255, 0, 0));
+		putText(frame, "Rostro detectado!", landmarks.front().menton.back(), 2, 1, Scalar(255, 0, 0));
 		}
 		imshow("feeder", frame);
 		ch = waitKey(1);
+		if ((ch=='o') || (ch=='O')){
+			analizador.setExtractor(OPENCV);
+			ch=0;
+		}
+		else if ((ch=='d') || (ch=='D')){
+			analizador.setExtractor(DLIB);
+			ch=0;
+		}
+		else if ((ch=='w') || (ch=='W')){
+			analizador.setFeeder(WEBCAMFEEDER);
+			ch=0;
+		}
+		else if ((ch=='k') || (ch=='K')){
+			analizador.setFeeder(KINECTFEEDER);
+			ch=0;
+		}
+		else if ((ch=='v') || (ch=='V')){
+			analizador.setFeeder(VIDEOFEEDER);
+			ch=0;
+		}
 	}
 	return 0;
 }

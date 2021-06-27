@@ -11,14 +11,14 @@
 
 #include "../extractorlandmarks.h"
 
-ExtractorLandmarks::ExtractorLandmarks()
+ExtractorLandmarks::ExtractorLandmarks(){};
+
+ExtractorLandmarks::ExtractorLandmarks(const std::vector<string> &nombres)
 {
-	cout << "Constructor abstracto de ExtractorLandmarks..." << endl;
 }
 
 ExtractorLandmarks::~ExtractorLandmarks()
 {
-	cout << "Destructor abstracto de ExtractorLandmarks..." << endl;
 }
 
 const std::vector<Landmarks> ExtractorLandmarks::parseLandmarks(const std::vector<std::vector<cv::Point2f>> &landmarksSerie)

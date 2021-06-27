@@ -26,7 +26,7 @@ AnalizadorLandmarks::AnalizadorLandmarks()
  */
 AnalizadorLandmarks::~AnalizadorLandmarks()
 {
-	cout << "destructor del analizador" << endl;
+	cout << "destructor del analizador de landmarks" << endl;
 	// Deberia eliminar los vectores?
 }
 

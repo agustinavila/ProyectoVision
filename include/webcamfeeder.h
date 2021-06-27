@@ -51,6 +51,8 @@ public:
 	 */
 	virtual ~WebcamFeeder();
 	
+	virtual const TipoFeeder getFeeder() {return WEBCAMFEEDER;};
+
 	/**
 	 * @brief Devuelve la propiedad Frame 
 	 * 

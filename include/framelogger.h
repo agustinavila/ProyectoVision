@@ -16,11 +16,13 @@
 #if !defined(FRAMELOGGER_H)
 #define FRAMELOGGER_H
 
-#include "feeder.h"
 #include <opencv2/video/video.hpp>
 #include <opencv2/videoio.hpp>
 #include <iostream>
-#include <vector>
+#include <iomanip>
+#include <ctime>
+#include <sstream>
+#include "feeder.h"
 
 using namespace std;
 using namespace cv;
@@ -38,12 +40,7 @@ private:
  * @brief Nombre base para utilizar con el archivo
  * 
  */
-	string nombre_;
-	/**
-	 * @brief flag para indicar si se esta logeando o no
-	 * 
-	 */
-	bool rec = 0;
+	string nombreVideo = "Salida";
 
 	/**
 	 * @brief contador para tener un registro de fotogramas
@@ -58,35 +55,19 @@ private:
 	VideoWriter video;
 
 public:
-/**
- * @brief Construye un nuevo objeto de la clase Frame Logger
- * 
- */
-	FrameLogger();
 
 /**
  * @brief Construye un nuevo objeto de la clase Frame Logger
  * 
  */
-	FrameLogger(string);
+	FrameLogger(const string &,const TipoFeeder&);
+	FrameLogger();
 
 /**
  * @brief Destruye el objeto de la clase Frame Logger
  * 
  */
 	~FrameLogger();
-
-/**
- * @brief Metodo para empezar a grabar video
- * 
- */
-	void startVideoLog();
-
-/**
- * @brief Metodo para detener la grabacion
- * 
- */
-	void stopVideoLog();
 
 /**
  * @brief Agrega un frame al video

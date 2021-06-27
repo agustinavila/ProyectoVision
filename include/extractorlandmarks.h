@@ -41,6 +41,7 @@ public:
  * @brief Construye un nuevo objeto de la clase abstracta Extractor Landmarks
  * 
  */
+	ExtractorLandmarks(const std::vector<string> &);
 	ExtractorLandmarks();
 
 	/**
@@ -55,6 +56,8 @@ public:
 	 * @return const std::vector<Landmarks> 
 	 */
 	const std::vector<Landmarks> parseLandmarks(const std::vector<std::vector<cv::Point2f>> &);
+
+	virtual const TipoExtractor getExtractor() = 0;
 
 	/**
 	 * @brief Devuelve la propiedad Landmarks 

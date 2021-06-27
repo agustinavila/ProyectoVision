@@ -9,15 +9,11 @@
  * 
  */
 
-#include "../feeder.h"
-using namespace std;
+// #include "../feeder.h"
+// using namespace std;
 
-Feeder::Feeder()
-{
-	cout << "Construyendo Feeder" << endl;
-}
+// Feeder::Feeder()
+// {
+// }
 
-Feeder::~Feeder()
-{
-	cout << "Destruyendo Feeder" << endl;
-}
+// Feeder::~Feeder(){}

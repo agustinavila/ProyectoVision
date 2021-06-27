@@ -85,6 +85,8 @@ private:
 	 */
 	virtual ~KinectFeeder();
 
+		virtual const TipoFeeder getFeeder() {return KINECTFEEDER;};
+
 	/**
 	 * @brief Devuelve el frame actual de la kinect
 	 * 

@@ -12,15 +12,48 @@
 
 FrameLogger::FrameLogger()
 {
-	nombre_="out.avi";
-	//el nombre esta hardcodeado por ahora, tendria que tomar un nombre como parametro
-	//y ademas adjuntarle un timestamp por si acaso
+	auto t = std::time(nullptr);
+	auto tm = *std::localtime(&t);
+	std::ostringstream oss;
+	oss << std::put_time(&tm, "%d-%m-%Y-%H-%M-%S");
+	string timestamp = oss.str();
+	int posFin = nombreVideo.rfind(".");		//busca el punto comenzando por el final
+	string strExt = nombreVideo.substr(posFin); //obtiene la extension del archivo
+	nombreVideo = nombreVideo.substr(0, posFin) + timestamp + strExt;
+	video.open(nombreVideo, VideoWriter::fourcc('M', 'J', 'P', 'G'), 10, Size(640, 480));
 }
 
-FrameLogger::FrameLogger(string nombre="outcpp.avi") : nombre_(nombre)
+FrameLogger::FrameLogger(const string &nombre, const TipoFeeder &feeder)
 {
-	//el nombre esta hardcodeado por ahora, tendria que tomar un nombre como parametro
-	//y ademas adjuntarle un timestamp por si acaso
+	auto t = std::time(nullptr);
+	auto tm = *std::localtime(&t);
+	std::ostringstream oss;
+	oss << std::put_time(&tm, "%d-%m-%Y-%H-%M-%S");
+	string timestamp = oss.str();
+	int posFin = nombre.rfind(".");		   //busca el punto comenzando por el final
+	string strExt = nombre.substr(posFin); //obtiene la extension del archivo
+	if (feeder == WEBCAMFEEDER)
+	{
+		nombreVideo = nombre.substr(0, posFin) + "_WebCam_" + timestamp + strExt;
+		cout << "Comenzando a grabar en el archivo "<<nombreVideo<<endl;
+		video.open(nombreVideo, VideoWriter::fourcc('M', 'J', 'P', 'G'), 10, Size(640, 480));
+	}
+	else if (feeder == KINECTFEEDER)
+	{
+		nombreVideo = nombre.substr(0, posFin) + "_Kinect_" + timestamp + strExt;
+		cout << "Comenzando a grabar en el archivo "<<nombreVideo<<endl;
+		video.open(nombreVideo, VideoWriter::fourcc('M', 'J', 'P', 'G'), 10, Size(1920,1080));
+	}
+	// else if (feeder == VIDEOFEEDER)
+	// {
+	// 	nombreVideo = nombre.substr(0, posFin) + "_Kinect_" + timestamp + strExt;
+	// 	cout << "Comenzando a grabar en el archivo "<<nombreVideo<<endl;
+	// 	video.open(nombreVideo, VideoWriter::fourcc('M', 'J', 'P', 'G'), 10, Size(640,480));
+	// }
+	else
+	{
+		throw MiExcepcion(ERROR_GUARDAR_VIDEO);
+	}
 }
 
 FrameLogger::~FrameLogger()
@@ -30,29 +63,8 @@ FrameLogger::~FrameLogger()
 	cout << "Video cerrado!" << endl;
 }
 
-void FrameLogger::startVideoLog()
-{
-	if(rec){
-	stopVideoLog();
-	}
-	video.open(nombre_, VideoWriter::fourcc('M', 'J', 'P', 'G'), 10, Size(640, 480));
-	rec=1;
-}
-
-void FrameLogger::stopVideoLog()
-{
-	if (rec){
-		video.release();
-	}
-	else cout <<"Ningun video abierto"<<endl;
-}
-
 void FrameLogger::log(const Mat &frame)
 {
-	if (!rec){
-		startVideoLog();
-	}
 	numero++; //Solo en caso de guardar secuencia de imagenes
 	video.write(frame);
-	//cout << "frame numero " << numero << endl;
 }

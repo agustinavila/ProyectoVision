@@ -19,6 +19,7 @@
 #include <opencv2/videoio.hpp>
 #include <iostream>
 #include <string>
+#include <unistd.h>
 
 using namespace std;
 using namespace cv;
@@ -40,8 +41,15 @@ private:
 	string nombreVideo;
 
 public:
-	VideoFeeder(string nombre = "output");
+/**
+ * @brief Construye un nuevo objeto de la clase Video Feeder
+ * 
+ * @param nombre - nombre del video a abrir
+ */
+	VideoFeeder();
+	VideoFeeder(string &);
 	virtual ~VideoFeeder();
+	virtual const TipoFeeder getFeeder() {return VIDEOFEEDER;};
 	virtual const Mat getFrame();
 };
 

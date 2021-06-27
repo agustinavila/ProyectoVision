@@ -23,6 +23,7 @@
 #include "feeder.h"
 #include "webcamfeeder.h"
 #include "kinectfeeder.h"
+#include "videofeeder.h"
 #include "framelogger.h"
 #include "extractorlandmarks.h"
 #include "extractorlandmarks_dlib.h"
@@ -33,24 +34,7 @@
 using namespace std;
 using namespace cv;
 
-/**
- * @brief Enumeracion de los distintos tipos de feeder posibles
- * 
- */
-	enum TipoFeeder {
-		KINECTFEEDER,
-		WEBCAMFEEDER,
-		VIDEOFEEDER
-	};
 
-	/**
-	 * @brief Enumeracion de los distintos tipos de extractores posibles
-	 * 
-	 */
-	enum TipoExtractor {
-		DLIB,
-		OPENCV
-	};
 
 
 /**
@@ -76,25 +60,25 @@ private:
 	 * @brief Puntero de la clase abstracta Feeder apuntando a la implementacion concreta
 	 * 
 	 */
-	Feeder *ptrFeeder;
+	Feeder *ptrFeeder = NULL;
 
 	/**
 	 * @brief Puntero de clase abstracta ExtractorLandmarks que apunta a la implementacion concreta
 	 * 
 	 */
-	ExtractorLandmarks *ptrExtractor;
+	ExtractorLandmarks *ptrExtractor = NULL;
+
+	/**
+	 * @brief Logger de fotogramas. Por el momento va registrando en un video
+	 * 
+	 */
+	FrameLogger *ptrLogger = NULL;
 
 	/**
 	 * @brief Objeto que analiza y normaliza los landmarks
 	 * 
 	 */
 	AnalizadorLandmarks analizadorLandmarks;
-
-	/**
-	 * @brief Logger de fotogramas. Por el momento va registrando en un video
-	 * 
-	 */
-	FrameLogger logger;
 
 	/**
 	 * @brief Vector de landmarks actual, "crudos" como se obtuvieron del extractor
@@ -107,6 +91,17 @@ private:
 	 * 
 	 */
 	std::vector<Landmarks> landmarksNorm;
+	string nombreFrameLogger;
+	FileStorage fs;
+	string nombreConf = "config.yaml";
+	string nombreModeloDlib = "shape_predictor_68_face_landmarks.dat";
+	string nombreCascadeOpenCV = "haarcascade_frontalface_alt2.xml";
+	string nombreLBFOpenCV = "lbfmodel.yaml";
+	string nombreVideoFeeder = "video.avi";
+	float threshold=2;
+	TipoFeeder tipoFeeder;
+	bool grabarHabilitado=0;
+
 
 public:
 
@@ -114,13 +109,15 @@ public:
 	 * @brief Construye un nuevo objeto de la clase Analizador Simetria
 	 * 
 	 */
-	AnalizadorSimetria(Feeder *, ExtractorLandmarks *);
+	// AnalizadorSimetria(Feeder *, ExtractorLandmarks *);
 
 	/**
 	 * @brief Construye un nuevo objeto de la clase Analizador Simetria
 	 * 
 	 */
 	AnalizadorSimetria();
+
+	AnalizadorSimetria(string &);
 
 	/**
 	 * @brief Destruye el objeto de la clase Analizador Simetria
@@ -162,11 +159,15 @@ public:
 	 */
 	void setFeeder(TipoFeeder);
 	
+	TipoFeeder getFeeder() {return ptrFeeder->getFeeder();};
+
 	/**
 	 * @brief Setea el tipo concreto de Extractor del analizador
 	 * 
 	 */
 	void setExtractor(TipoExtractor);
+	
+	TipoExtractor getExtractor() {return ptrExtractor->getExtractor();};
 	
 	/**
 	 * @brief Funcion principal a llamar para operar la clase
@@ -174,6 +175,11 @@ public:
 	 * @return Mat 
 	 */
 	Mat step();
+
+	void empezarLog(const TipoFeeder&);
+	void stopLog();
+	void setNombreLog(const string &nombre) {this->nombreFrameLogger=nombre;};
+	void cargarConfiguracion(const string &);
 };
 
 #endif // ANALIZADORSIMETRIA_H
