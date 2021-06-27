@@ -2,15 +2,13 @@
 docs/*
 Release/*
 Debug/*
-data/*
+.settings/*
 .cproject
 .project
-*.prefs
 
 # Tipos de archivos:
 *.jpg
 *.log
-*.xml
 *.avi
 
 # Prerequisites
