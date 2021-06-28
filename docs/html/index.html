@@ -158,9 +158,22 @@ Dependencias</h1>
 <li><a href="https://github.com/OpenKinect/libfreenect2">libfreenect2</a> (utilizada version 0.2.0)</li>
 <li><a href="https://github.com/opencv/open">openCV</a> (utilizada version 4.5.2)</li>
 </ul>
+<p class="">Además, se utilizaron diversas librerias requeridas por estos paquetes (principalmente por libfreenect2) que están mencionadas en el comando de compilación.</p>
 <h1><a class="anchor" id="autotoc_md12"></a>
-Compilación</h1>
-<p class="">Para compilarlo, se utilizó el siguiente comando: <code>g++ -Wall -DUSE_AVX_INSTRUCTIONS=ON /home/agustin/Facultad/5to/ProyectoVision/*.cc /home/agustin/Facultad/5to/ProyectoVision/include/src/*.cc -o /home/agustin/Facultad/5to/ProyectoVision/Release/mainProyectoVision -I/home/agustin/Facultad/5to/ProyectoVision/include -I/usr/include/ -I/usr/local/lib/ -I/usr/local/include -I/usr/local/include/opencv4 -L/usr/local/freenect2/lib -L/usr/lib -lopencv_core -lopencv_highgui -lopencv_imgcodecs -lopencv_video -lopencv_videoio -lopencv_plot -lopencv_objdetect -lopencv_imgproc -lopencv_face -ldlib -lturbojpeg -ljpeg -lfreenect2 -llapack -lopenblas -O3</code> Generado con el archivo <a href=".vscode/tasks.json">tasks.json</a> en visual studio code. </p>
+TODO</h1>
+<ul>
+<li>[ ] Sobrecarga de operadores <code>&lt;&lt;</code> y <code>&gt;&gt;</code> para la entrada y salida de archivos.</li>
+<li>[ ] Algoritmo de ordenamiento de los vectores de landmarks (utilizando como referencia la asimetria).</li>
+<li>[ ] Procesar datos guardados previamente.</li>
+<li>[ ] Generar una interfaz en Qt.</li>
+<li>[ ] Generalizar el <a class="el" href="class_feeder.html" title="Clase abstracta para proveer obtener nuevos mats.">Feeder</a> para poder incorporar, por ejemplo, imágenes de profundidad , RGBD o IR desde kinect.</li>
+<li>[ ] Realizar una implementación mejorada del calculador de asimetría (es una funcion dummy, hace un par de calculos basicos).</li>
+<li>[ ] Utilizar threads para distintas tareas(principalmente las que requieren acceso al disco) y así optimizar el funcionamiento general.</li>
+<li>[ ] Desarrollar en mayor profundidad el programa de ejemplo mainProyectoVision.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md13"></a>
+Desarrollo y compilación</h1>
+<p class="">Para el desarrollo de este software, se utilizó el editor de texto Visual Studio Code, ya que facilitaba y automatizaba muchas tareas con las correspondientes extensiones (Generador de UML, comentarios automáticos para Doxygen, snippets de código, autocompletar código, generación de distintas tareas de compilación). Para compilarlo, se utilizó el siguiente comando: <code>g++ -Wall -DUSE_AVX_INSTRUCTIONS=ON /home/agustin/Facultad/5to/ProyectoVision/*.cc /home/agustin/Facultad/5to/ProyectoVision/include/src/*.cc -o /home/agustin/Facultad/5to/ProyectoVision/Release/mainProyectoVision -I/home/agustin/Facultad/5to/ProyectoVision/include -I/usr/include/ -I/usr/local/lib/ -I/usr/local/include -I/usr/local/include/opencv4 -L/usr/local/freenect2/lib -L/usr/lib -lopencv_core -lopencv_highgui -lopencv_imgcodecs -lopencv_video -lopencv_videoio -lopencv_plot -lopencv_objdetect -lopencv_imgproc -lopencv_face -ldlib -lturbojpeg -ljpeg -lfreenect2 -llapack -lopenblas -O3</code> Generado con el archivo <a href=".vscode/tasks.json">tasks.json</a> en Visual Studio Code. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->

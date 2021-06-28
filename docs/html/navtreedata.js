@@ -39,7 +39,8 @@ var NAVTREE =
       ] ],
       [ "Estructura Landmarks", "index.html#autotoc_md10", null ],
       [ "Dependencias", "index.html#autotoc_md11", null ],
-      [ "Compilación", "index.html#autotoc_md12", null ]
+      [ "TODO", "index.html#autotoc_md12", null ],
+      [ "Desarrollo y compilación", "index.html#autotoc_md13", null ]
     ] ],
     [ "Lista de tareas pendientes", "todo.html", null ],
     [ "Lista de bugs", "bug.html", null ],
@@ -66,7 +67,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-""
+"analizadorlandmarks_8cc.html"
 ];
 
 var SYNCONMSG = 'click en deshabilitar sincronización';
