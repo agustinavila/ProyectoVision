@@ -1,0 +1,50 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "Compilar - Release",
+            "command": "g++",
+            "args": [
+                "-Wall",
+                "-DUSE_AVX_INSTRUCTIONS=ON",
+                "${fileDirname}/*.cc",
+                "${fileDirname}/include/src/*.cc",
+                "-o",
+                "${fileDirname}/Release/${fileBasenameNoExtension}",
+                "-I${fileDirname}/include",
+                "-I/usr/include/",
+                "-I/usr/local/lib/",
+                "-I/usr/local/include",
+                "-I/usr/local/include/opencv4",
+                "-L/usr/local/freenect2/lib",
+                "-L/usr/lib",
+                "-lopencv_core",
+                "-lopencv_highgui",
+                "-lopencv_imgcodecs",
+                "-lopencv_video",
+                "-lopencv_videoio",
+                "-lopencv_plot",
+                "-lopencv_objdetect",
+                "-lopencv_imgproc",
+                "-lopencv_face",
+                "-ldlib",
+                "-lturbojpeg",
+                "-ljpeg",
+                "-lfreenect2",
+                "-llapack",
+                "-lopenblas",
+                "-O3"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Compilar con todas las librerias necesarias."
+        }
+    ],
+    "version": "2.0.0"
+}

@@ -26,19 +26,20 @@ var NAVTREE =
 [
   [ "ProyectoVision", "index.html", [
     [ "Proyecto Vision", "index.html", [
-      [ "Tabla de contenidos", "index.html#autotoc_md1", null ],
-      [ "Desarrollo", "index.html#autotoc_md2", null ],
-      [ "Argumentos", "index.html#autotoc_md3", null ],
-      [ "Clases", "index.html#autotoc_md4", [
-        [ "Clase Feeder", "index.html#autotoc_md5", null ],
-        [ "Clase FrameLogger", "index.html#autotoc_md6", null ],
-        [ "Clase ExtractorLandmarks", "index.html#autotoc_md7", [
-          [ "Clase ExtractorLandmarksOpenCV", "index.html#autotoc_md8", null ],
-          [ "Clase ExtractorLandmarksDlib", "index.html#autotoc_md9", null ]
+      [ "Desarrollo", "index.html#autotoc_md1", null ],
+      [ "Clases", "index.html#autotoc_md2", [
+        [ "Clase Feeder", "index.html#autotoc_md3", null ],
+        [ "Clase FrameLogger", "index.html#autotoc_md4", null ],
+        [ "Clase ExtractorLandmarks", "index.html#autotoc_md5", [
+          [ "Clase ExtractorLandmarksOpenCV", "index.html#autotoc_md6", null ],
+          [ "Clase ExtractorLandmarksDlib", "index.html#autotoc_md7", null ]
         ] ],
-        [ "Clase AnalizadorLandmarks", "index.html#autotoc_md10", null ]
+        [ "Clase AnalizadorLandmarks", "index.html#autotoc_md8", null ],
+        [ "Clase LandmarksLogger", "index.html#autotoc_md9", null ]
       ] ],
-      [ "Por Hacer", "index.html#autotoc_md11", null ]
+      [ "Estructura Landmarks", "index.html#autotoc_md10", null ],
+      [ "Dependencias", "index.html#autotoc_md11", null ],
+      [ "Compilación", "index.html#autotoc_md12", null ]
     ] ],
     [ "Lista de tareas pendientes", "todo.html", null ],
     [ "Lista de bugs", "bug.html", null ],

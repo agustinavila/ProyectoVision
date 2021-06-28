@@ -3,11 +3,17 @@
 @startuml AnalizadorSimetria
 
 class AnalizadorSimetria {
-	- float asimetria
-	- Mat frame
-	- vector<Landmarks> landmarks
-	- vector<Landmarks> landmarksNorm
-	metodos()
+	landmarks
+	landmarksNorm
+	frame
+	tipoFeeder
+	tipoExtractor
+	getFrame()
+	getAsimetria()
+	getLandmarks
+	setFeeder()
+	setExtractor()
+	step()
 }
 
 abstract class Feeder{
@@ -25,13 +31,19 @@ class FrameLogger{
 	metodos()
 }
 
+class LandmarksLogger{
+	propiedades
+	metodos()
+}
+
 class AnalizadorLandmarks {
 	propiedades
 	metodos()
 }
-AnalizadorSimetria *.. Feeder
-AnalizadorSimetria *.. ExtractorLandmarks
-AnalizadorSimetria *.. FrameLogger
+AnalizadorSimetria *.. Feeder : **ptrFeeder
+AnalizadorSimetria *.. ExtractorLandmarks : **ptrExtractor
+AnalizadorSimetria *.. FrameLogger : **ptrVideoLogger
+AnalizadorSimetria *.. LandmarksLogger : **ptrLandmarksLogger
 AnalizadorSimetria *.. AnalizadorLandmarks
 
 @enduml
@@ -42,115 +54,107 @@ AnalizadorSimetria *.. AnalizadorLandmarks
 @startuml proyectoVision
 
 abstract class Feeder{
-	Mat frame
 	getFrame()
 }
 
 class FrameLogger{
-	Mat frame
-	string nombre
 	log()
 }
-Feeder -> FrameLogger
+
+class LandmarksLogger{
+	log()
+}
+
+FrameLogger <- Feeder
 
 Feeder->ExtractorLandmarks
 
 abstract class ExtractorLandmarks{
-	'debe definir todos los datos necesarios
-	'y los metodos para extraer y registrar los datos
-
-	vector<Point2f> landmarks
-	vector<Point2f> getLandmarks(Mat)
+	landmarks
+	getLandmarks()
+	parseLandmarks()
 }
 
 ExtractorLandmarks->AnalizadorLandmarks
+ExtractorLandmarks->LandmarksLogger
+AnalizadorLandmarks->LandmarksLogger
 
 class AnalizadorLandmarks{
-	vector<Point2f> landmarks
-	vector<Point2f> landmarksNorm
-	float rotacion
-	float asimetria
-	calcularAngulo(Point2f,Point2f)
-	normalizarLandmarks()
-	float calcularAsimetria()
+	landmarks
+	landmarksNorm
+	getLandmarks()
+	calcularAsimetria()
 }
 @enduml
 
 @startuml structs
-class datoBase <<struct>>{
-	'primer boceto de la estructura basica de cada frame
-	'para hacer registro de los datos?
-
-	Mat frame
-	int numeroFrame
-	string nombreArchivo
-	double timestamp
-	vector<vector<float>> features
-	float ancla
-	float angulo
-	float escala
+class Landmarks <<struct>>{
+	vacio
+	escala
+	rotacion
+	menton
+	ojoIzq
+	ojoDer
+	cejaIzq
+	cejaDer
+	boca
+	nariz
+	empty()
 }
 @enduml
 
 @startuml feeder
 
 abstract class Feeder{
-	Mat frame
-	Mat getFrame()
+	frame
+	getFeeder()
+	getFrame()
 }
 
 class VideoFeeder{
-	Mat frame
-	string nombreArchivo
-	VideoCapture cap
-	Mat getFrame();
+	frame
+	getFeeder()
+	getFrame()
 }
 Feeder<|--VideoFeeder
 
 class WebcamFeeder{
-	Mat frame
-	int idx
-	VideoCapture cap
-	Mat getFrame();
+	frame
+	getFeeder()
+	getFrame()
 }
 Feeder<|--WebcamFeeder
 
 class KinectFeeder{
-	'"tipoimagen" deberia servir para registrar RGB, IR o profundidad
-	Mat frame
-	Freenect2 freenect2
-	Mat getFrame()
+	frame
+	listener
+	getFeeder()
+	getFrame()
 }
 Feeder<|--KinectFeeder
 @enduml
 
 @startuml extractorLandmarks
 abstract class ExtractorLandmarks{
-	'debe definir todos los datos necesarios
-	'y los metodos para extraer y registrar los datos
-	vector<Point2f> landmarks
-	vector<Point2f> getLandmarks(Mat)
+	landmarks
+	getLandmarks()
+	parseLandmarks()
 }
 note left of ExtractorLandmarks
 Debe proveerse un archivo 
 de entrenamiento para el extractor
-Por el momento esta hardcodeado
+segun su tipo
 end note
 
 class ExtractorLandmarksOpenCV{
-Mat Gray
-Ptr<face::Facemark> facemark
-CascadeClassifier faceDetector
-vector<Point2f> landmarks
-vector<Point2f> getLandmarks(Mat)
+landmarks
+getLandmarks()
 }
 ExtractorLandmarks<|-- ExtractorLandmarksOpenCV
 
 class ExtractorLandmarksDlib{
-frontal_face_detector detector
-shape_predictor pose_model
-vector<Point2f> landmarks
-vector<Point2f> getLandmarks(Mat)
+landmarks
+getLandmarks()
 }
 ExtractorLandmarks<|-- ExtractorLandmarksDlib
 

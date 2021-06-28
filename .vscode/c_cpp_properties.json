@@ -1,0 +1,55 @@
+{
+    "configurations": [
+        {
+            "name": "Vision",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/local/include",
+                "/usr/local/include/opencv4",
+                "/usr/local/lib/**",
+                "/usr/include/**"
+            ],
+            "defines": [
+                "DLIB_JPEG_SUPPORT",
+                "EXAMPLES_WITH_OPENGL_SUPPORT"
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "intelliSenseMode": "linux-gcc-x64",
+            "configurationProvider": "ms-vscode.makefile-tools",
+            "compilerArgs": [
+                "-lopencv_core",
+                "-lopencv_highgui",
+                "-lopencv_imgcodecs",
+                "-lopencv_video",
+                "-lopencv_videoio",
+                "-lopencv_aruco",
+                "-lopencv_plot",
+                "-lopencv_ml",
+                "-lopencv_features2d",
+                "-lopencv_calib3d",
+                "-lopencv_objdetect",
+                "-lopencv_flann",
+                "-lopencv_imgproc",
+                "-lX11",
+                "-lpthread",
+                "-ldlib",
+                "-lturbojpeg",
+                "-ljpeg",
+                "-lfreenect2"
+            ],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/**",
+                    "${workspaceFolder}/include/**",
+                    "/usr/include/**",
+                    "/usr/local/include",
+                    "/usr/local/include/opencv4",
+                    "/usr/local/lib/**"
+                ]
+            }
+        }
+    ],
+    "version": 4
+}

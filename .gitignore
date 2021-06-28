@@ -43,7 +43,6 @@ Debug/*
 *.out
 *.app
 
-.vscode/
 # This file is used to ignore files which are generated
 # ----------------------------------------------------------------------------
 
