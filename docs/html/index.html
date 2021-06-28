@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ProyectoVision: Proyecto Vision</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">ProyectoVision
+   &#160;<span id="projectnumber">0.3</span>
+   </div>
+   <div id="projectbrief">Proyecto realizado para las materias c++ y vision</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.9.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('index.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div><div class="header">
+  <div class="headertitle">
+<div class="title">Proyecto Vision </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p class=""><a class="anchor" id="md_README"></a> Proyecto final para las materias "Vision Artificial" y "Complementos de Informatica" El proyecto consiste en un programa capaz de obtener imagenes de distintos medios, detectar caras y analizar su simetria. Ademas, deberia ser capaz de generar reportes y mostrar fotogramas claves, donde la asimetria sea maxima o donde se detecte claramente cierta expresion facial (sonrisa, ceño fruncido, levantar cejas, etc). La idea de la implementación está basada en <a href="https://www.mdpi.com/2076-3417/11/5/2435" title="Facial Paralysis Detection on Images Using Key Point Analysis">este paper</a>.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Tabla de contenidos</h1>
+<ul>
+<li><a href="#desarrollo">Desarrollo</a></li>
+<li><a href="#clases">Clases</a><ul>
+<li><a href="#clase-feeder">Clase feeder</a><ul>
+<li><a href="#clase-videofeeder">Clase VideoFeeder</a></li>
+<li><a href="#clase-webcamfeeder">Clase WebcamFeeder</a></li>
+<li><a href="#clase-kinectfeeder">Clase KinectFeeder</a></li>
+</ul>
+</li>
+<li><a href="#clase-extractorlandmarks">Clase ExtractorLandmarks</a><ul>
+<li><a href="#clase-extractorlandmarksopencv">Clase ExtractorLandmarksOpenCV</a></li>
+<li><a href="#clase-extractorlandmarksdlib">Clase ExtractorLandmarksDlib</a></li>
+</ul>
+</li>
+<li><a href="#clase-normalizadorlandmarks">Clase analizadorLandmarks</a></li>
+</ul>
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Desarrollo</h1>
+<p class="">El software consiste en varias clases concatenadas entre si.</p>
+<p class=""><img src="/Diagrama/proyectoVision.png" alt="Esquema del funcionamiento general" class="inline"/>.</p>
+<p class="">El sistema instancia los objetos necesarios a partir de argumentos pasados al mismo(Falta), con las clases concretas necesarias segun el caso. Si no se pasan argumentos, intenta abrir una webcam y utilizar un archivo de entrenamiento por defecto.</p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Argumentos</h1>
+<p class=""><em>no esta realizado aun.</em></p>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Clases</h1>
+<p class="">A continuacion, se detallan las distintas clases base que compondran al sistema.</p>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Clase Feeder</h2>
+<p class="">Clase encargada de obtener los fotogramas a analizar. De ésta se derivan tres clases para proveer frames de distintos medios. Las tres clases que heredan de <a class="el" href="class_feeder.html" title="Clase abstracta para proveer obtener nuevos mats.">Feeder</a>, serán:</p>
+<ul>
+<li><a class="el" href="class_video_feeder.html" title="Sobrecarga de la clase Feeder para abrir un archivo de video.">VideoFeeder</a>, pensada para trabajar con videos.</li>
+<li><a class="el" href="class_webcam_feeder.html" title="Sobrecarga de la clase Feeder para abrir una webcam.">WebcamFeeder</a>, pensada para adquirir fotogramas de una webcam.</li>
+<li><a class="el" href="class_kinect_feeder.html" title="Sobrecarga de la clase Feeder para proveer objetos Mat desde una kinect.">KinectFeeder</a>, pensada para adquirir fotogramas de una kinect utilizando libfreenect2.</li>
+</ul>
+<p class="">Estas clases tendrán un método general para devolver un fotograma del tipo <code>cv::Mat</code> que serán utilizados por los objetos de las clases (<a href="#clase-framelogger">FrameLogger</a> y <a href="#clase-extractorlandmarks">ExtractorLandmarks</a>).</p>
+<p class=""><img src="/Diagrama/feeder.png" alt="Ejemplo del Feeder" class="inline"/></p>
+<p class="">Ejemplo en UML de la clase "feeder"</p>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Clase FrameLogger</h2>
+<p class="">Esta clase está encargada de registrar los frames provistos por el <a href="#clase-feeder">Feeder</a>. Por el momento, va registrando los fotogramas en un video por defecto. Debe tener un metodo de actualizacion que consista en guardar el archivo de imagen en algun lugar en particular, con un nombre que lo identifique unicamente, y que de alguna manera quede linkeado a una "base de datos".</p>
+<h2><a class="anchor" id="autotoc_md7"></a>
+Clase ExtractorLandmarks</h2>
+<p class="">Esta clase está encargada de obtener los puntos de interés de un rostro a partir de las imágenes provistas por el <a href="#clase-feeder">Feeder</a>. Esta clase abstracta en principio tiene dos implementaciones:</p>
+<ul>
+<li>clase <a class="el" href="class_extractor_landmarks_open_c_v.html" title="Clase concreta derivada de ExtractorLandmarks para extraer landmarks utilizando openCV.">ExtractorLandmarksOpenCV</a>, utilizando openCV</li>
+<li>clase <a class="el" href="class_extractor_landmarks_dlib.html" title="Implementación concreta de la clase abstracta ExtractorLandmarks usando dlib.">ExtractorLandmarksDlib</a>, utilizando dlib</li>
+</ul>
+<p class="">Estas dos clases utilizarían distintos algoritmos para la deteccion de puntos de interes, basados en distintos papers y con distintos entrenamientos.</p>
+<h3><a class="anchor" id="autotoc_md8"></a>
+Clase ExtractorLandmarksOpenCV</h3>
+<p class="">Esta clase está basada en las librerias de openCV.</p>
+<h3><a class="anchor" id="autotoc_md9"></a>
+Clase ExtractorLandmarksDlib</h3>
+<p class="">Esta clase está basada en las librerias de dlib</p>
+<p class=""><img src="/Diagrama/extractorLandmarks.png" alt="Ejemplo del Feeder" class="inline"/></p>
+<p class="">Diagrama UML de la clase <a class="el" href="class_extractor_landmarks.html" title="Clase abstracta para extraer landmarks de un Mat.">ExtractorLandmarks</a></p>
+<h2><a class="anchor" id="autotoc_md10"></a>
+Clase AnalizadorLandmarks</h2>
+<p class="">Esta clase normaliza los puntos de interés provistos por el <a href="#clase-extractorlandmarks">extractor de landmarks</a>, es decir, corrige la inclinacion de la cabeza, tomando como referencias los puntos a mitad de cada oreja. Con esto, calcula la simetria de la cara basándose en algunos puntos particulares(Elegidos medio aleatoriamente) Respecto a la simetria, la clase será la encargada de analizar los puntos de interés normalizados, haciendo algunos calculos geométricos y devolviendo distintas medidas sobre la simetria facial. En el <a href="https://www.mdpi.com/2076-3417/11/5/2435" title="Facial Paralysis Detection on Images Using Key Point Analysis">paper</a> de referencia, estas medidas se utilizan para luego alimentar un clasificador. Al no tener acceso a los datasets para poder "clasificar" distintos rostros, este ultimo paso se dificulta. Aun asi, debe ser posible obtener un puntaje analizando distintas medidas y comparando ambos lados del rostro. Además, el normalizador podria filtrar solo los landmarks necesarios para el calculo de simetria, reduciendo asi el tamaño de los datos guardados. También debería devolver un vector con cada parte de la cara detectada (es decir, segmentar cejas, ojos, boca, nariz...).</p>
+<h1><a class="anchor" id="autotoc_md11"></a>
+Por Hacer</h1>
+<ul>
+<li>[ ] Logger de informacion relevante</li>
+<li>[ ] Pasarle argumentos</li>
+<li>[ ] Terminar <a class="el" href="class_video_feeder.html" title="Sobrecarga de la clase Feeder para abrir un archivo de video.">VideoFeeder</a></li>
+<li>[ ] Terminar <a class="el" href="class_kinect_feeder.html" title="Sobrecarga de la clase Feeder para proveer objetos Mat desde una kinect.">KinectFeeder</a> </li>
+</ul>
+</div></div><!-- PageDoc -->
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+  </ul>
+</div>
+</body>
+</html>

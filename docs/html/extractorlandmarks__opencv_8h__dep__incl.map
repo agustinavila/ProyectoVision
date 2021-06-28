@@ -1,0 +1,7 @@
+<map id="extractorlandmarks_opencv.h" name="extractorlandmarks_opencv.h">
+<area shape="rect" id="node1" title="Archivo de cabecera de la clase concreta ExtractorLandmarksOpenCV." alt="" coords="194,5,345,47"/>
+<area shape="rect" id="node2" href="$analizadorsimetria_8h.html" title="Archivo de cabecera de la clase base del proyecto." alt="" coords="103,102,259,129"/>
+<area shape="rect" id="node5" href="$extractorlandmarks__opencv_8cc.html" title="Implementacion de la clase concreta ExtractorLandmarksOpenCV." alt="" coords="283,95,434,136"/>
+<area shape="rect" id="node3" href="$analizadorsimetria_8cc.html" title=" " alt="" coords="5,184,168,211"/>
+<area shape="rect" id="node4" href="$main_proyecto_vision_8cc.html" title="Archivo con un programa ejemplificando el uso de la clase AnalizadorSimetria." alt="" coords="192,184,363,211"/>
+</map>

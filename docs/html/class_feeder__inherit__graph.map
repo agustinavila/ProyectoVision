@@ -1,0 +1,6 @@
+<map id="Feeder" name="Feeder">
+<area shape="rect" id="node1" title="Clase abstracta para proveer obtener nuevos mats." alt="" coords="186,5,298,127"/>
+<area shape="rect" id="node2" href="$class_kinect_feeder.html" title="Sobrecarga de la clase Feeder para proveer objetos Mat desde una kinect." alt="" coords="5,175,148,369"/>
+<area shape="rect" id="node3" href="$class_video_feeder.html" title="Sobrecarga de la clase Feeder para abrir un archivo de video." alt="" coords="173,189,311,355"/>
+<area shape="rect" id="node4" href="$class_webcam_feeder.html" title="Sobrecarga de la clase Feeder para abrir una webcam." alt="" coords="336,197,495,347"/>
+</map>

@@ -1,0 +1,25 @@
+<map id="estructuras.h" name="estructuras.h">
+<area shape="rect" id="node1" title="Descripcion de distintas estructuras de datos usadas por la clase." alt="" coords="865,5,971,32"/>
+<area shape="rect" id="node2" href="$analizadorlandmarks_8h.html" title="Archivo de cabecera de la clase AnalizadorLandmarks." alt="" coords="771,80,942,107"/>
+<area shape="rect" id="node3" href="$analizadorsimetria_8h.html" title="Archivo de cabecera de la clase base del proyecto." alt="" coords="1001,251,1157,278"/>
+<area shape="rect" id="node7" href="$extractorlandmarks_8h.html" title="Declaracion de la clase abstracta ExtractorLandmarks." alt="" coords="301,80,463,107"/>
+<area shape="rect" id="node10" href="$extractorlandmarks__opencv_8h.html" title="Archivo de cabecera de la clase concreta ExtractorLandmarksOpenCV." alt="" coords="480,155,631,196"/>
+<area shape="rect" id="node13" href="$feeder_8h.html" title="Archivo de cabecera de la clase abstracta Feeder." alt="" coords="1332,80,1408,107"/>
+<area shape="rect" id="node18" href="$landmarkslogger_8h.html" title="Archivo de cabecera de la clase LandmarksLogger." alt="" coords="907,162,1051,189"/>
+<area shape="rect" id="node6" href="$analizadorlandmarks_8cc.html" title="Implementacion de la clase AnalizadorLandmarks." alt="" coords="655,162,832,189"/>
+<area shape="rect" id="node4" href="$analizadorsimetria_8cc.html" title=" " alt="" coords="902,333,1065,360"/>
+<area shape="rect" id="node5" href="$main_proyecto_vision_8cc.html" title="Archivo con un programa ejemplificando el uso de la clase AnalizadorSimetria." alt="" coords="1089,333,1259,360"/>
+<area shape="rect" id="node8" href="$extractorlandmarks__dlib_8h.html" title="Archivo de cabecera de la clase concreta ExtractorLandmarksDlib." alt="" coords="61,155,212,196"/>
+<area shape="rect" id="node9" href="$extractorlandmarks__dlib_8cc.html" title="Implementacion de la clase concreta ExtractorLandmarks_dlib." alt="" coords="5,244,156,285"/>
+<area shape="rect" id="node12" href="$extractorlandmarks_8cc.html" title="implementacion de la clase abstracta ExtractorLandmarks" alt="" coords="237,162,405,189"/>
+<area shape="rect" id="node11" href="$extractorlandmarks__opencv_8cc.html" title="Implementacion de la clase concreta ExtractorLandmarksOpenCV." alt="" coords="480,244,631,285"/>
+<area shape="rect" id="node14" href="$framelogger_8h.html" title="Archivo de cabecera de la clase FrameLogger." alt="" coords="1313,162,1427,189"/>
+<area shape="rect" id="node16" href="$kinectfeeder_8h.html" title="Archivo de cabecera de la clase concreta KinectFeeder." alt="" coords="1452,162,1568,189"/>
+<area shape="rect" id="node17" href="$kinectfeeder_8cc.html" title="Implementacion de la clase concreta KinectFeeder." alt="" coords="1510,251,1633,278"/>
+<area shape="rect" id="node20" href="$webcamfeeder_8cc.html" title="implementacion de la clase concreta WebcamFeeder" alt="" coords="1673,251,1811,278"/>
+<area shape="rect" id="node21" href="$videofeeder_8h.html" title="Archivo de cabecera de la clase concreta VideoFeeder." alt="" coords="1177,162,1289,189"/>
+<area shape="rect" id="node23" href="$webcamfeeder_8h.html" title="Declaracion de la clase concreta WebcamFeeder." alt="" coords="1643,162,1774,189"/>
+<area shape="rect" id="node15" href="$framelogger_8cc.html" title="Implementacion de la clase FrameLogger." alt="" coords="1325,251,1445,278"/>
+<area shape="rect" id="node19" href="$landmarkslogger_8cc.html" title=" " alt="" coords="827,251,977,278"/>
+<area shape="rect" id="node22" href="$videofeeder_8cc.html" title="Implementacion de la clase concreta VideoFeeder." alt="" coords="1181,251,1300,278"/>
+</map>

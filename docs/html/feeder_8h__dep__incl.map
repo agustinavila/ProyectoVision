@@ -1,0 +1,16 @@
+<map id="feeder.h" name="feeder.h">
+<area shape="rect" id="node1" title="Archivo de cabecera de la clase abstracta Feeder." alt="" coords="506,5,582,32"/>
+<area shape="rect" id="node2" href="$analizadorsimetria_8h.html" title="Archivo de cabecera de la clase base del proyecto." alt="" coords="325,155,481,181"/>
+<area shape="rect" id="node5" href="$framelogger_8h.html" title="Archivo de cabecera de la clase FrameLogger." alt="" coords="61,80,176,107"/>
+<area shape="rect" id="node7" href="$kinectfeeder_8h.html" title="Archivo de cabecera de la clase concreta KinectFeeder." alt="" coords="555,80,671,107"/>
+<area shape="rect" id="node8" href="$kinectfeeder_8cc.html" title="Implementacion de la clase concreta KinectFeeder." alt="" coords="648,155,771,181"/>
+<area shape="rect" id="node9" href="$landmarkslogger_8h.html" title="Archivo de cabecera de la clase LandmarksLogger." alt="" coords="200,80,344,107"/>
+<area shape="rect" id="node11" href="$webcamfeeder_8cc.html" title="implementacion de la clase concreta WebcamFeeder" alt="" coords="821,155,958,181"/>
+<area shape="rect" id="node12" href="$videofeeder_8h.html" title="Archivo de cabecera de la clase concreta VideoFeeder." alt="" coords="419,80,531,107"/>
+<area shape="rect" id="node14" href="$webcamfeeder_8h.html" title="Declaracion de la clase concreta WebcamFeeder." alt="" coords="747,80,877,107"/>
+<area shape="rect" id="node3" href="$analizadorsimetria_8cc.html" title=" " alt="" coords="225,229,388,256"/>
+<area shape="rect" id="node4" href="$main_proyecto_vision_8cc.html" title="Archivo con un programa ejemplificando el uso de la clase AnalizadorSimetria." alt="" coords="412,229,583,256"/>
+<area shape="rect" id="node6" href="$framelogger_8cc.html" title="Implementacion de la clase FrameLogger." alt="" coords="5,155,125,181"/>
+<area shape="rect" id="node10" href="$landmarkslogger_8cc.html" title=" " alt="" coords="150,155,301,181"/>
+<area shape="rect" id="node13" href="$videofeeder_8cc.html" title="Implementacion de la clase concreta VideoFeeder." alt="" coords="505,155,623,181"/>
+</map>

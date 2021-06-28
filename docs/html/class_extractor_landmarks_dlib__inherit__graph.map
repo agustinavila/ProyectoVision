@@ -1,0 +1,4 @@
+<map id="ExtractorLandmarksDlib" name="ExtractorLandmarksDlib">
+<area shape="rect" id="node1" title="Implementación concreta de la clase abstracta ExtractorLandmarks usando dlib." alt="" coords="5,204,220,384"/>
+<area shape="rect" id="node2" href="$class_extractor_landmarks.html" title="Clase abstracta para extraer landmarks de un Mat." alt="" coords="18,5,207,156"/>
+</map>
