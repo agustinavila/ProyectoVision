@@ -192,6 +192,9 @@ void AnalizadorSimetria::cargarConfiguracion(const string &nombreArchivo)
 		exit(-1);
 	}
 	TipoExtractor extractor;
+	fs["nombreCascadeOpenCV"] >> nombreCascadeOpenCV;
+	fs["nombreLBF"] >> nombreLBFOpenCV;
+	fs["nombreDetectorDlib"] >> nombreModeloDlib;
 	fs["tipoExtractor"] >> extractor;
 	try
 	{

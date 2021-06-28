@@ -123,17 +123,17 @@ struct Landmarks
 	/**
 	 * @brief Vector de puntos que definen la boca.
 	 * 
-	 * @details Consiste en 18 puntos. Comienza desde la comisura externa de
+	 * @details Consiste en 20 puntos. Comienza desde la comisura externa de
 	 * los labios, recorriendo el borde externo del labio comenzando por la parte superior.
 	 * El punto 0 corresponde a la comisura externa izquierda,
 	 * el punto 3 corresponde al punto central del borde externo superior,
 	 * el punto 6 corresponde a la comisura externa derecha,
 	 * el punto 9 corresponde al punto central del borde externo inferior.
 	 * 
-	 * El punto 10 corresponde a la comisura interna izquierda,
-	 * el punto 12 corresponde al punto central del borde interno superior,
-	 * el punto 14 corresponde a la comisura interna derecha,
-	 * el punto 16 corresponde al punto central del borde interno inferior.
+	 * El punto 12 corresponde a la comisura interna izquierda,
+	 * el punto 14 corresponde al punto central del borde interno superior,
+	 * el punto 16 corresponde a la comisura interna derecha,
+	 * el punto 18 corresponde al punto central del borde interno inferior.
 	 * 
 	 */
 	std::vector<Point2f> boca;

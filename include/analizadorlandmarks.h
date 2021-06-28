@@ -56,6 +56,7 @@ public:
 	/**
 	 * @brief Actualiza los landmarks del objeto
 	 * 
+	 * @param lm landmarks nuevos.
 	 */
 	void setLandmarks(const std::vector<Landmarks> &);
 
@@ -74,22 +75,27 @@ public:
 	std::vector<Landmarks> getNormLandmarks() { return this->landmarksNorm; };
 
 	/**
-	 * @brief Método que devuelve el angulo entre dos puntos
+	 * @brief Método que devuelve el angulo entre dos puntos a y b
 	 * 
+	 * @param a - punto a 
+	 * @param b - punto b
 	 * @return const float - angulo en grandos
 	 */
 	inline const float calcularAngulo(const Point2f &, const Point2f &);
 
 	/**
-	 * @brief Metodo que devuelve la pendiente entre dos puntos
+	 * @brief Metodo que devuelve la pendiente entre dos puntos a y b
 	 * 
+	 * @param a - punto a
+	 * @param b - punto b
 	 * @return const float - pendiente entre los dos puntos
 	 */
 	inline const float calcularPendiente(const Point2f &, const Point2f &);
 
 	/**
 	 * @brief Método que devuelve el máximo valor entre dos puntos
-	 * 
+	 * @param a - punto a
+	 * @param b - punto b
 	 * @return const float - valor máximo
 	 */
 	inline const float calcularMax(const float &, const float &);

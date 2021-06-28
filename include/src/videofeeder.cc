@@ -11,40 +11,36 @@
 
 #include "../videofeeder.h"
 
-/**
- * @brief Construye un nuevo objeto de la clase Video Feeder:: Video Feeder
- * 
- * @param nombre 
- */
 VideoFeeder::VideoFeeder(string &nombre)
 {
 	char buff[250];
-	getcwd( buff, PATH_MAX );
-	std::string cwd( buff );
+	getcwd(buff, PATH_MAX);
+	std::string cwd(buff);
 	nombreVideo = nombre;
-	cout << "Cargando video..." << cwd+"/"+nombreVideo << endl;
-	if (!cap.open(cwd+"/"+nombreVideo)) //tendria que agregar la ruta hasta el directorio actual?
-	{
-		cout << "No se pudo abrir el video" << endl;
-		throw MiExcepcion(ERROR_VIDEOFEEDER_ABRIR_ARCHIVO);
-	} else cout<<"listo!"<<endl;
-}
-
-VideoFeeder::VideoFeeder()
-{
-	nombreVideo = "video.avi";
-	cout << "Cargando video..." << nombreVideo << endl;
-	if (!cap.open(nombreVideo)) //tendria que agregar la ruta hasta el directorio actual?
+	cout << "Cargando video..." << cwd + "/" + nombreVideo << endl;
+	if (!cap.open(cwd + "/" + nombreVideo))
 	{
 		cout << "No se pudo abrir el video" << endl;
 		throw MiExcepcion(ERROR_VIDEOFEEDER_ABRIR_ARCHIVO);
 	}
+	else
+		cout << "listo!" << endl;
 }
 
-/**
- * @brief Destruye el objeto de la clase Video Feeder:: Video Feeder
- * 
- */
+VideoFeeder::VideoFeeder()
+{
+	char buff[250];
+	getcwd(buff, PATH_MAX);
+	std::string cwd(buff);
+	nombreVideo = cwd + "/video.avi";
+	cout << "Cargando video..." << nombreVideo << endl;
+	if (!cap.open(nombreVideo))
+	{
+		cout << "No se pudo abrir el video por defecto " << nombreVideo << endl;
+		throw MiExcepcion(ERROR_VIDEOFEEDER_ABRIR_ARCHIVO);
+	}
+}
+
 VideoFeeder::~VideoFeeder()
 {
 	cout << "Cerrando video...";
@@ -52,11 +48,6 @@ VideoFeeder::~VideoFeeder()
 	cout << " video cerrado" << endl;
 }
 
-/**
- * @brief Metodo para obtener un nuevo frame
- * 
- * @return Mat 
- */
 const Mat VideoFeeder::getFrame()
 {
 	cap >> frame;

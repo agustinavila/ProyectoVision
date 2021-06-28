@@ -65,6 +65,6 @@ FrameLogger::~FrameLogger()
 
 void FrameLogger::log(const Mat &frame)
 {
-	numero++; //Solo en caso de guardar secuencia de imagenes
+	frames++; //Solo en caso de guardar secuencia de imagenes
 	video.write(frame);
 }

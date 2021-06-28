@@ -39,19 +39,18 @@ const std::vector<Landmarks> ExtractorLandmarksDlib::getLandmarks(const cv::Mat 
 {
 	float escala;
 	bool reescalado = 0;
-	cv_image<bgr_pixel> cimg;
+	Mat frameRed;
 	if (frame.size().width > 800) //Si está en fullHD lo reescala
 	{
-		Mat frameRed;
 		escala = 2;
 		reescalado = 1;
 		resize(frame, frameRed, Size(), 1 / escala, 1 / escala);
-		cimg = cv_image<bgr_pixel>(frameRed); //Convierte el Mat a un formato utilizable por dlib
 	}
 	else
 	{
-		cimg = cv_image<bgr_pixel>(frame); //Convierte el Mat a un formato utilizable por dlib
+		frameRed = frame;
 	}
+	cv_image<bgr_pixel> cimg(frameRed); //Convierte el Mat a un formato utilizable por dlib
 	std::vector<dlib::rectangle> caras = detector(cimg); //rectangulos con las caras detectadas
 	if (caras.empty())
 	{
@@ -70,18 +69,18 @@ const std::vector<Landmarks> ExtractorLandmarksDlib::getLandmarks(const cv::Mat 
 			std::vector<Point2f> cara;
 			if (reescalado)
 			{
-				for (unsigned int i = 0; i < shape.num_parts(); ++i)
+				for (unsigned int j = 0; j < shape.num_parts(); ++j)
 				{
 					//lo convierte a un vector de vectores de landmarks para posteriormente pasarlo a la estructura
-					cara.push_back((cv::Point2f(shape.part(i).x() * escala, shape.part(i).y() * escala)));
+					cara.push_back((cv::Point2f(shape.part(j).x() * escala, shape.part(j).y() * escala)));
 					//para optimizarse, se podría convertir directamente a la estructura
 				}
 			}
 			else
 			{
-				for (unsigned int i = 0; i < shape.num_parts(); ++i) //se duplica el codigo para evitar la multiplicacion
+				for (unsigned int j = 0; j < shape.num_parts(); ++j) //se duplica el codigo para evitar la multiplicacion
 				{
-					cara.push_back((cv::Point2f(shape.part(i).x(), shape.part(i).y())));
+					cara.push_back((cv::Point2f(shape.part(j).x(), shape.part(j).y())));
 				}
 			}
 			landmarksSerie.push_back(cara);

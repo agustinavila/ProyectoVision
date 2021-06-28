@@ -11,42 +11,21 @@
 
 #include "../analizadorlandmarks.h"
 
-/**
- * @brief Construye un nuevo objeto de la clase Analizador Landmarks:: Analizador Landmarks
- * 
- */
 AnalizadorLandmarks::AnalizadorLandmarks()
 {
 	cout << "Construyendo el analizador de landmarks..." << endl;
 }
 
-/**
- * @brief Destruye el objeto de la clase Analizador Landmarks:: Analizador Landmarks
- * 
- */
 AnalizadorLandmarks::~AnalizadorLandmarks()
 {
 	cout << "destructor del analizador de landmarks" << endl;
-	// Deberia eliminar los vectores?
 }
 
-/**
- * @brief Actualiza los landmarks
- * 
- * @param vector<Point2f>lm 
- */
 void AnalizadorLandmarks::setLandmarks(const vector<Landmarks> &lm)
 {
 	this->landmarks = lm;
 }
 
-/**
- * @brief Calcula el angulo entre dos puntos a y b
- * 
- * @param a 
- * @param b 
- * @return float 
- */
 inline const float AnalizadorLandmarks::calcularAngulo(const Point2f &a, const Point2f &b)
 {
 	if ((a.x - b.x) != 0)
@@ -57,22 +36,11 @@ inline const float AnalizadorLandmarks::calcularAngulo(const Point2f &a, const P
 		return 0;
 }
 
-/**
- * @brief Calcula la pendiente entre dos puntos
- * 
- * @param a 
- * @param b 
- * @return float 
- */
 inline const float AnalizadorLandmarks::calcularPendiente(const Point2f &a, const Point2f &b)
 {
 	return abs((a.x - b.x) / (a.y - b.y));
 }
 
-/**
- * @brief Normaliza los landmarks, leyendo 'landmarks' y actualizando 'landmarksNorm'
- * 
- */
 void AnalizadorLandmarks::normalizarLandmarks()
 {
 	Mat matrizRotacion;
@@ -100,31 +68,34 @@ void AnalizadorLandmarks::normalizarLandmarks()
 		landmarksNorm.front().vacio = 1;
 }
 
-/**
- * @brief Funcion que calcula la asimetria entre ambos lados de la cara
- * 
- * @return const float 
- */
 const float AnalizadorLandmarks::calcularAsimetria()
 {
-	//Estoy usando un float, podria ser un vector y luego sumar los puntos
-	//Los valores estan elegidos un poco "a ojo"
 	float asimetria = 1;
 	if (!landmarksNorm.front().empty())
 	{
-		//aca deberia calcular la asimetria
+	float F=norm(landmarksNorm.front().ojoIzq.at(3)-landmarksNorm.front().boca.at(3));
+	float G=norm(landmarksNorm.front().ojoDer.at(3)-landmarksNorm.front().boca.at(3));
+	asimetria*=calcularMax(F/G,G/F);
+
+	// f16: Maximo valor entre cociente de distancias de labios inferior(Pl y Ql en el paper)
+	float Pl=norm(landmarksNorm.front().boca.at(1)-landmarksNorm.front().boca.at(11));
+	float Ql=norm(landmarksNorm.front().boca.at(5)-landmarksNorm.front().boca.at(7));
+	asimetria*=calcularMax(Pl/Ql,Ql/Pl);
+
+	// f17: Maximo valor entre cociente de distancias de labios superior?(Pu y Qu en el paper)
+	float Pu=norm(landmarksNorm.front().boca.at(2)-landmarksNorm.front().boca.at(10));
+	float Qu=norm(landmarksNorm.front().boca.at(4)-landmarksNorm.front().boca.at(8));
+	asimetria*=calcularMax(Pu/Qu,Qu/Pu);
+
+	// Maximo valor de cocientes entre puntos superiores de quijada y comisuras de labios
+	float d1=norm(landmarksNorm.front().menton.front()-landmarksNorm.front().boca.front());
+	float d2=norm(landmarksNorm.front().menton.back()-landmarksNorm.front().boca.at(9));
+	asimetria*=calcularMax(d1/d2,d2/d1);
 	}
 
 	return asimetria;
 }
 
-/**
- * @brief Devuelve el maximo entre dos valores
- * 
- * @param a 
- * @param b 
- * @return const float 
- */
 inline const float AnalizadorLandmarks::calcularMax(const float &a, const float &b)
 {
 	if (a > b)

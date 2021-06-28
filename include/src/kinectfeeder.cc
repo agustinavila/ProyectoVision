@@ -12,7 +12,7 @@
 #include "../feeder.h"
 #include "../kinectfeeder.h"
 
-KinectFeeder::KinectFeeder() //: listener(libfreenect2::Frame::Color)
+KinectFeeder::KinectFeeder()
 {
 	if(freenect2.enumerateDevices() == 0)
 	{
@@ -64,6 +64,8 @@ const Mat KinectFeeder::getFrame()
 	libfreenect2::Frame *rgb = frames[libfreenect2::Frame::Color];
 	frame= cv::Mat(rgb->height, rgb->width, CV_8UC4, rgb->data).clone();
 	this->listener->release(frames);
+	//Por defecto la libreria devuelve un mat de 4 canales
+	//para simplificar el procesamiento, se el elimina ese cuarto canal vacio.
 	std::vector<Mat> rgbChannels(4);
 	split(frame, rgbChannels);
 	rgbChannels.pop_back();

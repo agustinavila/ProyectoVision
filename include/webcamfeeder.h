@@ -29,32 +29,50 @@ using namespace cv;
 class WebcamFeeder : public Feeder
 {
 private:
-/**
- * @brief 
- * 
- */
+	/**
+	 * @brief Fotograma actual
+	 * 
+	 */
 	Mat frame;
+
+	/**
+	 * @brief Índice de la Webcama abrir. Por defecto es 0
+	 * 
+	 */
 	int idx;
+
+	/**
+	 * @brief Objeto de openCV encargado de manejar la webcam
+	 * 
+	 */
 	cv::VideoCapture cap;
 
 public:
-/**
- * @brief Construye un nuevo objeto de la clase Webcam Feeder
- * 
- * @param idx 
- */
+	/**
+	 * @brief Construye un nuevo objeto de la clase WebcamFeeder
+	 * 
+	 * @details Se encarga de inicializar la webcam 
+	 * a través del objeto de la clase VideoCapture
+	 * 
+	 * @param idx - índice de la webcam a abrir
+	 */
 	WebcamFeeder(int idx = 0);
 
 	/**
-	 * @brief Destruye el objeto de la clase Webcam Feeder
+	 * @brief Destruye el objeto de la clase WebcamFeeder
 	 * 
 	 */
 	virtual ~WebcamFeeder();
 	
+	/**
+	 * @brief Devuelve el TipoFeeder (en este caso WEBCAMFEEDER)
+	 * 
+	 * @return const TipoFeeder 
+	 */
 	virtual const TipoFeeder getFeeder() {return WEBCAMFEEDER;};
 
 	/**
-	 * @brief Devuelve la propiedad Frame 
+	 * @brief Devuelve el fotograma actual.
 	 * 
 	 * @return const Mat 
 	 */

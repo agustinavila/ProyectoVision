@@ -27,7 +27,7 @@ ExtractorLandmarksOpenCV::ExtractorLandmarksOpenCV(const std::vector<string> &no
 	try
 	{
 		facemark = face::createFacemarkLBF();
-		facemark->loadModel("lbfmodel.yaml");
+		facemark->loadModel(nombreLBF);
 		cout << "listo!" << endl;
 	}
 	catch (const MiExcepcion &e)

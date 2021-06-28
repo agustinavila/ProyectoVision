@@ -1,7 +1,7 @@
 /**
  * @file kinectfeeder.h
  * @author Agustin Avila (tinto.avila@gmail.com)
- * @brief Declaracion de la clase concreta KinectFeeder
+ * @brief Archivo de cabecera de la clase concreta KinectFeeder
  * @version 0.1
  * @date 2021-06-21
  * 
@@ -13,15 +13,10 @@
 #define KINECTFEEDER_H
 
 #include <iostream>
-#include <stdio.h>
-#include <iomanip>
-#include <time.h>
 #include <opencv2/opencv.hpp>
 #include <libfreenect2/libfreenect2.hpp>
 #include <libfreenect2/frame_listener_impl.h>
 #include <libfreenect2/packet_pipeline.h>
-#include <libfreenect2/logger.h>
-#include <libfreenect2/registration.h>
 #include "feeder.h"
 
 using namespace std;
@@ -29,16 +24,18 @@ using namespace cv;
 using namespace libfreenect2;
 
 /**
- * @brief Sobrecarga de la clase Feeder para proveer Mat desde una kinect
- * @bug Todavia no esta funcionando
+ * @brief Sobrecarga de la clase Feeder para proveer objetos Mat desde una kinect
+ * @details Por ahora, solo obtiene imágenes de la cámara RGB.
+ * Para definir el tipo de log a consola, se debe declarar
+ * una variable de entorno "LIBFREENECT2_LOGGER_LEVEL".
  */
 class KinectFeeder : public Feeder
 {
 private:
-/**
- * @brief Mat con el fotograma actual
- * 
- */
+	/**
+	 * @brief Mat con el fotograma actual
+	 * 
+	 */
 	Mat frame;
 
 	/**
@@ -74,18 +71,25 @@ private:
 	public:
 
 	/**
-	 * @brief Construye un nuevo objeto de la clase Kinect Feeder
+	 * @brief Construye un nuevo objeto de la clase KinectFeeder
 	 * 
+	 * @details Obtiene todos los parámetros necesarios y se encarga
+	 * de inicializar la Kinect.
 	 */
 	KinectFeeder();
 
 	/**
-	 * @brief Destruye el objeto de la clase Kinect Feeder
+	 * @brief Destruye el objeto de la clase KinectFeeder
 	 * 
 	 */
 	virtual ~KinectFeeder();
 
-		virtual const TipoFeeder getFeeder() {return KINECTFEEDER;};
+	/**
+	 * @brief Devuelve el TipoFeeder (en este caso, KINECTFEEDER)
+	 * 
+	 * @return const TipoFeeder 
+	 */
+	virtual const TipoFeeder getFeeder() {return KINECTFEEDER;};
 
 	/**
 	 * @brief Devuelve el frame actual de la kinect
