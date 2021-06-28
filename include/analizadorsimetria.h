@@ -26,6 +26,7 @@
 #include "extractorlandmarks_opencv.h" //Clase concreta del extractor usando openCV
 #include "analizadorlandmarks.h"	   //Clase para analizar simetria - métodos incompletos
 #include "estructuras.h"			   //Estructuras, enums, excepciones
+#include "landmarkslogger.h"		   //Clase para realizar el log de landmarks
 
 using namespace std;
 using namespace cv;
@@ -71,7 +72,13 @@ private:
 	 * @brief Logger de fotogramas. Por el momento va registrando en un video
 	 * 
 	 */
-	FrameLogger *ptrLogger = NULL;
+	FrameLogger *ptrVideoLogger = NULL;
+
+	/**
+	 * @brief Logger de landmarks. Por el momento va registrando en un archivo YAML
+	 * 
+	 */
+	LandmarksLogger *ptrLandmarksLogger = NULL;
 
 	/**
 	 * @brief Objeto que analiza y normaliza los landmarks
@@ -102,6 +109,12 @@ private:
 	 * 
 	 */
 	string nombreFrameLogger = "Salida.avi";
+
+	/**
+	 * @brief Nombre del archivo de salida de los landmarks
+	 * 
+	 */
+	string nombreLandmarksLogger = "landmarks.yaml";
 
 	/**
 	 * @brief Nombre del archivo de configuracion.
@@ -149,7 +162,13 @@ private:
 	 * @brief Bandera para habilitar/deshabilitar el log de video
 	 * 
 	 */
-	bool grabarHabilitado = 0;
+	bool grabarVideoHabilitado = 0;
+
+		/**
+	 * @brief Bandera para habilitar/deshabilitar el log de landmarks
+	 * 
+	 */
+	bool grabarLandmarksHabilitado = 0;
 
 public:
 	/**
@@ -248,13 +267,25 @@ public:
 	 * @brief Método para invocar un FrameLogger y comenzar la grabación.
 	 * 
 	 */
-	void empezarLog(const TipoFeeder &);
+	void empezarVideoLog(const TipoFeeder &);
 
 	/**
 	 * @brief Método para detener la grabación del FrameLogger
 	 * 
 	 */
-	void stopLog();
+	void stopVideoLog();
+
+	/**
+	 * @brief Método para invocar un LandmarksLogger y comenzar la grabación.
+	 * 
+	 */
+	void empezarLandmarksLog(const TipoFeeder &);
+
+	/**
+	 * @brief Método para detener la grabación del LandmarksLogger
+	 * 
+	 */
+	void stopLandmarksLog();
 
 	/**
 	 * @brief Setea el nombre base del video del logger.

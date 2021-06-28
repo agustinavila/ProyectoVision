@@ -32,7 +32,7 @@ nombreVideoSalida: "Log.avi"
 
 
 # Habilita o deshabilita el log de landmarks
-habilitarLandmarksLog: 0
+habilitarLandmarksLog: 1
 # Nombre del archivo en el cual escribir:
 # Tambien deberia estar automatizado agregando timestamp
 nombreLandmarksLog: "logLandmarks.yaml"

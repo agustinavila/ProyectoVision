@@ -49,8 +49,8 @@ const std::vector<Landmarks> ExtractorLandmarks::parseLandmarks(const std::vecto
 			{
 				l.ojoIzq.push_back(*crij);
 			}
-			l.ojoIzq.push_back(vec.at(40));
-			l.ojoIzq.push_back(vec.at(41));
+			l.ojoIzq.push_back(vec.at(40));	//Se dio vuelta el codigo
+			l.ojoIzq.push_back(vec.at(41));	//Para que sea simetrico al ojo derecho
 			l.vacio=0;
 			landmarks.push_back(l);
 		}

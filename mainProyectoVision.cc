@@ -20,6 +20,8 @@ using namespace cv;
 int main(int argc, char *argv[])
 {
 	char ch = 0;
+
+	float asimetria;
 	std::vector<Landmarks> landmarks;
 	AnalizadorSimetria analizador;
 	Mat frame;
@@ -29,7 +31,9 @@ int main(int argc, char *argv[])
 		frame = analizador.step();
 		landmarks = analizador.getLandmarks();
 		if (!landmarks.front().vacio){
+		asimetria=analizador.getAsimetria();
 		putText(frame, "Rostro detectado!", landmarks.front().menton.back(), 2, 1, Scalar(255, 0, 0));
+		cout<< "Asimetria: "<< asimetria <<endl;
 		}
 		imshow("feeder", frame);
 		ch = waitKey(1);

@@ -108,8 +108,6 @@ public:
 	 * una estructura con diferentes parámetros, para luego alimentar a una 
 	 * red neuronal y discernir la asimetria.
 	 * 
-	 * @todo Una implementación útil del cálculo.
-	 * 
 	 * @return const float 
 	 */
 	const float calcularAsimetria();
