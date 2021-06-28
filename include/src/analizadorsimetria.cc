@@ -19,32 +19,36 @@
 AnalizadorSimetria::AnalizadorSimetria()
 {
 	cout << "Construyendo objeto de Analizador Simetria..." << endl;
+	cargarConfiguracion(nombreConf);
 	try
 	{
-		cargarConfiguracion(nombreConf);
+		this->setFeeder(tipoFeeder);
+		this->setExtractor(tipoExtractor);
 	}
 	catch (const MiExcepcion &e)
 	{
 		std::cerr << e.what() << '\n';
-		this->ptrFeeder = new WebcamFeeder;
+		this->setFeeder(WEBCAMFEEDER);
+		this->setExtractor(OPENCV);
 	}
 
-	this->ptrExtractor = new ExtractorLandmarksDlib(std::vector<string>{nombreModeloDlib});
 }
 
-AnalizadorSimetria::AnalizadorSimetria(string &nombrearchivo)
+AnalizadorSimetria::AnalizadorSimetria(const string &nombrearchivo)
 {
 	cout << "En el constructor del objeto de analizadorSimetria con un archivo de configuracion" << endl;
 	nombreConf = nombrearchivo;
+	cargarConfiguracion(nombreConf);
 	try
 	{
-		cargarConfiguracion(nombreConf);
+		this->setFeeder(tipoFeeder);
+		this->setExtractor(tipoExtractor);
 	}
 	catch (const MiExcepcion &e)
 	{
 		std::cerr << e.what() << '\n';
-		this->ptrFeeder = new WebcamFeeder;
-		this->ptrExtractor = new ExtractorLandmarksDlib(std::vector<string>{nombreModeloDlib});
+		this->setFeeder(WEBCAMFEEDER);
+		this->setExtractor(OPENCV);
 	}
 }
 
@@ -91,9 +95,10 @@ Mat AnalizadorSimetria::step()
 
 void AnalizadorSimetria::setExtractor(TipoExtractor extractor_)
 {
+	tipoExtractor=extractor_;
 	if (this->ptrExtractor != NULL)
 	{
-		if (extractor_ != ptrExtractor->getExtractor())
+		if (tipoExtractor != ptrExtractor->getExtractor())
 		{
 			delete this->ptrExtractor;
 		}
@@ -105,21 +110,21 @@ void AnalizadorSimetria::setExtractor(TipoExtractor extractor_)
 	}
 	try
 	{
-		if (extractor_ == DLIB)
+		if (tipoExtractor == DLIB)
 		{
 			this->ptrExtractor = new ExtractorLandmarksDlib(std::vector<string>{nombreModeloDlib});
-		//	if (grabarLandmarksHabilitado)
-		//	{
+			if (grabarLandmarksHabilitado)
+			{
 				empezarLandmarksLog(tipoFeeder);
-		//	}
+			}
 		}
-		else if (extractor_ == OPENCV)
+		else if (tipoExtractor == OPENCV)
 		{
 			this->ptrExtractor = new ExtractorLandmarksOpenCV(std::vector<string>{nombreCascadeOpenCV, nombreLBFOpenCV});
-		//	if (grabarLandmarksHabilitado)
-		//	{
+			if (grabarLandmarksHabilitado)
+			{
 				empezarLandmarksLog(tipoFeeder);
-		//	}
+			}
 		}
 		else
 		{
@@ -192,8 +197,7 @@ void AnalizadorSimetria::cargarConfiguracion(const string &nombreArchivo)
 	{
 		throw MiExcepcion(ERROR_ABRIR_CONF);
 	}
-	TipoExtractor extractor;
-	fs["tipoExtractor"] >> extractor;
+	fs["tipoExtractor"] >> tipoExtractor;
 	fs["tipoFeeder"] >> tipoFeeder;
 	fs["nombreVideoEntrada"] >> nombreVideoFeeder;
 	fs["nombreVideoSalida"] >> nombreFrameLogger;
@@ -203,28 +207,7 @@ void AnalizadorSimetria::cargarConfiguracion(const string &nombreArchivo)
 	fs["nombreDetectorDlib"] >> nombreModeloDlib;
 	fs["habilitarVideoLog"] >> grabarVideoHabilitado;
 	fs["habilitarLandmarksLog"] >> grabarLandmarksHabilitado;
-	try
-	{
-		this->setFeeder(tipoFeeder);
-	}
-	catch (const MiExcepcion &e)
-	{
-		std::cerr << e.what() << '\n';
-		exit(-1);
-	}
-	try
-	{
-		this->setExtractor(extractor);
-	}
-	catch (const MiExcepcion &e)
-	{
-		std::cerr << e.what() << '\n';
-		exit(-1);
-	}
-	if (grabarVideoHabilitado)
-		empezarVideoLog(tipoFeeder);
-	if (grabarLandmarksHabilitado)
-		empezarLandmarksLog(tipoFeeder);
+	fs.release();
 }
 
 void AnalizadorSimetria::empezarVideoLog(const TipoFeeder &tipoFeeder_)

@@ -153,10 +153,16 @@ private:
 	float threshold = 2;
 
 	/**
-	 * @brief Tipo de feeder siendo utilizado
+	 * @brief Tipo de Deeder siendo utilizado
 	 * 
 	 */
 	TipoFeeder tipoFeeder;
+	
+	/**
+	 * @brief Tipo de ExtractorLandmarks siendo utilizado
+	 * 
+	 */
+	TipoExtractor tipoExtractor;
 
 	/**
 	 * @brief Bandera para habilitar/deshabilitar el log de video
@@ -181,7 +187,7 @@ public:
 	 * @brief Construye un nuevo objeto de la clase Analizador Simetria, proveyendole un archivo de configuración
  	* 
  	*/
-	AnalizadorSimetria(string &);
+	AnalizadorSimetria(const string &);
 
 	/**
 	 * @brief Destruye el objeto de la clase Analizador Simetria
@@ -216,7 +222,21 @@ public:
 	 * @return const std::vector<Landmarks> - Vector de Landmarks normalizado 
 	 */
 	const std::vector<Landmarks> getLandmarksNorm() { return landmarks; };
+	
+	/**
+	 * @brief Devuelve el tipo concreto de Feeder utilizado
+	 * 
+	 * @return TipoFeeder 
+	 */
+	TipoFeeder getFeeder() { return ptrFeeder->getFeeder(); };
 
+	/**
+	 * @brief Devuelve el tipo de  ExtractorLandmarks utilizado. 
+	 * 
+	 * @return TipoExtractor 
+	 */
+	TipoExtractor getExtractor() { return ptrExtractor->getExtractor(); };
+	
 	/**
 	 * @brief Setea tipo concreto de Feeder del analizador
 	 * 
@@ -225,13 +245,6 @@ public:
 	 * Si no, elimina el que se estaba utilizando y genera uno nuevo.
 	 */
 	void setFeeder(TipoFeeder);
-
-	/**
-	 * @brief Devuelve el tipo concreto de Feeder utilizado
-	 * 
-	 * @return TipoFeeder 
-	 */
-	TipoFeeder getFeeder() { return ptrFeeder->getFeeder(); };
 
 	/**
 	 * @brief Setea el tipo concreto de Extractor del analizador.
@@ -243,11 +256,35 @@ public:
 	void setExtractor(TipoExtractor);
 
 	/**
-	 * @brief Devuelve el tipo de  ExtractorLandmarks utilizado. 
+	 * @brief Setea el nombre base del video del logger.
 	 * 
-	 * @return TipoExtractor 
+	 * @param nombre - Nombre base del video de salida del logger
 	 */
-	TipoExtractor getExtractor() { return ptrExtractor->getExtractor(); };
+	void setNombreLog(const string &nombre) { this->nombreFrameLogger = nombre; };
+
+	/**
+	 * @brief Método para invocar un FrameLogger y comenzar la grabación.
+	 * 
+	 */
+	void empezarVideoLog(const TipoFeeder &);
+
+	/**
+	 * @brief Método para invocar un LandmarksLogger y comenzar la grabación.
+	 * 
+	 */
+	void empezarLandmarksLog(const TipoFeeder &);
+	
+	/**
+	 * @brief Método para detener la grabación del FrameLogger
+	 * 
+	 */
+	void stopVideoLog();
+
+	/**
+	 * @brief Método para detener la grabación del LandmarksLogger
+	 * 
+	 */
+	void stopLandmarksLog();
 
 	/**
 	 * @brief Método principal a llamar para operar la clase.
@@ -262,37 +299,6 @@ public:
 	 * @return Mat 
 	 */
 	Mat step();
-
-	/**
-	 * @brief Método para invocar un FrameLogger y comenzar la grabación.
-	 * 
-	 */
-	void empezarVideoLog(const TipoFeeder &);
-
-	/**
-	 * @brief Método para detener la grabación del FrameLogger
-	 * 
-	 */
-	void stopVideoLog();
-
-	/**
-	 * @brief Método para invocar un LandmarksLogger y comenzar la grabación.
-	 * 
-	 */
-	void empezarLandmarksLog(const TipoFeeder &);
-
-	/**
-	 * @brief Método para detener la grabación del LandmarksLogger
-	 * 
-	 */
-	void stopLandmarksLog();
-
-	/**
-	 * @brief Setea el nombre base del video del logger.
-	 * 
-	 * @param nombre - Nombre base del video de salida del logger
-	 */
-	void setNombreLog(const string &nombre) { this->nombreFrameLogger = nombre; };
 
 	/**
 	 * @brief Método encargado de cargar el archivo de configuración y definir las propiedades del objeto

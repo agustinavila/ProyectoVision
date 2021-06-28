@@ -43,7 +43,7 @@ VideoFeeder::VideoFeeder()
 
 VideoFeeder::~VideoFeeder()
 {
-	cout << "Cerrando video...";
+	cout << "Cerrando video del feeder...";
 	cap.release();
 	cout << " video cerrado" << endl;
 }

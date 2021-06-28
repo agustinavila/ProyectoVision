@@ -4,7 +4,7 @@
 # 0 -> Webcam
 # 1 -> Kinect RGB
 # 2 -> Video
-tipoFeeder: 0
+tipoFeeder: 1
 
 # Si se eligio el feeder de video, abrirá el siguiente archivo:
 # Si no lo encuentra o no se especifica, intentará abrir el video por defecto

@@ -17,13 +17,26 @@
 using namespace std;
 using namespace cv;
 
+
+/**
+ * @brief Programa de ejemplo del uso de la clase AnalizadorSimetria
+ * 
+ * @details Este es un programa de ejemplo mostrando algunas de las funcionalidades de la clase.
+ * Se puede cambiar durante ejecucion el tipo de feeder y de extractor de landmarks sin problemas.
+ * No se agregó la posibilidad de habilitar o deshabilitar el registro de video o landmarks, pero seria 
+ * muy sencillo de implementar los metodos enableVideoLog, disableVideoLog, etc.
+ * 
+ * @param argc 
+ * @param argv 
+ * @return int 
+ */
 int main(int argc, char *argv[])
 {
 	char ch = 0;
 
 	float asimetria;
 	std::vector<Landmarks> landmarks;
-	AnalizadorSimetria analizador;
+	AnalizadorSimetria analizador(string("config.yaml"));
 	Mat frame;
 	cout << "Presione q para finalizar" << endl;
 	while (ch != 'q' && ch != 'Q')

@@ -28,7 +28,7 @@ LandmarksLogger::LandmarksLogger()
 	}
 	fs << "datetime" << timestamp;
 	fs << "feeder"
-	   << "webcam ponele";
+	   << "webcam";
 }
 
 LandmarksLogger::LandmarksLogger(const string &nombre, const TipoFeeder &feeder)
@@ -43,7 +43,7 @@ LandmarksLogger::LandmarksLogger(const string &nombre, const TipoFeeder &feeder)
 	if (feeder == WEBCAMFEEDER)
 	{
 		nombreSalida = nombre.substr(0, posFin) + "_WebCam_" + timestamp + strExt;
-		cout << "Comenzando a grabar en el archivo " << nombreSalida << endl;
+		cout << "Comenzando a registrar en el archivo " << nombreSalida << endl;
 		fs.open(nombreSalida, FileStorage::WRITE);
 		if (!fs.isOpened())
 		{
@@ -56,7 +56,7 @@ LandmarksLogger::LandmarksLogger(const string &nombre, const TipoFeeder &feeder)
 	else if (feeder == KINECTFEEDER)
 	{
 		nombreSalida = nombre.substr(0, posFin) + "_Kinect_" + timestamp + strExt;
-		cout << "Comenzando a grabar en el archivo " << nombreSalida << endl;
+		cout << "Comenzando a registrar en el archivo " << nombreSalida << endl;
 		fs.open(nombreSalida, FileStorage::WRITE);
 		if (!fs.isOpened())
 		{
@@ -77,8 +77,10 @@ LandmarksLogger::LandmarksLogger(const string &nombre, const TipoFeeder &feeder)
 LandmarksLogger::~LandmarksLogger()
 {
 	//Escribir tags de salida?
+	cout << "Cerrando el log de landmarks...";
 	fs << "]"; //Cierra el nodo de datos
 	fs.release();
+	cout <<"listo!"<<endl;
 }
 
 void LandmarksLogger::log(const std::vector<Landmarks> &landmarks)

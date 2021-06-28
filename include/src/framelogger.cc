@@ -44,12 +44,12 @@ FrameLogger::FrameLogger(const string &nombre, const TipoFeeder &feeder)
 		cout << "Comenzando a grabar en el archivo " << nombreVideo << endl;
 		video.open(nombreVideo, VideoWriter::fourcc('M', 'J', 'P', 'G'), 10, Size(1920, 1080));
 	}
-	// else if (feeder == VIDEOFEEDER)
-	// {
-	// 	nombreVideo = nombre.substr(0, posFin) + "_Kinect_" + timestamp + strExt;
-	// 	cout << "Comenzando a grabar en el archivo "<<nombreVideo<<endl;
-	// 	video.open(nombreVideo, VideoWriter::fourcc('M', 'J', 'P', 'G'), 10, Size(640,480));
-	// }
+	else if (feeder == VIDEOFEEDER)
+	{
+		nombreVideo = nombre.substr(0, posFin) + "_Video_" + timestamp + strExt;
+		cout << "Comenzando a grabar en el archivo "<<nombreVideo<<endl;
+		video.open(nombreVideo, VideoWriter::fourcc('M', 'J', 'P', 'G'), 10, Size(640,480));
+	}
 	else
 	{
 		throw MiExcepcion(ERROR_GUARDAR_VIDEO);
@@ -58,7 +58,7 @@ FrameLogger::FrameLogger(const string &nombre, const TipoFeeder &feeder)
 
 FrameLogger::~FrameLogger()
 {
-	cout << "Cerrando video...";
+	cout << "Cerrando video de log...";
 	video.release();
 	cout << "Video cerrado!" << endl;
 }
