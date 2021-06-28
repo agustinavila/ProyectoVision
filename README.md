@@ -95,10 +95,24 @@ Es la estructura que devuelve el extractor de landmarks para facilitar su uso. E
 + [libfreenect2](https://github.com/OpenKinect/libfreenect2) (utilizada version 0.2.0)
 + [openCV](https://github.com/opencv/open) (utilizada version 4.5.2)
 
-## Compilación
+Además, se utilizaron diversas librerias requeridas por estos paquetes (principalmente por libfreenect2) que están mencionadas en el comando de compilación.
 
+## TODO
+
++ [ ] Sobrecarga de operadores `<<` y `>>` para la entrada y salida de archivos.
++ [ ] Algoritmo de ordenamiento de los vectores de landmarks (utilizando como referencia la asimetria).
++ [ ] Procesar datos guardados previamente.
++ [ ] Generar una interfaz en Qt.
++ [ ] Generalizar el Feeder para poder incorporar, por ejemplo, imágenes de profundidad , RGBD o IR desde kinect.
++ [ ] Realizar una implementación mejorada del calculador de asimetría (es una funcion dummy, hace un par de calculos basicos).
++ [ ] Utilizar threads para distintas tareas(principalmente las que requieren acceso al disco) y así optimizar el funcionamiento general.
++ [ ] Desarrollar en mayor profundidad el programa de ejemplo mainProyectoVision.
+
+## Desarrollo y compilación
+
+Para el desarrollo de este software, se utilizó el editor de texto Visual Studio Code, ya que facilitaba y automatizaba muchas tareas con las correspondientes extensiones (Generador de UML, comentarios automáticos para Doxygen, snippets de código, autocompletar código, generación de distintas tareas de compilación).
 Para compilarlo, se utilizó el siguiente comando:
 `g++ -Wall -DUSE_AVX_INSTRUCTIONS=ON /home/agustin/Facultad/5to/ProyectoVision/*.cc /home/agustin/Facultad/5to/ProyectoVision/include/src/*.cc -o /home/agustin/Facultad/5to/ProyectoVision/Release/mainProyectoVision -I/home/agustin/Facultad/5to/ProyectoVision/include -I/usr/include/ -I/usr/local/lib/ -I/usr/local/include -I/usr/local/include/opencv4 -L/usr/local/freenect2/lib -L/usr/lib -lopencv_core -lopencv_highgui -lopencv_imgcodecs -lopencv_video -lopencv_videoio -lopencv_plot -lopencv_objdetect -lopencv_imgproc -lopencv_face -ldlib -lturbojpeg -ljpeg -lfreenect2 -llapack -lopenblas -O3`
-Generado con el archivo [tasks.json](.vscode/tasks.json) en visual studio code.
+Generado con el archivo [tasks.json](.vscode/tasks.json) en Visual Studio Code.
 
 [1]: https://www.mdpi.com/2076-3417/11/5/2435 "Facial Paralysis Detection on Images Using Key Point Analysis"

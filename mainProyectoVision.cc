@@ -32,8 +32,14 @@ using namespace cv;
  */
 int main(int argc, char *argv[])
 {
+	cout << "Programa de muestra de la clases Analizador Simetria" <<endl;
+	cout << "El programa lee la configuración del archivo 'config.yaml'"<<endl<<endl;
+	cout << "Presionando la tecla 'o', se utiliza el extractor de landmarks de openCV"<<endl;
+	cout << "Presionando la tecla 'd', se utiliza el extractor de landmarks de dlib"<<endl;
+	cout << "Presionando la tecla 'w', se intenta obtener imágenes de una webcam"<<endl;
+	cout << "Presionando la tecla 'k', se intenta obtener imágnees de una kinect"<<endl;
+	cout << "Presionando la tecla 'v', se intenta abrir un archivo de video (por defecto, 'video.avi') "<<endl;
 	char ch = 0;
-
 	float asimetria;
 	std::vector<Landmarks> landmarks;
 	AnalizadorSimetria analizador(string("config.yaml"));
