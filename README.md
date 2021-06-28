@@ -3,6 +3,17 @@
 Proyecto final para las materias "Vision Artificial" y "Complementos de Informatica"
 El proyecto consiste en una clase capaz de obtener imagenes de distintos medios, detectar rostros, obtener puntos de interés y analizar su simetria. Ademas, puede registrar tanto el video adquirido como los puntos de interés detectados. Estos datos provistos pueden ser utilizados para detectar momentos donde la asimetria sea maxima o donde se detecte claramente cierta expresion facial (sonrisa, ceño fruncido, levantar cejas, etc). La idea de la implementación está basada en [este paper][1].
 
+## Uso del programa de ejemplo
+
+El programa lee la configuración del archivo [config.yaml](config.yaml)
+
++ Presionando la tecla `o` se utiliza el extractor de landmarks de openCV
++ Presionando la tecla `d` se utiliza el extractor de landmarks de dlib
++ Presionando la tecla `w` se intenta obtener imágenes de una webcam
++ Presionando la tecla `k` se intenta obtener imágnees de una kinect
++ Presionando la tecla `v` se intenta abrir un archivo de video (por defecto, 'video.avi').
++ Presionando la tecla `q` se termina la ejecución.
+
 ## Desarrollo
 
 El software consiste en una clase base que se compone de otras subclases. Luego, los objetos concretos de estas clases interactúan entre sí.
@@ -56,11 +67,11 @@ Diagrama UML de la clase ExtractorLandmarks
 
 #### Clase ExtractorLandmarksOpenCV
 
-Esta clase está basada en las librerias de openCV.
+Esta clase está basada en las librerias de openCV. Necesita los archivos `haarcascade_frontalface_alt2.xml` y `lbfmodel.yaml`.
 
 #### Clase ExtractorLandmarksDlib
 
-Esta clase está basada en las librerias de dlib
+Esta clase está basada en las librerias de dlib. Necesita el archivo `shape_predictor_68_face_landmarks.dat`, obtenido del código de ejemplo de dlib.
 
 ### Clase AnalizadorLandmarks
 
@@ -107,12 +118,22 @@ Además, se utilizaron diversas librerias requeridas por estos paquetes (princip
 + [ ] Realizar una implementación mejorada del calculador de asimetría (es una funcion dummy, hace un par de calculos basicos).
 + [ ] Utilizar threads para distintas tareas(principalmente las que requieren acceso al disco) y así optimizar el funcionamiento general.
 + [ ] Desarrollar en mayor profundidad el programa de ejemplo mainProyectoVision.
++ [ ] Manejo de señales, para que si se interrumpe salga limpiamente.
 
 ## Desarrollo y compilación
 
 Para el desarrollo de este software, se utilizó el editor de texto Visual Studio Code, ya que facilitaba y automatizaba muchas tareas con las correspondientes extensiones (Generador de UML, comentarios automáticos para Doxygen, snippets de código, autocompletar código, generación de distintas tareas de compilación).
 Para compilarlo, se utilizó el siguiente comando:
-`g++ -Wall -DUSE_AVX_INSTRUCTIONS=ON /home/agustin/Facultad/5to/ProyectoVision/*.cc /home/agustin/Facultad/5to/ProyectoVision/include/src/*.cc -o /home/agustin/Facultad/5to/ProyectoVision/Release/mainProyectoVision -I/home/agustin/Facultad/5to/ProyectoVision/include -I/usr/include/ -I/usr/local/lib/ -I/usr/local/include -I/usr/local/include/opencv4 -L/usr/local/freenect2/lib -L/usr/lib -lopencv_core -lopencv_highgui -lopencv_imgcodecs -lopencv_video -lopencv_videoio -lopencv_plot -lopencv_objdetect -lopencv_imgproc -lopencv_face -ldlib -lturbojpeg -ljpeg -lfreenect2 -llapack -lopenblas -O3`
+`g++ -Wall -DUSE_AVX_INSTRUCTIONS=ON /home/agustin/Facultad/5to/ProyectoVision/*.cc`
+`/home/agustin/Facultad/5to/ProyectoVision/include/src/*.cc`
+`-o /home/agustin/Facultad/5to/ProyectoVision/Release/mainProyectoVision`
+`-I/home/agustin/Facultad/5to/ProyectoVision/include -I/usr/include/`
+`-I/usr/local/lib/ -I/usr/local/include -I/usr/local/include/opencv4`
+`-L/usr/local/freenect2/lib -L/usr/lib -lopencv_core -lopencv_highgui`
+`-lopencv_imgcodecs -lopencv_video -lopencv_videoio -lopencv_plot`
+`-lopencv_objdetect -lopencv_imgproc -lopencv_face -ldlib -lturbojpeg`
+`-ljpeg -lfreenect2 -llapack -lopenblas -O3`
+
 Generado con el archivo [tasks.json](.vscode/tasks.json) en Visual Studio Code.
 
 [1]: https://www.mdpi.com/2076-3417/11/5/2435 "Facial Paralysis Detection on Images Using Key Point Analysis"
