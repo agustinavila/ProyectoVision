@@ -4,9 +4,9 @@
  * @brief Implementacion de la clase concreta ExtractorLandmarksOpenCV
  * @version 0.1
  * @date 2021-06-18
- * 
+ *
  * @copyright Copyright (c) 2021
- * 
+ *
  */
 
 #include "../extractorlandmarks_opencv.h"
@@ -18,7 +18,7 @@ ExtractorLandmarksOpenCV::ExtractorLandmarksOpenCV(const std::vector<string> &no
 	cout << "constructor del extractor de openCV... ";
 	try
 	{
-		faceDetector.load(nombreCascade);
+		opencv_face_detector_.load(nombreCascade);
 	}
 	catch (const MiExcepcion &e)
 	{
@@ -41,14 +41,14 @@ ExtractorLandmarksOpenCV::~ExtractorLandmarksOpenCV()
 	landmarks.clear();
 }
 
-const std::vector<Landmarks> ExtractorLandmarksOpenCV::getLandmarks(const cv::Mat &frame)
+const std::vector<Landmarks> ExtractorLandmarksOpenCV::get_landmarks(const cv::Mat &frame)
 {
 	vector<Rect> faces;
 	Mat gray;
 	float escala;
 	bool reescalado = 0;
 	Mat frameRed;
-	if (frame.size().width > 800) //Si está en fullHD lo reescala
+	if (frame.size().width > 800) // Si está en fullHD lo reescala
 	{
 		escala = 2;
 		reescalado = 1;
@@ -60,7 +60,7 @@ const std::vector<Landmarks> ExtractorLandmarksOpenCV::getLandmarks(const cv::Ma
 		escala = 1;
 		cvtColor(frame, gray, COLOR_BGR2GRAY);
 	}
-	faceDetector.detectMultiScale(gray, faces);
+	opencv_face_detector_.detectMultiScale(gray, faces);
 	if (faces.empty())
 	{
 		landmarks.clear();
@@ -72,10 +72,10 @@ const std::vector<Landmarks> ExtractorLandmarksOpenCV::getLandmarks(const cv::Ma
 	{
 		if (reescalado)
 		{
-			facemark->fit(frameRed, faces, landmarksSerie);
+			facemark->fit(frameRed, faces, landmarks_vector_);
 			vector<vector<Point2f>>::iterator cara;
 			vector<Point2f>::iterator punto;
-			for (cara = landmarksSerie.begin(); cara != landmarksSerie.end(); cara++)
+			for (cara = landmarks_vector_.begin(); cara != landmarks_vector_.end(); cara++)
 			{
 				for (punto = cara->begin(); punto != cara->end(); punto++)
 				{
@@ -85,9 +85,9 @@ const std::vector<Landmarks> ExtractorLandmarksOpenCV::getLandmarks(const cv::Ma
 		}
 		else
 		{
-			facemark->fit(frame, faces, landmarksSerie);
+			facemark->fit(frame, faces, landmarks_vector_);
 		}
-		landmarks = parseLandmarks(landmarksSerie);
+		landmarks = parseLandmarks(landmarks_vector_);
 	}
 	return landmarks;
 }

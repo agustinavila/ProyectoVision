@@ -5,7 +5,7 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "/usr/local/include",
-                "/usr/local/include/opencv4",
+                "/usr/include/opencv4",
                 "/usr/local/lib/**",
                 "/usr/include/**"
             ],
@@ -45,7 +45,7 @@
                     "${workspaceFolder}/include/**",
                     "/usr/include/**",
                     "/usr/local/include",
-                    "/usr/local/include/opencv4",
+                    "/usr/include/opencv4",
                     "/usr/local/lib/**"
                 ]
             }

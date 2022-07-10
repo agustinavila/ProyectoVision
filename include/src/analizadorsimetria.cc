@@ -28,7 +28,7 @@ AnalizadorSimetria::AnalizadorSimetria()
 	catch (const MiExcepcion &e)
 	{
 		std::cerr << e.what() << '\n';
-		this->setFeeder(WEBCAMFEEDER);
+		this->setFeeder(FeederType::webcam_feeder);
 		this->setExtractor(OPENCV);
 	}
 }
@@ -46,7 +46,7 @@ AnalizadorSimetria::AnalizadorSimetria(const string &nombrearchivo)
 	catch (const MiExcepcion &e)
 	{
 		std::cerr << e.what() << '\n';
-		this->setFeeder(WEBCAMFEEDER);
+		this->setFeeder(FeederType::webcam_feeder);
 		this->setExtractor(OPENCV);
 	}
 }
@@ -65,7 +65,7 @@ Mat AnalizadorSimetria::step()
 {
 	if (ptrFeeder != NULL)
 	{
-		frame = ptrFeeder->getFrame();
+		frame = ptrFeeder->get_frame();
 	}
 	if (ptrVideoLogger != NULL)
 	{
@@ -73,7 +73,7 @@ Mat AnalizadorSimetria::step()
 	}
 	if (ptrExtractor != NULL)
 	{
-		landmarks = ptrExtractor->getLandmarks(frame);
+		landmarks = ptrExtractor->get_landmarks(frame);
 		if (ptrLandmarksLogger != NULL)
 		{
 			ptrLandmarksLogger->log(landmarks); // Guarda frames, segun parametros podria desactivarse o no
@@ -92,12 +92,12 @@ Mat AnalizadorSimetria::step()
 	return frame;
 }
 
-void AnalizadorSimetria::setExtractor(TipoExtractor extractor_)
+void AnalizadorSimetria::setExtractor(ExtractorType extractor_)
 {
 	tipoExtractor = extractor_;
 	if (this->ptrExtractor != NULL)
 	{
-		if (tipoExtractor != ptrExtractor->getExtractor())
+		if (tipoExtractor != ptrExtractor->get_extractor_type())
 		{
 			delete this->ptrExtractor;
 		}
@@ -138,12 +138,12 @@ void AnalizadorSimetria::setExtractor(TipoExtractor extractor_)
 	}
 }
 
-void AnalizadorSimetria::setFeeder(TipoFeeder feeder_)
+void AnalizadorSimetria::setFeeder(FeederType feeder_type)
 {
-	tipoFeeder = feeder_;
+	tipoFeeder = feeder_type;
 	if (this->ptrFeeder != NULL)
 	{
-		if (tipoFeeder != ptrFeeder->getFeeder())
+		if (tipoFeeder != ptrFeeder->get_feeder_type())
 		{
 			delete this->ptrFeeder;
 		}
@@ -155,28 +155,28 @@ void AnalizadorSimetria::setFeeder(TipoFeeder feeder_)
 	}
 	try
 	{
-		if (tipoFeeder == WEBCAMFEEDER)
+		if (tipoFeeder == FeederType::webcam_feeder)
 		{
 			this->ptrFeeder = new WebcamFeeder;
 			if (grabarVideoHabilitado)
 			{
-				empezarVideoLog(tipoFeeder);
+				empezarVideoLog(feeder_type);
 			}
 		}
-		else if (tipoFeeder == KINECTFEEDER)
+		else if (tipoFeeder == FeederType::kinect_feeder)
 		{
 #ifdef KINECT_AVAILABLE
 			this->ptrFeeder = new KinectFeeder;
 			if (grabarVideoHabilitado)
 			{
-				empezarVideoLog(tipoFeeder);
+				empezarVideoLog(feeder_type);
 			}
 #else
 			throw MiExcepcion(ERROR_FEEDER_INICIAR);
 #endif
 		}
 
-		else if (tipoFeeder == VIDEOFEEDER)
+		else if (tipoFeeder == FeederType::video_feeder)
 		{
 			this->ptrFeeder = new VideoFeeder(nombreVideoFeeder);
 		}
@@ -214,12 +214,12 @@ void AnalizadorSimetria::cargarConfiguracion(const string &nombreArchivo)
 	fs.release();
 }
 
-void AnalizadorSimetria::empezarVideoLog(const TipoFeeder &tipoFeeder_)
+void AnalizadorSimetria::empezarVideoLog(const FeederType &feeder_type)
 {
 	stopVideoLog();
 	try
 	{
-		this->ptrVideoLogger = new FrameLogger(nombreFrameLogger, tipoFeeder_);
+		this->ptrVideoLogger = new FrameLogger(nombreFrameLogger, feeder_type);
 	}
 	catch (const MiExcepcion &e)
 	{
@@ -237,12 +237,12 @@ void AnalizadorSimetria::stopVideoLog()
 	}
 }
 
-void AnalizadorSimetria::empezarLandmarksLog(const TipoFeeder &tipoFeeder_)
+void AnalizadorSimetria::empezarLandmarksLog(const FeederType &feeder_type)
 {
 	stopLandmarksLog();
 	try
 	{
-		this->ptrLandmarksLogger = new LandmarksLogger(nombreLandmarksLogger, tipoFeeder_);
+		this->ptrLandmarksLogger = new LandmarksLogger(nombreLandmarksLogger, feeder_type);
 	}
 	catch (const MiExcepcion &e)
 	{

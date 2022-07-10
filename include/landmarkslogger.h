@@ -4,9 +4,9 @@
  * @brief Archivo de cabecera de la clase LandmarksLogger
  * @version 0.1
  * @date 2021-06-28
- * 
+ *
  * @copyright Copyright (c) 2021
- * 
+ *
  */
 
 #if !defined(LANDMARKSLOGGER_H)
@@ -34,33 +34,24 @@ using namespace cv;
 class LandmarksLogger
 {
 private:
-	/**
-	 * @brief Nombre base para utilizar con el archivo
-	 * 
-	 */
-	string nombreSalida = "log.yaml";
+	string log_file_name_ = "log.yaml";
 
-	/**
-	 * @brief contador para tener un registro de landmarks guardados
-	 * 
-	 */
-	double landmarksCont = 0;
+	double landmarks_counter_ = 0;
 
 	/**
 	 * @brief Objeto FileStorage de Opencv, encargado de manejar la escritura del archivo
-	 * 
+	 *
 	 */
-	FileStorage fs;
+	FileStorage fs_;
 
 public:
-
 	/**
 	 * @brief Construye un nuevo objeto de la clase Landmark Logger.
-	 * 
+	 *
 	 * @details Constructor a utilizar generalmente, se le pasa como argumentos
 	 * el nombre base del video y el tipo de feeder utilizado.
 	 */
-	LandmarksLogger(const string &,const TipoFeeder&);
+	LandmarksLogger(const string &, const FeederType &);
 
 	/**
 	 * @brief Constructor por defecto, genera un nombre por defecto.
@@ -68,24 +59,11 @@ public:
 	 */
 	LandmarksLogger();
 
-	/**
-	 * @brief Destruye el objeto de la clase LandmarkLogger
-	 * 
-	 */
 	~LandmarksLogger();
 
-	/**
-	 * @brief Devuelve el la cantidad de fotogramas registrados. Puede ser util.
-	 * 
-	 * @return double 
-	 */
-	double getCont(){return landmarksCont;};
+	double get_landmarks_counter() { return landmarks_counter_; };
 
-	/**
-	 * @brief Agrega un landmark al archivo e incrementa el contador
-	 * 
-	 */
-	void log(const std::vector<Landmarks> &);
+	void log(const std::vector<Landmarks> &landmarks);
 };
 
 #endif // LANDMARKSLOGGER_H

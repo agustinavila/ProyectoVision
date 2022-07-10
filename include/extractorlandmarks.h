@@ -4,9 +4,9 @@
  * @brief Declaracion de la clase abstracta ExtractorLandmarks
  * @version 0.1
  * @date 2021-06-17
- * 
+ *
  * @copyright Copyright (c) 2021
- * 
+ *
  */
 
 #if !defined(EXTRACTORLANDMARKS_H)
@@ -21,51 +21,37 @@
 
 using namespace std;
 
-
 /**
  * @brief Clase abstracta para extraer landmarks de un Mat
- * 
  */
 class ExtractorLandmarks
 {
 private:
-
-/**
- * @brief Propiedad de las clases, vector de landmarks obtenidos
- * 
- */
 	std::vector<Landmarks> landmarks;
-public:
 
-/**
- * @brief Construye un nuevo objeto de la clase abstracta Extractor Landmarks
- * 
- */
+public:
 	ExtractorLandmarks(const std::vector<string> &);
+
 	ExtractorLandmarks();
 
-	/**
-	 * @brief Destruye el objeto de la clase Extractor Landmarks
-	 * 
-	 */
 	virtual ~ExtractorLandmarks();
 
 	/**
 	 * @brief Método para convertir los landmarks "crudos" a una estructura con distintos rasgos
-	 * 
-	 * @return const std::vector<Landmarks> 
+	 *
+	 * @return const std::vector<Landmarks>
 	 */
 	const std::vector<Landmarks> parseLandmarks(const std::vector<std::vector<cv::Point2f>> &);
 
-	virtual const TipoExtractor getExtractor() = 0;
+	virtual const ExtractorType get_extractor_type() = 0;
 
 	/**
-	 * @brief Devuelve la propiedad Landmarks 
-	 * 
-	 * @param frame 
-	 * @return const std::vector<Landmarks> 
+	 * @brief Devuelve la propiedad Landmarks
+	 *
+	 * @param frame
+	 * @return const std::vector<Landmarks>
 	 */
-	virtual const std::vector<Landmarks> getLandmarks(const cv::Mat &frame) = 0;
+	virtual const std::vector<Landmarks> get_landmarks(const cv::Mat &frame) = 0;
 };
 
 #endif // EXTRACTORLANDMARKS_H

@@ -4,13 +4,14 @@
  * @brief Archivo de cabecera de la clase concreta KinectFeeder
  * @version 0.1
  * @date 2021-06-21
- * 
+ *
  * @copyright Copyright (c) 2021
- * 
+ *
  */
 
 #if !defined(KINECTFEEDER_H)
 #define KINECTFEEDER_H
+#ifdef KINECT_AVAILABLE
 
 #include <iostream>
 #include <opencv2/opencv.hpp>
@@ -32,71 +33,39 @@ using namespace libfreenect2;
 class KinectFeeder : public Feeder
 {
 private:
-	/**
-	 * @brief Mat con el fotograma actual
-	 * 
-	 */
-	Mat frame;
+	Mat frame_;
 
-	/**
-	 * @brief Objeto base de la libreria freenect2
-	 * 
-	 */
-	Freenect2 freenect2;
+	Freenect2 freenect2_;
 
 	/**
 	 * @brief Puntero al objeto del dispositivo abierto por freenect2
-	 * 
 	 */
 	Freenect2Device *dev = NULL;
 
 	/**
 	 * @brief Puntero al pipeline para procesar la informacion
-	 * 
 	 */
-	PacketPipeline  *pipeline = NULL;
+	PacketPipeline *pipeline = NULL;
 
 	/**
 	 * @brief Objeto framelistener, el encargado de recibir nuevos frames
-	 * 
 	 */
 	SyncMultiFrameListener *listener;
 
 	/**
 	 * @brief Objeto que contiene todos los frames de la kinect
-	 * 
 	 */
-	FrameMap frames;
+	FrameMap frames_;
 
-	public:
-
-	/**
-	 * @brief Construye un nuevo objeto de la clase KinectFeeder
-	 * 
-	 * @details Obtiene todos los parámetros necesarios y se encarga
-	 * de inicializar la Kinect.
-	 */
+public:
 	KinectFeeder();
 
-	/**
-	 * @brief Destruye el objeto de la clase KinectFeeder
-	 * 
-	 */
 	virtual ~KinectFeeder();
 
-	/**
-	 * @brief Devuelve el TipoFeeder (en este caso, KINECTFEEDER)
-	 * 
-	 * @return const TipoFeeder 
-	 */
-	virtual const TipoFeeder getFeeder() {return KINECTFEEDER;};
+	virtual const Feeder get_feeder_type() { return KINECTFEEDER; };
 
-	/**
-	 * @brief Devuelve el frame actual de la kinect
-	 * 
-	 * @return const Mat 
-	 */
-	virtual const Mat getFrame();
+	virtual const Mat get_frame();
 };
 
 #endif // KINECTFEEDER_H
+#endif

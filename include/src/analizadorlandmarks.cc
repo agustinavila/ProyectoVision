@@ -4,9 +4,9 @@
  * @brief Implementacion de la clase AnalizadorLandmarks
  * @version 0.1
  * @date 2021-06-22
- * 
+ *
  * @copyright Copyright (c) 2021
- * 
+ *
  */
 
 #include "../analizadorlandmarks.h"
@@ -73,24 +73,24 @@ const float AnalizadorLandmarks::calcularAsimetria()
 	float asimetria = 1;
 	if (!landmarksNorm.front().empty())
 	{
-	float F=norm(landmarksNorm.front().ojoIzq.at(3)-landmarksNorm.front().boca.at(3));
-	float G=norm(landmarksNorm.front().ojoDer.at(3)-landmarksNorm.front().boca.at(3));
-	asimetria*=calcularMax(F/G,G/F);
+		float F = norm(landmarksNorm.front().ojoIzq.at(3) - landmarksNorm.front().boca.at(3));
+		float G = norm(landmarksNorm.front().ojoDer.at(3) - landmarksNorm.front().boca.at(3));
+		asimetria *= calcularMax(F / G, G / F);
 
-	// f16: Maximo valor entre cociente de distancias de labios inferior(Pl y Ql en el paper)
-	float Pl=norm(landmarksNorm.front().boca.at(1)-landmarksNorm.front().boca.at(11));
-	float Ql=norm(landmarksNorm.front().boca.at(5)-landmarksNorm.front().boca.at(7));
-	asimetria*=calcularMax(Pl/Ql,Ql/Pl);
+		// f16: Maximo valor entre cociente de distancias de labios inferior(Pl y Ql en el paper)
+		float Pl = norm(landmarksNorm.front().boca.at(1) - landmarksNorm.front().boca.at(11));
+		float Ql = norm(landmarksNorm.front().boca.at(5) - landmarksNorm.front().boca.at(7));
+		asimetria *= calcularMax(Pl / Ql, Ql / Pl);
 
-	// f17: Maximo valor entre cociente de distancias de labios superior?(Pu y Qu en el paper)
-	float Pu=norm(landmarksNorm.front().boca.at(2)-landmarksNorm.front().boca.at(10));
-	float Qu=norm(landmarksNorm.front().boca.at(4)-landmarksNorm.front().boca.at(8));
-	asimetria*=calcularMax(Pu/Qu,Qu/Pu);
+		// f17: Maximo valor entre cociente de distancias de labios superior?(Pu y Qu en el paper)
+		float Pu = norm(landmarksNorm.front().boca.at(2) - landmarksNorm.front().boca.at(10));
+		float Qu = norm(landmarksNorm.front().boca.at(4) - landmarksNorm.front().boca.at(8));
+		asimetria *= calcularMax(Pu / Qu, Qu / Pu);
 
-	// Maximo valor de cocientes entre puntos superiores de quijada y comisuras de labios
-	float d1=norm(landmarksNorm.front().menton.front()-landmarksNorm.front().boca.front());
-	float d2=norm(landmarksNorm.front().menton.back()-landmarksNorm.front().boca.at(9));
-	asimetria*=calcularMax(d1/d2,d2/d1);
+		// Maximo valor de cocientes entre puntos superiores de quijada y comisuras de labios
+		float d1 = norm(landmarksNorm.front().menton.front() - landmarksNorm.front().boca.front());
+		float d2 = norm(landmarksNorm.front().menton.back() - landmarksNorm.front().boca.at(9));
+		asimetria *= calcularMax(d1 / d2, d2 / d1);
 	}
 
 	return asimetria;

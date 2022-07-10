@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.asm": "8051",
-        "string": "cpp"
+        "string": "cpp",
+        "ostream": "cpp"
     }
 }

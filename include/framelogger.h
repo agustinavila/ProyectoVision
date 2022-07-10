@@ -5,7 +5,7 @@
  * @version 0.1
  * @date 2021-06-17
  * @copyright Copyright (c) 2021
- * 
+ *
  */
 
 #if !defined(FRAMELOGGER_H)
@@ -33,33 +33,20 @@ using namespace cv;
 class FrameLogger
 {
 private:
-	/**
-	 * @brief Nombre base para utilizar con el archivo
-	 * 
-	 */
-	string nombreVideo = "Salida";
+	string video_file_name_ = "Salida";
 
-	/**
-	 * @brief contador para tener un registro de fotogramas
-	 * 
-	 */
-	double frames = 0;
+	double frame_counter_ = 0;
 
-	/**
-	 * @brief Objeto Videowriter de Opencv, encargado de manejar la escritura y codificacion del video
-	 * 
-	 */
-	VideoWriter video;
+	VideoWriter video_;
 
 public:
-
 	/**
 	 * @brief Construye un nuevo objeto de la clase Frame Logger.
-	 * 
+	 *
 	 * @details Constructor a utilizar generalmente, se le pasa como argumentos
 	 * el nombre base del video y el tipo de feeder utilizado.
 	 */
-	FrameLogger(const string &,const TipoFeeder&);
+	FrameLogger(const string &, const FeederType &);
 
 	/**
 	 * @brief Constructor por defecto, genera un nombre por defecto.
@@ -67,23 +54,10 @@ public:
 	 */
 	FrameLogger();
 
-	/**
-	 * @brief Destruye el objeto de la clase Frame Logger
-	 * 
-	 */
 	~FrameLogger();
 
-	/**
-	 * @brief Devuelve el la cantidad de fotogramas registrados. Puede ser util.
-	 * 
-	 * @return double 
-	 */
-	double getCont(){return frames;};
+	double get_frame_counter() { return frame_counter_; };
 
-	/**
-	 * @brief Agrega un frame al video e incrementa el contador
-	 * 
-	 */
 	void log(const Mat &);
 };
 

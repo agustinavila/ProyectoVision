@@ -4,9 +4,9 @@
  * @brief Archivo de cabecera de la clase concreta VideoFeeder
  * @version 0.1
  * @date 2021-06-17
- * 
+ *
  * @copyright Copyright (c) 2021
- * 
+ *
  */
 #if !defined(VIDEOFEEDER_H)
 #define VIDEOFEEDER_H
@@ -25,65 +25,39 @@ using namespace cv;
 
 /**
  * @brief Sobrecarga de la clase Feeder para abrir un archivo de video
- * 
+ *
  * @details Abre un archivo de video, cuyo nombre se pasa a la hora de construir el feeder.
  * Por ahora, cuando llega al final del video, se corta la ejecucion.
  */
 class VideoFeeder : public Feeder
 {
 private:
-	/**
-	 * @brief Fotograma actual.
-	 * 
-	 */
-	Mat frame;
+	Mat frame_;
 
-	/**
-	 * @brief Objeto de openCV para manejar el video.
-	 * 
-	 */
-	cv::VideoCapture cap;
+	cv::VideoCapture cap_;
 
-	/**
-	 * @brief Nombre del video abierto / a abrir.
-	 * 
-	 */
-	string nombreVideo;
+	string video_file_name_;
 
 public:
 	/**
 	 * @brief Construye un nuevo objeto de la clase VideoFeeder
-	 * 
+	 *
 	 * @param nombre - nombre del video a abrir
 	 */
-	VideoFeeder(string &);
+	VideoFeeder(string &nombre);
 
 	/**
 	 * @brief Construye un nuevo objeto de la clase VideoFeeder, tomando un nombre por defecto
-	 * 
+	 *
 	 * @details Intenta abrir el archivo "video.avi"
 	 */
 	VideoFeeder();
 
-	/**
-	 * @brief Destruye el objeto de la clase VideoFeeder
-	 * 
-	 */
 	virtual ~VideoFeeder();
 
-	/**
-	 * @brief Devuelve un valor de TipoFeeder (En este caso VIDEOFEEDER) 
-	 * 
-	 * @return const TipoFeeder 
-	 */
-	virtual const TipoFeeder getFeeder() { return VIDEOFEEDER; };
+	virtual const FeederType get_feeder_type() { return FeederType::video_feeder; };
 
-	/**
-	 * @brief Devuelve el ultimo frame procesado
-	 * 
-	 * @return const Mat 
-	 */
-	virtual const Mat getFrame();
+	virtual const Mat get_frame();
 };
 
 #endif // VIDEOFEEDER_H

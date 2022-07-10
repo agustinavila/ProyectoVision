@@ -4,9 +4,9 @@
  * @brief Archivo de cabecera de la clase AnalizadorLandmarks
  * @version 0.1
  * @date 2021-06-22
- * 
+ *
  * @copyright Copyright (c) 2021
- * 
+ *
  */
 
 #if !defined(ANALIZADORLANDMARKS_H)
@@ -30,54 +30,54 @@ class AnalizadorLandmarks
 private:
 	/**
 	 * @brief Vector de estructuras de tipo Landmarks
-	 * 
+	 *
 	 */
 	std::vector<Landmarks> landmarks;
 
 	/**
 	 * @brief Vector de estructura de tipo Landmarks, pero normalizada(sin rotacion del rostro)
-	 * 
+	 *
 	 */
 	std::vector<Landmarks> landmarksNorm;
 
 public:
 	/**
 	 * @brief Construye un nuevo objeto de la clase Analizador Landmarks
-	 * 
+	 *
 	 */
 	AnalizadorLandmarks();
 
 	/**
 	 * @brief Destruye el objeto de la clase Analizador Landmarks
-	 * 
+	 *
 	 */
 	~AnalizadorLandmarks();
 
 	/**
 	 * @brief Actualiza los landmarks del objeto
-	 * 
+	 *
 	 * @param lm landmarks nuevos.
 	 */
 	void setLandmarks(const std::vector<Landmarks> &);
 
 	/**
 	 * @brief Devuelve los landmarks del objeto
-	 * 
-	 * @return const std::vector<Landmarks> 
+	 *
+	 * @return const std::vector<Landmarks>
 	 */
 	const std::vector<Landmarks> getLandmarks() { return this->landmarks; };
 
 	/**
 	 * @brief Devuelve los landmarks normalizados del objeto
-	 * 
-	 * @return std::vector<Landmarks> 
+	 *
+	 * @return std::vector<Landmarks>
 	 */
 	std::vector<Landmarks> getNormLandmarks() { return this->landmarksNorm; };
 
 	/**
 	 * @brief Método que devuelve el angulo entre dos puntos a y b
-	 * 
-	 * @param a - punto a 
+	 *
+	 * @param a - punto a
 	 * @param b - punto b
 	 * @return const float - angulo en grandos
 	 */
@@ -85,7 +85,7 @@ public:
 
 	/**
 	 * @brief Metodo que devuelve la pendiente entre dos puntos a y b
-	 * 
+	 *
 	 * @param a - punto a
 	 * @param b - punto b
 	 * @return const float - pendiente entre los dos puntos
@@ -102,19 +102,19 @@ public:
 
 	/**
 	 * @brief Método principal de la clase, analiza la asimetria de un rostro
-	 * 
+	 *
 	 * @details No está completamente desarrollada, pero debería devolver
 	 * una asimetría de un rostro. Lo ideal en realidad sería que devuelva
-	 * una estructura con diferentes parámetros, para luego alimentar a una 
+	 * una estructura con diferentes parámetros, para luego alimentar a una
 	 * red neuronal y discernir la asimetria.
-	 * 
-	 * @return const float 
+	 *
+	 * @return const float
 	 */
 	const float calcularAsimetria();
 
 	/**
 	 * @brief Funcion que normaliza los landmarks, eliminando la posible rotacion del rostro
-	 * 
+	 *
 	 * @details La normalización cobra relevancia si se toma como parámetros
 	 * la pendiente o el angulo entre distintos landmarks en el rostro.
 	 * Por el momento no tiene utilidad, pero en el caso de alimentar una RN

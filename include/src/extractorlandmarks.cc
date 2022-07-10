@@ -4,9 +4,9 @@
  * @brief implementacion de la clase abstracta ExtractorLandmarks
  * @version 0.1
  * @date 2021-06-17
- * 
+ *
  * @copyright Copyright (c) 2021
- * 
+ *
  */
 
 #include "../extractorlandmarks.h"
@@ -21,18 +21,18 @@ ExtractorLandmarks::~ExtractorLandmarks()
 {
 }
 
-const std::vector<Landmarks> ExtractorLandmarks::parseLandmarks(const std::vector<std::vector<cv::Point2f>> &landmarksSerie)
+const std::vector<Landmarks> ExtractorLandmarks::parseLandmarks(const std::vector<std::vector<cv::Point2f>> &landmarks_vector_)
 {
 	std::vector<Landmarks> landmarks;
 	Landmarks l;
-	if (landmarksSerie.empty())
+	if (landmarks_vector_.empty())
 	{
 		l.vacio = 1;
 		landmarks.push_back(l);
 	}
 	else
 	{
-		for (std::vector<std::vector<cv::Point2f>>::const_iterator cii = landmarksSerie.begin(); cii != landmarksSerie.end(); cii++)
+		for (std::vector<std::vector<cv::Point2f>>::const_iterator cii = landmarks_vector_.begin(); cii != landmarks_vector_.end(); cii++)
 		{
 			std::vector<cv::Point2f>::const_reverse_iterator crij;
 			std::vector<cv::Point2f> vec = *cii;
@@ -49,16 +49,16 @@ const std::vector<Landmarks> ExtractorLandmarks::parseLandmarks(const std::vecto
 			{
 				l.ojoIzq.push_back(*crij);
 			}
-			l.ojoIzq.push_back(vec.at(40));	//Se dio vuelta el codigo
-			l.ojoIzq.push_back(vec.at(41));	//Para que sea simetrico al ojo derecho
-			l.vacio=0;
+			l.ojoIzq.push_back(vec.at(40)); // Se dio vuelta el codigo
+			l.ojoIzq.push_back(vec.at(41)); // Para que sea simetrico al ojo derecho
+			l.vacio = 0;
 			landmarks.push_back(l);
 		}
 	}
 	return landmarks;
 }
 
-const std::vector<Landmarks> ExtractorLandmarks::getLandmarks(const cv::Mat &frame)
+const std::vector<Landmarks> ExtractorLandmarks::get_landmarks(const cv::Mat &frame)
 {
 	return landmarks;
 }
