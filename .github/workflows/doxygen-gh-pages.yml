@@ -15,3 +15,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
           folder: docs/html
+        # - uses: mattnotmitt/doxygen-action@1.9.4
+        #   with:
+        #       doxyfile-path: 'Doxyfile'
+        #       additional-packages: graphviz, plantuml
