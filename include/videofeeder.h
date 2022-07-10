@@ -11,13 +11,14 @@
 #if !defined(VIDEOFEEDER_H)
 #define VIDEOFEEDER_H
 
+#include <iostream>
+#include <string>
+
 #include "feeder.h"
-#include <opencv2/videoio/videoio_c.h>
 #include <opencv2/imgproc/types_c.h>
 #include <opencv2/video/video.hpp>
 #include <opencv2/videoio.hpp>
-#include <iostream>
-#include <string>
+#include <opencv2/videoio/videoio_c.h>
 #include <unistd.h>
 
 using namespace std;
@@ -29,35 +30,27 @@ using namespace cv;
  * @details Abre un archivo de video, cuyo nombre se pasa a la hora de construir el feeder.
  * Por ahora, cuando llega al final del video, se corta la ejecucion.
  */
-class VideoFeeder : public Feeder
-{
+class VideoFeeder : public Feeder {
 private:
-	Mat frame_;
-
-	cv::VideoCapture cap_;
-
-	string video_file_name_;
+    Mat frame_;
+    cv::VideoCapture cap_;
+    string video_file_name_;
 
 public:
-	/**
-	 * @brief Construye un nuevo objeto de la clase VideoFeeder
-	 *
-	 * @param nombre - nombre del video a abrir
-	 */
-	VideoFeeder(string &nombre);
+    VideoFeeder(string& video_filename);
 
-	/**
+    /**
 	 * @brief Construye un nuevo objeto de la clase VideoFeeder, tomando un nombre por defecto
 	 *
 	 * @details Intenta abrir el archivo "video.avi"
 	 */
-	VideoFeeder();
+    VideoFeeder();
 
-	virtual ~VideoFeeder();
+    virtual ~VideoFeeder();
 
-	virtual const FeederType get_feeder_type() { return FeederType::video_feeder; };
+    virtual const FeederType get_feeder_type() { return FeederType::video_feeder; };
 
-	virtual const Mat get_frame();
+    virtual const Mat get_frame();
 };
 
 #endif // VIDEOFEEDER_H

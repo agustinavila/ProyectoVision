@@ -13,9 +13,10 @@
 #define FEEDER_H
 
 #include <iostream>
+
+#include "estructuras.h"
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
-#include "estructuras.h"
 
 using namespace std;
 using namespace cv;
@@ -27,24 +28,23 @@ using namespace cv;
  * Provee dos métodos básicos que todas las clases utilizarán.
  *
  */
-class Feeder
-{
+class Feeder {
 private:
-	Mat frame;
+    Mat frame; ///< Estructura que contiene el frame actual
 
 public:
-	Feeder(){};
+    Feeder(){};
 
-	virtual ~Feeder(){};
+    virtual ~Feeder(){};
 
-	virtual const FeederType get_feeder_type() = 0;
+    virtual const FeederType get_feeder_type() = 0;
 
-	/**
+    /**
 	 * @brief Devuelve el frame actual
 	 *
 	 * @return const Mat
 	 */
-	virtual const Mat get_frame() = 0;
+    virtual const Mat get_frame() = 0;
 };
 
 #endif // FEEDER_H
