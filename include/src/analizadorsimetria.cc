@@ -1,12 +1,12 @@
 /**
  * @file analizadorsimetria.cc
  * @author Agustin Avila (tinto.avila@gmail.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2021-06-23
- * 
+ *
  * @copyright Copyright (c) 2021
- * 
+ *
  */
 
 #include "../analizadorsimetria.h"
@@ -31,7 +31,6 @@ AnalizadorSimetria::AnalizadorSimetria()
 		this->setFeeder(WEBCAMFEEDER);
 		this->setExtractor(OPENCV);
 	}
-
 }
 
 AnalizadorSimetria::AnalizadorSimetria(const string &nombrearchivo)
@@ -70,14 +69,14 @@ Mat AnalizadorSimetria::step()
 	}
 	if (ptrVideoLogger != NULL)
 	{
-		ptrVideoLogger->log(frame); //Guarda frames, segun parametros podria desactivarse o no
+		ptrVideoLogger->log(frame); // Guarda frames, segun parametros podria desactivarse o no
 	}
 	if (ptrExtractor != NULL)
 	{
 		landmarks = ptrExtractor->getLandmarks(frame);
 		if (ptrLandmarksLogger != NULL)
 		{
-			ptrLandmarksLogger->log(landmarks); //Guarda frames, segun parametros podria desactivarse o no
+			ptrLandmarksLogger->log(landmarks); // Guarda frames, segun parametros podria desactivarse o no
 		}
 		if (!landmarks.front().vacio)
 		{
@@ -95,7 +94,7 @@ Mat AnalizadorSimetria::step()
 
 void AnalizadorSimetria::setExtractor(TipoExtractor extractor_)
 {
-	tipoExtractor=extractor_;
+	tipoExtractor = extractor_;
 	if (this->ptrExtractor != NULL)
 	{
 		if (tipoExtractor != ptrExtractor->getExtractor())
@@ -156,15 +155,7 @@ void AnalizadorSimetria::setFeeder(TipoFeeder feeder_)
 	}
 	try
 	{
-		if (tipoFeeder == KINECTFEEDER)
-		{
-			this->ptrFeeder = new KinectFeeder;
-			if (grabarVideoHabilitado)
-			{
-				empezarVideoLog(tipoFeeder);
-			}
-		}
-		else if (tipoFeeder == WEBCAMFEEDER)
+		if (tipoFeeder == WEBCAMFEEDER)
 		{
 			this->ptrFeeder = new WebcamFeeder;
 			if (grabarVideoHabilitado)
@@ -172,6 +163,19 @@ void AnalizadorSimetria::setFeeder(TipoFeeder feeder_)
 				empezarVideoLog(tipoFeeder);
 			}
 		}
+		else if (tipoFeeder == KINECTFEEDER)
+		{
+#ifdef KINECT_AVAILABLE
+			this->ptrFeeder = new KinectFeeder;
+			if (grabarVideoHabilitado)
+			{
+				empezarVideoLog(tipoFeeder);
+			}
+#else
+			throw MiExcepcion(ERROR_FEEDER_INICIAR);
+#endif
+		}
+
 		else if (tipoFeeder == VIDEOFEEDER)
 		{
 			this->ptrFeeder = new VideoFeeder(nombreVideoFeeder);
@@ -192,7 +196,7 @@ void AnalizadorSimetria::setFeeder(TipoFeeder feeder_)
 void AnalizadorSimetria::cargarConfiguracion(const string &nombreArchivo)
 {
 	FileStorage fs(nombreArchivo, FileStorage::READ);
-	cout << "Cargando configuración..."<<endl;
+	cout << "Cargando configuración..." << endl;
 	if (!fs.isOpened())
 	{
 		throw MiExcepcion(ERROR_ABRIR_CONF);
@@ -202,7 +206,7 @@ void AnalizadorSimetria::cargarConfiguracion(const string &nombreArchivo)
 	fs["nombreVideoEntrada"] >> nombreVideoFeeder;
 	fs["nombreVideoSalida"] >> nombreFrameLogger;
 	fs["nombreCascadeOpenCV"] >> nombreCascadeOpenCV;
-	fs["nombreLandmarksLog"]>> nombreLandmarksLogger;
+	fs["nombreLandmarksLog"] >> nombreLandmarksLogger;
 	fs["nombreLBF"] >> nombreLBFOpenCV;
 	fs["nombreDetectorDlib"] >> nombreModeloDlib;
 	fs["habilitarVideoLog"] >> grabarVideoHabilitado;

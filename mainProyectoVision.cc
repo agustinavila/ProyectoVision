@@ -68,10 +68,12 @@ int main(int argc, char *argv[])
 			analizador.setFeeder(WEBCAMFEEDER);
 			ch=0;
 		}
+		#ifdef KINECT_AVAILABLE
 		else if ((ch=='k') || (ch=='K')){
 			analizador.setFeeder(KINECTFEEDER);
 			ch=0;
 		}
+		#endif
 		else if ((ch=='v') || (ch=='V')){
 			analizador.setFeeder(VIDEOFEEDER);
 			ch=0;

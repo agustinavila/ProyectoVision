@@ -18,7 +18,6 @@
 #include <opencv2/core/core.hpp>
 #include "feeder.h"					   //Clase abstracta Feeder
 #include "webcamfeeder.h"			   //Clase concreta de Feeder para webcam
-#include "kinectfeeder.h"			   //Clase concreta de Feeder para Kinect
 #include "videofeeder.h"			   //Clase concreta de Feeder para un video
 #include "framelogger.h"			   //Clase Frame logger
 #include "extractorlandmarks.h"		   //Clase abstracta de extractor de landmarks
@@ -27,6 +26,9 @@
 #include "analizadorlandmarks.h"	   //Clase para analizar simetria - métodos incompletos
 #include "estructuras.h"			   //Estructuras, enums, excepciones
 #include "landmarkslogger.h"		   //Clase para realizar el log de landmarks
+#ifdef KINECT_AVAILABLE
+#include "kinectfeeder.h"			   //Clase concreta de Feeder para Kinect
+#endif
 
 using namespace std;
 using namespace cv;
