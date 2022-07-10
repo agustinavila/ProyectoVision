@@ -1,5 +1,7 @@
 # Proyecto Vision
 
+**test**
+
 Proyecto final para las materias "Vision Artificial" y "Complementos de Informatica"
 El proyecto consiste en una clase capaz de obtener imagenes de distintos medios, detectar rostros, obtener puntos de interés y analizar su simetria. Ademas, puede registrar tanto el video adquirido como los puntos de interés detectados. Estos datos provistos pueden ser utilizados para detectar momentos donde la asimetria sea maxima o donde se detecte claramente cierta expresion facial (sonrisa, ceño fruncido, levantar cejas, etc). La idea de la implementación está basada en [este paper][1].
 
