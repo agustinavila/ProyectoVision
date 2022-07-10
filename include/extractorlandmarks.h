@@ -62,9 +62,10 @@ public:
 	/**
 	 * @brief Devuelve la propiedad Landmarks 
 	 * 
+	 * @param frame 
 	 * @return const std::vector<Landmarks> 
 	 */
-	virtual const std::vector<Landmarks> getLandmarks(const cv::Mat &) = 0;
+	virtual const std::vector<Landmarks> getLandmarks(const cv::Mat &frame) = 0;
 };
 
 #endif // EXTRACTORLANDMARKS_H

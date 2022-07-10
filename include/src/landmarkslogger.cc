@@ -1,5 +1,5 @@
 /**
- * @file landmarkslogger.cpp
+ * @file landmarkslogger.cc
  * @author Agustin Avila (tinto.avila@gmail.com)
  * @brief Implementacion de la clase LandmarksLogger
  * @version 0.1

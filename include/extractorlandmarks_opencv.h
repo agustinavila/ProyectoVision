@@ -75,7 +75,7 @@ public:
 	 * 
 	 * @details Se le debe proveer un vector con los nombres de los archivos a utilizar.
 	 * 
-	 * @params nombres - Vector de strings con los nombres de los archivos necesarios
+	 * @param nombres - Vector de strings con los nombres de los archivos necesarios
 	 */
 	ExtractorLandmarksOpenCV(const std::vector<string> &);
 

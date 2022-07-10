@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.asm": "8051",
+        "string": "cpp"
+    }
+}

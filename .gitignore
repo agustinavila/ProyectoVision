@@ -5,6 +5,7 @@ Debug/*
 .cproject
 .project
 build
+docs
 
 # Tipos de archivos:
 *.jpg

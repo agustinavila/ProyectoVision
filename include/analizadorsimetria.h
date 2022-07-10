@@ -305,9 +305,9 @@ public:
 	/**
 	 * @brief Método encargado de cargar el archivo de configuración y definir las propiedades del objeto
 	 * 
-	 * @param nombreConf - Nombre del archivo de configuración.
+	 * @param[in] nombreArchivo - Nombre del archivo de configuración.
 	 */
-	void cargarConfiguracion(const string &);
+	void cargarConfiguracion(const string & nombreArchivo);
 };
 
 #endif // ANALIZADORSIMETRIA_H

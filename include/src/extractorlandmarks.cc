@@ -58,12 +58,6 @@ const std::vector<Landmarks> ExtractorLandmarks::parseLandmarks(const std::vecto
 	return landmarks;
 }
 
-/**
- * @brief Metodo para obtener landmarks de un Mat 
- * 
- * @param cv::Mat Frame a analizar
- * @return std::vector<cv::Point2f> 
- */
 const std::vector<Landmarks> ExtractorLandmarks::getLandmarks(const cv::Mat &frame)
 {
 	return landmarks;
