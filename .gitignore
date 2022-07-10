@@ -4,6 +4,7 @@ Debug/*
 .settings/*
 .cproject
 .project
+build
 
 # Tipos de archivos:
 *.jpg

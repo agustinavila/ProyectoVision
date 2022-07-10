@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2021
  * 
  */
-
+#ifdef KINECT_AVAILABLE
 #include "../feeder.h"
 #include "../kinectfeeder.h"
 
@@ -72,3 +72,4 @@ const Mat KinectFeeder::getFrame()
 	merge(rgbChannels, frame);
 	return frame;
 }
+#endif
