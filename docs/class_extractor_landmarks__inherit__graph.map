@@ -1,5 +1,0 @@
-<map id="ExtractorLandmarks" name="ExtractorLandmarks">
-<area shape="rect" id="node1" title="Clase abstracta para extraer landmarks de un Mat." alt="" coords="143,5,333,156"/>
-<area shape="rect" id="node2" href="$class_extractor_landmarks_dlib.html" title="Implementación concreta de la clase abstracta ExtractorLandmarks usando dlib." alt="" coords="5,211,220,391"/>
-<area shape="rect" id="node3" href="$class_extractor_landmarks_open_c_v.html" title="Clase concreta derivada de ExtractorLandmarks para extraer landmarks utilizando openCV." alt="" coords="244,204,485,399"/>
-</map>

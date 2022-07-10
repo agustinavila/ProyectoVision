@@ -1,7 +1,0 @@
-<map id="analizadorlandmarks.h" name="analizadorlandmarks.h">
-<area shape="rect" id="node1" title="Archivo de cabecera de la clase AnalizadorLandmarks." alt="" coords="191,5,361,32"/>
-<area shape="rect" id="node2" href="$analizadorsimetria_8h.html" title="Archivo de cabecera de la clase base del proyecto." alt="" coords="103,80,259,107"/>
-<area shape="rect" id="node5" href="$analizadorlandmarks_8cc.html" title="Implementacion de la clase AnalizadorLandmarks." alt="" coords="283,80,461,107"/>
-<area shape="rect" id="node3" href="$analizadorsimetria_8cc.html" title=" " alt="" coords="5,155,168,181"/>
-<area shape="rect" id="node4" href="$main_proyecto_vision_8cc.html" title="Archivo con un programa ejemplificando el uso de la clase AnalizadorSimetria." alt="" coords="192,155,363,181"/>
-</map>

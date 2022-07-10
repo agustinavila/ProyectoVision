@@ -1,8 +1,0 @@
-<map id="AnalizadorSimetria" name="AnalizadorSimetria">
-<area shape="rect" id="node1" title="Clase principal del programa." alt="" coords="335,248,518,501"/>
-<area shape="rect" id="node2" href="$class_feeder.html" title="Clase abstracta para proveer obtener nuevos mats." alt="" coords="5,35,117,156"/>
-<area shape="rect" id="node3" href="$class_extractor_landmarks.html" title="Clase abstracta para extraer landmarks de un Mat." alt="" coords="141,20,331,171"/>
-<area shape="rect" id="node4" href="$class_frame_logger.html" title="Clase para guardar los frames. Por defecto genera un video." alt="" coords="355,13,498,178"/>
-<area shape="rect" id="node5" href="$class_landmarks_logger.html" title="Clase para guardar los landmarks. Por defecto genera un video." alt="" coords="522,13,697,178"/>
-<area shape="rect" id="node6" href="$class_analizador_landmarks.html" title="Clase que maneja los metodos para analizar los landmarks." alt="" coords="721,5,919,185"/>
-</map>

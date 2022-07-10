@@ -1,7 +1,0 @@
-<map id="webcamfeeder.h" name="webcamfeeder.h">
-<area shape="rect" id="node1" title="Declaracion de la clase concreta WebcamFeeder." alt="" coords="201,5,332,32"/>
-<area shape="rect" id="node2" href="$analizadorsimetria_8h.html" title="Archivo de cabecera de la clase base del proyecto." alt="" coords="103,80,259,107"/>
-<area shape="rect" id="node5" href="$webcamfeeder_8cc.html" title="implementacion de la clase concreta WebcamFeeder" alt="" coords="283,80,421,107"/>
-<area shape="rect" id="node3" href="$analizadorsimetria_8cc.html" title=" " alt="" coords="5,155,168,181"/>
-<area shape="rect" id="node4" href="$main_proyecto_vision_8cc.html" title="Archivo con un programa ejemplificando el uso de la clase AnalizadorSimetria." alt="" coords="192,155,363,181"/>
-</map>

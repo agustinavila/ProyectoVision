@@ -1,4 +1,0 @@
-<map id="WebcamFeeder" name="WebcamFeeder">
-<area shape="rect" id="node1" title="Sobrecarga de la clase Feeder para abrir una webcam." alt="" coords="5,175,164,325"/>
-<area shape="rect" id="node2" href="$class_feeder.html" title="Clase abstracta para proveer obtener nuevos mats." alt="" coords="29,5,141,127"/>
-</map>
