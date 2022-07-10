@@ -110,14 +110,17 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a42f4400ae7c791fe1c10b64d26c6022d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_landmarks.html#a42f4400ae7c791fe1c10b64d26c6022d">vacio</a> = 0</td></tr>
-<tr class="memdesc:a42f4400ae7c791fe1c10b64d26c6022d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define si la estructura está vacia.  <a href="struct_landmarks.html#a42f4400ae7c791fe1c10b64d26c6022d">More...</a><br /></td></tr>
+<tr class="memitem:a42f4400ae7c791fe1c10b64d26c6022d"><td class="memItemLeft" align="right" valign="top"><a id="a42f4400ae7c791fe1c10b64d26c6022d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_landmarks.html#a42f4400ae7c791fe1c10b64d26c6022d">vacio</a> = 0</td></tr>
+<tr class="memdesc:a42f4400ae7c791fe1c10b64d26c6022d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define si la estructura está vacia. <br /></td></tr>
 <tr class="separator:a42f4400ae7c791fe1c10b64d26c6022d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93748aead6ced95eec5a56fd29c607df"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_landmarks.html#a93748aead6ced95eec5a56fd29c607df">escala</a> = 1</td></tr>
-<tr class="memdesc:a93748aead6ced95eec5a56fd29c607df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define la escala del rostro, en caso de aplicarse. Util en caso de normalizar landmarks.  <a href="struct_landmarks.html#a93748aead6ced95eec5a56fd29c607df">More...</a><br /></td></tr>
+<tr class="memitem:a93748aead6ced95eec5a56fd29c607df"><td class="memItemLeft" align="right" valign="top"><a id="a93748aead6ced95eec5a56fd29c607df"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_landmarks.html#a93748aead6ced95eec5a56fd29c607df">escala</a> = 1</td></tr>
+<tr class="memdesc:a93748aead6ced95eec5a56fd29c607df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define la escala del rostro, en caso de aplicarse. Util en caso de normalizar landmarks. <br /></td></tr>
 <tr class="separator:a93748aead6ced95eec5a56fd29c607df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a987f8869c48307d36ad4e3b4ce92a239"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_landmarks.html#a987f8869c48307d36ad4e3b4ce92a239">rotacion</a> = 0</td></tr>
-<tr class="memdesc:a987f8869c48307d36ad4e3b4ce92a239"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotación en grados del rostro. Util cuando se normalizan landmarks.  <a href="struct_landmarks.html#a987f8869c48307d36ad4e3b4ce92a239">More...</a><br /></td></tr>
+<tr class="memitem:a987f8869c48307d36ad4e3b4ce92a239"><td class="memItemLeft" align="right" valign="top"><a id="a987f8869c48307d36ad4e3b4ce92a239"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_landmarks.html#a987f8869c48307d36ad4e3b4ce92a239">rotacion</a> = 0</td></tr>
+<tr class="memdesc:a987f8869c48307d36ad4e3b4ce92a239"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotación en grados del rostro. Util cuando se normalizan landmarks. <br /></td></tr>
 <tr class="separator:a987f8869c48307d36ad4e3b4ce92a239"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36fe6dacd297390b2927479113f40553"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Point2f &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_landmarks.html#a36fe6dacd297390b2927479113f40553">menton</a></td></tr>
 <tr class="memdesc:a36fe6dacd297390b2927479113f40553"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector de puntos que definen el menton/contorno del rostro.  <a href="struct_landmarks.html#a36fe6dacd297390b2927479113f40553">More...</a><br /></td></tr>
@@ -192,7 +195,7 @@ false </dd></dl>
 <p>Consiste en 20 puntos. Comienza desde la comisura externa de los labios, recorriendo el borde externo del labio comenzando por la parte superior. El punto 0 corresponde a la comisura externa izquierda, el punto 3 corresponde al punto central del borde externo superior, el punto 6 corresponde a la comisura externa derecha, el punto 9 corresponde al punto central del borde externo inferior.</p>
 <p>El punto 12 corresponde a la comisura interna izquierda, el punto 14 corresponde al punto central del borde interno superior, el punto 16 corresponde a la comisura interna derecha, el punto 18 corresponde al punto central del borde interno inferior. </p>
 
-<p class="reference">Referenced by <a class="el" href="#l00086">LandmarksLogger::log()</a>, <a class="el" href="#l00044">AnalizadorLandmarks::normalizarLandmarks()</a>, and <a class="el" href="#l00024">ExtractorLandmarks::parseLandmarks()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#l00033">AnalizadorLandmarks::normalizarLandmarks()</a>, and <a class="el" href="#l00021">ExtractorLandmarks::parseLandmarks()</a>.</p>
 
 </div>
 </div>
@@ -211,7 +214,7 @@ false </dd></dl>
 <p>Vector de puntos que definen la ceja Derecha. </p>
 <p>Consiste en 5 puntos. Comienza desde el punto más central de la ceja, y su último punto es el mas alejado del centro. </p>
 
-<p class="reference">Referenced by <a class="el" href="#l00086">LandmarksLogger::log()</a>, <a class="el" href="#l00044">AnalizadorLandmarks::normalizarLandmarks()</a>, and <a class="el" href="#l00024">ExtractorLandmarks::parseLandmarks()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#l00033">AnalizadorLandmarks::normalizarLandmarks()</a>, and <a class="el" href="#l00021">ExtractorLandmarks::parseLandmarks()</a>.</p>
 
 </div>
 </div>
@@ -230,25 +233,7 @@ false </dd></dl>
 <p>Vector de puntos que definen la ceja izquierda. </p>
 <p>Consiste en 5 puntos. Comienza desde el punto más central de la ceja, y su último punto es el mas alejado del centro. </p>
 
-<p class="reference">Referenced by <a class="el" href="#l00086">LandmarksLogger::log()</a>, <a class="el" href="#l00044">AnalizadorLandmarks::normalizarLandmarks()</a>, and <a class="el" href="#l00024">ExtractorLandmarks::parseLandmarks()</a>.</p>
-
-</div>
-</div>
-<a id="a93748aead6ced95eec5a56fd29c607df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93748aead6ced95eec5a56fd29c607df">&#9670;&nbsp;</a></span>escala</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Landmarks::escala = 1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Define la escala del rostro, en caso de aplicarse. Util en caso de normalizar landmarks. </p>
-
-<p class="reference">Referenced by <a class="el" href="#l00086">LandmarksLogger::log()</a>, and <a class="el" href="#l00044">AnalizadorLandmarks::normalizarLandmarks()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#l00033">AnalizadorLandmarks::normalizarLandmarks()</a>, and <a class="el" href="#l00021">ExtractorLandmarks::parseLandmarks()</a>.</p>
 
 </div>
 </div>
@@ -267,7 +252,7 @@ false </dd></dl>
 <p>Vector de puntos que definen el menton/contorno del rostro. </p>
 <p>Consiste en 17 puntos. Comienza desde la oreja izquierda, siendo el punto 8 el del centro del mentón </p>
 
-<p class="reference">Referenced by <a class="el" href="#l00086">LandmarksLogger::log()</a>, <a class="el" href="#l00044">AnalizadorLandmarks::normalizarLandmarks()</a>, and <a class="el" href="#l00024">ExtractorLandmarks::parseLandmarks()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#l00033">AnalizadorLandmarks::normalizarLandmarks()</a>, and <a class="el" href="#l00021">ExtractorLandmarks::parseLandmarks()</a>.</p>
 
 </div>
 </div>
@@ -286,7 +271,7 @@ false </dd></dl>
 <p>Vector de puntos que delimitan la nariz. </p>
 <p>Consiste en 9 puntos. El punto 0 corresponde al punto superior del tabique, el punto 3 corresponde al último punto del tabique. El punto 4 corresponde al extremo izquierdo de la base de la nariz, el punto 6 corresponde a la punta de la nariz, y el punto 8 corresponde al extremo derecho de la base de la nariz </p>
 
-<p class="reference">Referenced by <a class="el" href="#l00086">LandmarksLogger::log()</a>, <a class="el" href="#l00044">AnalizadorLandmarks::normalizarLandmarks()</a>, and <a class="el" href="#l00024">ExtractorLandmarks::parseLandmarks()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#l00033">AnalizadorLandmarks::normalizarLandmarks()</a>, and <a class="el" href="#l00021">ExtractorLandmarks::parseLandmarks()</a>.</p>
 
 </div>
 </div>
@@ -305,7 +290,7 @@ false </dd></dl>
 <p>Vector de puntos que definen el ojo Derecho. </p>
 <p>Consiste en 6 puntos. Comienza desde la comisura interna del ojo, recorriendo el párpado superior, y siendo la comisura externa el punto 3. Finalmente recorre el parpado inferior. </p>
 
-<p class="reference">Referenced by <a class="el" href="#l00086">LandmarksLogger::log()</a>, <a class="el" href="#l00044">AnalizadorLandmarks::normalizarLandmarks()</a>, and <a class="el" href="#l00024">ExtractorLandmarks::parseLandmarks()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#l00033">AnalizadorLandmarks::normalizarLandmarks()</a>, and <a class="el" href="#l00021">ExtractorLandmarks::parseLandmarks()</a>.</p>
 
 </div>
 </div>
@@ -324,43 +309,7 @@ false </dd></dl>
 <p>Vector de puntos que definen el ojo izquierdo. </p>
 <p>Consiste en 6 puntos. Comienza desde la comisura interna del ojo, recorriendo el párpado superior, y siendo la comisura externa el punto 3. Finalmente recorre el parpado inferior. </p>
 
-<p class="reference">Referenced by <a class="el" href="#l00086">LandmarksLogger::log()</a>, <a class="el" href="#l00044">AnalizadorLandmarks::normalizarLandmarks()</a>, and <a class="el" href="#l00024">ExtractorLandmarks::parseLandmarks()</a>.</p>
-
-</div>
-</div>
-<a id="a987f8869c48307d36ad4e3b4ce92a239"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a987f8869c48307d36ad4e3b4ce92a239">&#9670;&nbsp;</a></span>rotacion</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Landmarks::rotacion = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Rotación en grados del rostro. Util cuando se normalizan landmarks. </p>
-
-<p class="reference">Referenced by <a class="el" href="#l00086">LandmarksLogger::log()</a>, and <a class="el" href="#l00044">AnalizadorLandmarks::normalizarLandmarks()</a>.</p>
-
-</div>
-</div>
-<a id="a42f4400ae7c791fe1c10b64d26c6022d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a42f4400ae7c791fe1c10b64d26c6022d">&#9670;&nbsp;</a></span>vacio</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Landmarks::vacio = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Define si la estructura está vacia. </p>
-
-<p class="reference">Referenced by <a class="el" href="#l00038">ExtractorLandmarksDlib::getLandmarks()</a>, <a class="el" href="#l00044">ExtractorLandmarksOpenCV::getLandmarks()</a>, <a class="el" href="#l00086">LandmarksLogger::log()</a>, and <a class="el" href="#l00024">ExtractorLandmarks::parseLandmarks()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#l00033">AnalizadorLandmarks::normalizarLandmarks()</a>, and <a class="el" href="#l00021">ExtractorLandmarks::parseLandmarks()</a>.</p>
 
 </div>
 </div>

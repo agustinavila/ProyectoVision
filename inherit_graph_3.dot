@@ -6,9 +6,7 @@ digraph "Graphical Class Hierarchy"
   rankdir="LR";
   Node0 [label="Feeder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_feeder.html",tooltip="Clase abstracta para proveer obtener nuevos mats."];
   Node0 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node1 [label="KinectFeeder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_kinect_feeder.html",tooltip="Sobrecarga de la clase Feeder para proveer objetos Mat desde una kinect."];
+  Node1 [label="VideoFeeder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_video_feeder.html",tooltip="Sobrecarga de la clase Feeder para abrir un archivo de video."];
   Node0 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="VideoFeeder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_video_feeder.html",tooltip="Sobrecarga de la clase Feeder para abrir un archivo de video."];
-  Node0 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="WebcamFeeder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_webcam_feeder.html",tooltip="Sobrecarga de la clase Feeder para abrir una webcam."];
+  Node2 [label="WebcamFeeder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_webcam_feeder.html",tooltip="Sobrecarga de la clase Feeder para abrir una webcam."];
 }

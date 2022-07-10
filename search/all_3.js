@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['detector_17',['detector',['../class_extractor_landmarks_dlib.html#ad6b4b9e2a495aba3879ff9f0f4335e23',1,'ExtractorLandmarksDlib']]],
-  ['dev_18',['dev',['../class_kinect_feeder.html#a6a5b196fad9f6d44348d24ec49c61a81',1,'KinectFeeder']]],
-  ['dlib_19',['DLIB',['../estructuras_8h.html#a1b2360dac473ac8584c023e988cc1789a38b2b10b37d82eb193c76eab1e5377f0',1,'estructuras.h']]]
+  ['detector_5ffilename_5f_14',['detector_filename_',['../class_extractor_landmarks_dlib.html#ab55f3f642b87911120e4166702418e70',1,'ExtractorLandmarksDlib']]],
+  ['dlib_5fface_5fdetector_5f_15',['dlib_face_detector_',['../class_extractor_landmarks_dlib.html#a0f9a80291260b7025643b78b93a70947',1,'ExtractorLandmarksDlib']]]
 ];

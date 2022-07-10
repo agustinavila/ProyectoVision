@@ -1,11 +1,11 @@
 var class_frame_logger =
 [
-    [ "FrameLogger", "class_frame_logger.html#a49bae2da9cf483c4f403526588dece15", null ],
+    [ "FrameLogger", "class_frame_logger.html#a2cef1e4d0a25c55d4a71bbb085fece7a", null ],
     [ "FrameLogger", "class_frame_logger.html#ae2a90cdb03f4bb2f71ae8d49ed0cb38b", null ],
     [ "~FrameLogger", "class_frame_logger.html#a6c331bf54eb448536555475eee131733", null ],
-    [ "getCont", "class_frame_logger.html#a7264d360bde4ee01b03d0ebae422c734", null ],
+    [ "get_frame_counter", "class_frame_logger.html#a68fa157d99b6c25fbce2bc7187d78f22", null ],
     [ "log", "class_frame_logger.html#a2163dd251d864ff808083eae383ee8ec", null ],
-    [ "frames", "class_frame_logger.html#a8e1b4486256a380f06b04faa39764b9b", null ],
-    [ "nombreVideo", "class_frame_logger.html#a18619d50f70f6efb171cddf8ba69e083", null ],
-    [ "video", "class_frame_logger.html#a5002b7ee34dd4867b73d7ebb4e7fa9f0", null ]
+    [ "frame_counter_", "class_frame_logger.html#afd22357353eea9d2fc9d17175d792c58", null ],
+    [ "video_", "class_frame_logger.html#aa6d06b518777f4989294b50ec5143876", null ],
+    [ "video_file_name_", "class_frame_logger.html#a53c1f5a1f9da10dfaa8eeaf75c661847", null ]
 ];

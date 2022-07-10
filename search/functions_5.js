@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kinectfeeder_201',['KinectFeeder',['../class_kinect_feeder.html#a11d4baa6959ae9f5a903eb4530f46165',1,'KinectFeeder']]]
+  ['landmarkslogger_155',['LandmarksLogger',['../class_landmarks_logger.html#ae8b5625b36100f8d0909025d0557332f',1,'LandmarksLogger::LandmarksLogger(const string &amp;, const FeederType &amp;)'],['../class_landmarks_logger.html#a3900b599fa217985ed752006446b99b1',1,'LandmarksLogger::LandmarksLogger()']]]
 ];

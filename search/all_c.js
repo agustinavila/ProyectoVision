@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['ojoder_96',['ojoDer',['../struct_landmarks.html#a4df77fde70b7dee832cab98d2a3a37d2',1,'Landmarks']]],
-  ['ojoizq_97',['ojoIzq',['../struct_landmarks.html#a4b92bb1a5bbbf69936756c0af99bf3b9',1,'Landmarks']]],
-  ['opencv_98',['OPENCV',['../estructuras_8h.html#a1b2360dac473ac8584c023e988cc1789abd7f38a03a1367a34d54ea25b78eee13',1,'estructuras.h']]]
+  ['ojoder_77',['ojoDer',['../struct_landmarks.html#a4df77fde70b7dee832cab98d2a3a37d2',1,'Landmarks']]],
+  ['ojoizq_78',['ojoIzq',['../struct_landmarks.html#a4b92bb1a5bbbf69936756c0af99bf3b9',1,'Landmarks']]],
+  ['opencv_5fface_5fdetector_5f_79',['opencv_face_detector_',['../class_extractor_landmarks_open_c_v.html#aa963ed8421940d150bf0485fe20966a4',1,'ExtractorLandmarksOpenCV']]]
 ];

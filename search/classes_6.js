@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['videofeeder_151',['VideoFeeder',['../class_video_feeder.html',1,'']]]
+  ['webcamfeeder_119',['WebcamFeeder',['../class_webcam_feeder.html',1,'']]]
 ];

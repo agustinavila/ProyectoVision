@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['setextractor_109',['setExtractor',['../class_analizador_simetria.html#a691a7261a905b77aea6f93b9b27876d1',1,'AnalizadorSimetria']]],
-  ['setfeeder_110',['setFeeder',['../class_analizador_simetria.html#a7f4cdeb29f5787acd137717df8cb8683',1,'AnalizadorSimetria']]],
-  ['setlandmarks_111',['setLandmarks',['../class_analizador_landmarks.html#a134b706eb14535334a7fac40c8ffdeab',1,'AnalizadorLandmarks']]],
-  ['setnombrelog_112',['setNombreLog',['../class_analizador_simetria.html#a3bb3801a75328840051eadb7217526ca',1,'AnalizadorSimetria']]],
-  ['step_113',['step',['../class_analizador_simetria.html#a14b3cc5f1f3014e706540ffe53c8dd9d',1,'AnalizadorSimetria']]],
-  ['stoplandmarkslog_114',['stopLandmarksLog',['../class_analizador_simetria.html#a21ac50cfe2fc813e25290bf61e66a870',1,'AnalizadorSimetria']]],
-  ['stopvideolog_115',['stopVideoLog',['../class_analizador_simetria.html#a42996fcd0453177f8dde96b7c2417f6c',1,'AnalizadorSimetria']]]
+  ['setextractor_87',['setExtractor',['../class_analizador_simetria.html#a480448179ba085d28248143213a7b18a',1,'AnalizadorSimetria']]],
+  ['setfeeder_88',['setFeeder',['../class_analizador_simetria.html#a015f23117ecfd4ead1dfeea0f62692a6',1,'AnalizadorSimetria']]],
+  ['setlandmarks_89',['setLandmarks',['../class_analizador_landmarks.html#a48bb187118aaa3ed755a90d849b30822',1,'AnalizadorLandmarks']]],
+  ['setnombrelog_90',['setNombreLog',['../class_analizador_simetria.html#a3bb3801a75328840051eadb7217526ca',1,'AnalizadorSimetria']]],
+  ['shape_5fpredictor_5f_91',['shape_predictor_',['../class_extractor_landmarks_dlib.html#a3a8e2dc59b6b6d34ea012946639bf484',1,'ExtractorLandmarksDlib']]],
+  ['step_92',['step',['../class_analizador_simetria.html#a14b3cc5f1f3014e706540ffe53c8dd9d',1,'AnalizadorSimetria']]]
 ];

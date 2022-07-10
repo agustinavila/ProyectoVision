@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['videofeeder_2ecc_174',['videofeeder.cc',['../videofeeder_8cc.html',1,'']]],
-  ['videofeeder_2eh_175',['videofeeder.h',['../videofeeder_8h.html',1,'']]]
+  ['webcamfeeder_2ecc_142',['webcamfeeder.cc',['../webcamfeeder_8cc.html',1,'']]],
+  ['webcamfeeder_2eh_143',['webcamfeeder.h',['../webcamfeeder_8h.html',1,'']]]
 ];

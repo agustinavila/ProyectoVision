@@ -7,7 +7,7 @@ digraph "AnalizadorSimetria"
   Node1 [label="AnalizadorSimetria",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Clase principal del programa."];
   Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" ptrLandmarksLogger" ,fontname="Helvetica"];
   Node2 [label="LandmarksLogger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_landmarks_logger.html",tooltip="Clase para guardar los landmarks. Por defecto genera un video."];
-  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" nombreSalida" ,fontname="Helvetica"];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" log_file_name_" ,fontname="Helvetica"];
   Node3 [label="std::string",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class."];
   Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node4 [label="std::basic_string\<\l char \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class."];
@@ -28,5 +28,5 @@ digraph "AnalizadorSimetria"
   Node6 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" landmarksNorm\nlandmarks" ,fontname="Helvetica"];
   Node11 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" ptrVideoLogger" ,fontname="Helvetica"];
   Node11 [label="FrameLogger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_frame_logger.html",tooltip="Clase para guardar los frames. Por defecto genera un video."];
-  Node3 -> Node11 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" nombreVideo" ,fontname="Helvetica"];
+  Node3 -> Node11 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" video_file_name_" ,fontname="Helvetica"];
 }

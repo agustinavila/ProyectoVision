@@ -7,7 +7,6 @@ var hierarchy =
       [ "ExtractorLandmarksOpenCV", "class_extractor_landmarks_open_c_v.html", null ]
     ] ],
     [ "Feeder", "class_feeder.html", [
-      [ "KinectFeeder", "class_kinect_feeder.html", null ],
       [ "VideoFeeder", "class_video_feeder.html", null ],
       [ "WebcamFeeder", "class_webcam_feeder.html", null ]
     ] ],

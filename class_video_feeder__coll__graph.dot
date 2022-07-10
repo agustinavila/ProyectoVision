@@ -6,7 +6,7 @@ digraph "VideoFeeder"
   Node1 [label="VideoFeeder",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Sobrecarga de la clase Feeder para abrir un archivo de video."];
   Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="Feeder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_feeder.html",tooltip="Clase abstracta para proveer obtener nuevos mats."];
-  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" nombreVideo" ,fontname="Helvetica"];
+  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" video_file_name_" ,fontname="Helvetica"];
   Node3 [label="std::string",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class."];
   Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node4 [label="std::basic_string\<\l char \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class."];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['detector_235',['detector',['../class_extractor_landmarks_dlib.html#ad6b4b9e2a495aba3879ff9f0f4335e23',1,'ExtractorLandmarksDlib']]],
-  ['dev_236',['dev',['../class_kinect_feeder.html#a6a5b196fad9f6d44348d24ec49c61a81',1,'KinectFeeder']]]
+  ['detector_5ffilename_5f_174',['detector_filename_',['../class_extractor_landmarks_dlib.html#ab55f3f642b87911120e4166702418e70',1,'ExtractorLandmarksDlib']]],
+  ['dlib_5fface_5fdetector_5f_175',['dlib_face_detector_',['../class_extractor_landmarks_dlib.html#a0f9a80291260b7025643b78b93a70947',1,'ExtractorLandmarksDlib']]]
 ];

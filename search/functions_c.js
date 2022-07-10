@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['webcamfeeder_216',['WebcamFeeder',['../class_webcam_feeder.html#a7c896d307ee214523f9e589638276d62',1,'WebcamFeeder']]],
-  ['what_217',['what',['../class_mi_excepcion.html#abd23fc902765b82ee8328b8d7e4f3740',1,'MiExcepcion']]]
+  ['_7eextractorlandmarksdlib_167',['~ExtractorLandmarksDlib',['../class_extractor_landmarks_dlib.html#aea74a6f4d1f825d2a3370f1bf267eefd',1,'ExtractorLandmarksDlib']]]
 ];

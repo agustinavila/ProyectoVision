@@ -20,13 +20,13 @@ digraph "framelogger.h"
   Node8 [label="feeder.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$feeder_8h.html",tooltip="Archivo de cabecera de la clase abstracta Feeder."];
   Node8 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node9 [label="opencv2/core/core.hpp",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
-  Node8 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node10 [label="opencv2/imgproc/imgproc.hpp",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
-  Node8 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node11 [label="estructuras.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$estructuras_8h.html",tooltip="Descripcion de distintas estructuras de datos usadas por la clase."];
-  Node11 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node12 [label="vector",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
-  Node11 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node13 [label="opencv2/core/types.hpp",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node9 [label="estructuras.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$estructuras_8h.html",tooltip="Descripcion de distintas estructuras de datos usadas por la clase."];
+  Node9 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="vector",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node9 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="opencv2/core/types.hpp",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node8 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="opencv2/core/core.hpp",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node8 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="opencv2/imgproc/imgproc.hpp",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
 }

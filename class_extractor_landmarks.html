@@ -109,71 +109,31 @@ Collaboration diagram for ExtractorLandmarks:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af2e7e35c90c4c5b3476b621274b06f03"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_extractor_landmarks.html#af2e7e35c90c4c5b3476b621274b06f03">ExtractorLandmarks</a> (const std::vector&lt; string &gt; &amp;)</td></tr>
-<tr class="memdesc:af2e7e35c90c4c5b3476b621274b06f03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construye un nuevo objeto de la clase abstracta Extractor <a class="el" href="struct_landmarks.html" title="Estructura para almacenar los landmarks, discriminados segun rasgo facial.">Landmarks</a>.  <a href="class_extractor_landmarks.html#af2e7e35c90c4c5b3476b621274b06f03">More...</a><br /></td></tr>
+<tr class="memitem:af2e7e35c90c4c5b3476b621274b06f03"><td class="memItemLeft" align="right" valign="top"><a id="af2e7e35c90c4c5b3476b621274b06f03"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ExtractorLandmarks</b> (const std::vector&lt; string &gt; &amp;)</td></tr>
 <tr class="separator:af2e7e35c90c4c5b3476b621274b06f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7690134b9005f32c93ed39364caf5e6c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_extractor_landmarks.html#a7690134b9005f32c93ed39364caf5e6c">ExtractorLandmarks</a> ()</td></tr>
-<tr class="separator:a7690134b9005f32c93ed39364caf5e6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6459f43b04920e187432610f0673951b"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_extractor_landmarks.html#a6459f43b04920e187432610f0673951b">~ExtractorLandmarks</a> ()</td></tr>
-<tr class="memdesc:a6459f43b04920e187432610f0673951b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destruye el objeto de la clase Extractor <a class="el" href="struct_landmarks.html" title="Estructura para almacenar los landmarks, discriminados segun rasgo facial.">Landmarks</a>.  <a href="class_extractor_landmarks.html#a6459f43b04920e187432610f0673951b">More...</a><br /></td></tr>
-<tr class="separator:a6459f43b04920e187432610f0673951b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac81800e82134657ed3d7a099d6a2e932"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="struct_landmarks.html">Landmarks</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_extractor_landmarks.html#ac81800e82134657ed3d7a099d6a2e932">parseLandmarks</a> (const std::vector&lt; std::vector&lt; cv::Point2f &gt;&gt; &amp;)</td></tr>
 <tr class="memdesc:ac81800e82134657ed3d7a099d6a2e932"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método para convertir los landmarks "crudos" a una estructura con distintos rasgos.  <a href="class_extractor_landmarks.html#ac81800e82134657ed3d7a099d6a2e932">More...</a><br /></td></tr>
 <tr class="separator:ac81800e82134657ed3d7a099d6a2e932"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e7d0ae30ea9b91b0f7a4cacb1947f9b"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="estructuras_8h.html#a1b2360dac473ac8584c023e988cc1789">TipoExtractor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_extractor_landmarks.html#a8e7d0ae30ea9b91b0f7a4cacb1947f9b">getExtractor</a> ()=0</td></tr>
-<tr class="separator:a8e7d0ae30ea9b91b0f7a4cacb1947f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a009a412ab2d39092991029f40ef06989"><td class="memItemLeft" align="right" valign="top">virtual const std::vector&lt; <a class="el" href="struct_landmarks.html">Landmarks</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_extractor_landmarks.html#a009a412ab2d39092991029f40ef06989">getLandmarks</a> (const cv::Mat &amp;frame)=0</td></tr>
-<tr class="memdesc:a009a412ab2d39092991029f40ef06989"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve la propiedad <a class="el" href="struct_landmarks.html" title="Estructura para almacenar los landmarks, discriminados segun rasgo facial.">Landmarks</a>.  <a href="class_extractor_landmarks.html#a009a412ab2d39092991029f40ef06989">More...</a><br /></td></tr>
-<tr class="separator:a009a412ab2d39092991029f40ef06989"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c919b18240ca2c67e484663239e0791"><td class="memItemLeft" align="right" valign="top"><a id="a1c919b18240ca2c67e484663239e0791"></a>
+virtual const <a class="el" href="estructuras_8h.html#a982fd318d4c51643bf09007471b09277">ExtractorType</a>&#160;</td><td class="memItemRight" valign="bottom"><b>get_extractor_type</b> ()=0</td></tr>
+<tr class="separator:a1c919b18240ca2c67e484663239e0791"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa9990059a2eaeb8f3eff7a89dc18e93"><td class="memItemLeft" align="right" valign="top">virtual const std::vector&lt; <a class="el" href="struct_landmarks.html">Landmarks</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_extractor_landmarks.html#aaa9990059a2eaeb8f3eff7a89dc18e93">get_landmarks</a> (const cv::Mat &amp;frame)=0</td></tr>
+<tr class="memdesc:aaa9990059a2eaeb8f3eff7a89dc18e93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve la propiedad <a class="el" href="struct_landmarks.html" title="Estructura para almacenar los landmarks, discriminados segun rasgo facial.">Landmarks</a>.  <a href="class_extractor_landmarks.html#aaa9990059a2eaeb8f3eff7a89dc18e93">More...</a><br /></td></tr>
+<tr class="separator:aaa9990059a2eaeb8f3eff7a89dc18e93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a168a42ac380edd4d1cc75e6a0454a574"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_landmarks.html">Landmarks</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_extractor_landmarks.html#a168a42ac380edd4d1cc75e6a0454a574">landmarks</a></td></tr>
-<tr class="memdesc:a168a42ac380edd4d1cc75e6a0454a574"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propiedad de las clases, vector de landmarks obtenidos.  <a href="class_extractor_landmarks.html#a168a42ac380edd4d1cc75e6a0454a574">More...</a><br /></td></tr>
+<tr class="memitem:a168a42ac380edd4d1cc75e6a0454a574"><td class="memItemLeft" align="right" valign="top"><a id="a168a42ac380edd4d1cc75e6a0454a574"></a>
+std::vector&lt; <a class="el" href="struct_landmarks.html">Landmarks</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_extractor_landmarks.html#a168a42ac380edd4d1cc75e6a0454a574">landmarks</a></td></tr>
+<tr class="memdesc:a168a42ac380edd4d1cc75e6a0454a574"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propiedad de las clases, vector de landmarks obtenidos. <br /></td></tr>
 <tr class="separator:a168a42ac380edd4d1cc75e6a0454a574"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Clase abstracta para extraer landmarks de un Mat. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="af2e7e35c90c4c5b3476b621274b06f03"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2e7e35c90c4c5b3476b621274b06f03">&#9670;&nbsp;</a></span>ExtractorLandmarks() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">ExtractorLandmarks::ExtractorLandmarks </td>
-          <td>(</td>
-          <td class="paramtype">const std::vector&lt; string &gt; &amp;&#160;</td>
-          <td class="paramname"><em>nombres</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Construye un nuevo objeto de la clase abstracta Extractor <a class="el" href="struct_landmarks.html" title="Estructura para almacenar los landmarks, discriminados segun rasgo facial.">Landmarks</a>. </p>
-
-</div>
-</div>
-<a id="a7690134b9005f32c93ed39364caf5e6c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7690134b9005f32c93ed39364caf5e6c">&#9670;&nbsp;</a></span>ExtractorLandmarks() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">ExtractorLandmarks::ExtractorLandmarks </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6459f43b04920e187432610f0673951b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6459f43b04920e187432610f0673951b">&#9670;&nbsp;</a></span>~ExtractorLandmarks()</h2>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aaa9990059a2eaeb8f3eff7a89dc18e93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa9990059a2eaeb8f3eff7a89dc18e93">&#9670;&nbsp;</a></span>get_landmarks()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -182,64 +142,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">ExtractorLandmarks::~ExtractorLandmarks </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Destruye el objeto de la clase Extractor <a class="el" href="struct_landmarks.html" title="Estructura para almacenar los landmarks, discriminados segun rasgo facial.">Landmarks</a>. </p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a8e7d0ae30ea9b91b0f7a4cacb1947f9b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8e7d0ae30ea9b91b0f7a4cacb1947f9b">&#9670;&nbsp;</a></span>getExtractor()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual const <a class="el" href="estructuras_8h.html#a1b2360dac473ac8584c023e988cc1789">TipoExtractor</a> ExtractorLandmarks::getExtractor </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="class_extractor_landmarks_open_c_v.html#a9d9863125a2dd684ade3338cd2ead8ea">ExtractorLandmarksOpenCV</a>, and <a class="el" href="class_extractor_landmarks_dlib.html#a57fee86f41fa5b01328cef800aa8c99d">ExtractorLandmarksDlib</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="#l00240">AnalizadorSimetria::getExtractor()</a>, and <a class="el" href="#l00095">AnalizadorSimetria::setExtractor()</a>.</p>
-
-</div>
-</div>
-<a id="a009a412ab2d39092991029f40ef06989"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a009a412ab2d39092991029f40ef06989">&#9670;&nbsp;</a></span>getLandmarks()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const std::vector&lt; <a class="el" href="struct_landmarks.html">Landmarks</a> &gt; ExtractorLandmarks::getLandmarks </td>
+          <td class="memname">const std::vector&lt; <a class="el" href="struct_landmarks.html">Landmarks</a> &gt; ExtractorLandmarks::get_landmarks </td>
           <td>(</td>
           <td class="paramtype">const cv::Mat &amp;&#160;</td>
           <td class="paramname"><em>frame</em></td><td>)</td>
@@ -262,11 +165,11 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>const std::vector&lt;Landmarks&gt; </dd></dl>
 
-<p>Implemented in <a class="el" href="class_extractor_landmarks_open_c_v.html#a9a5da4534225149572923f5ead74f941">ExtractorLandmarksOpenCV</a>, and <a class="el" href="class_extractor_landmarks_dlib.html#a8acfb18925d63dff58e5e71f25195120">ExtractorLandmarksDlib</a>.</p>
+<p>Implemented in <a class="el" href="class_extractor_landmarks_dlib.html#a6cea41b35322a9307259672b70b65e3e">ExtractorLandmarksDlib</a>, and <a class="el" href="class_extractor_landmarks_open_c_v.html#afde805160d8b617c78ab672285090175">ExtractorLandmarksOpenCV</a>.</p>
 
-<p class="reference">References <a class="el" href="#l00037">landmarks</a>.</p>
+<p class="reference">References <a class="el" href="#l00030">landmarks</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#l00064">AnalizadorSimetria::step()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#l00058">AnalizadorSimetria::step()</a>.</p>
 
 </div>
 </div>
@@ -280,7 +183,7 @@ Private Attributes</h2></td></tr>
           <td class="memname">const std::vector&lt; <a class="el" href="struct_landmarks.html">Landmarks</a> &gt; ExtractorLandmarks::parseLandmarks </td>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; std::vector&lt; cv::Point2f &gt;&gt; &amp;&#160;</td>
-          <td class="paramname"><em>landmarksSerie</em></td><td>)</td>
+          <td class="paramname"><em>landmarks_vector_</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -289,36 +192,9 @@ Private Attributes</h2></td></tr>
 <p>Método para convertir los landmarks "crudos" a una estructura con distintos rasgos. </p>
 <dl class="section return"><dt>Returns</dt><dd>const std::vector&lt;Landmarks&gt; </dd></dl>
 
-<p class="reference">References <a class="el" href="#l00139">Landmarks::boca</a>, <a class="el" href="#l00121">Landmarks::cejaDer</a>, <a class="el" href="#l00113">Landmarks::cejaIzq</a>, <a class="el" href="#l00037">landmarks</a>, <a class="el" href="#l00087">Landmarks::menton</a>, <a class="el" href="#l00151">Landmarks::nariz</a>, <a class="el" href="#l00105">Landmarks::ojoDer</a>, <a class="el" href="#l00096">Landmarks::ojoIzq</a>, and <a class="el" href="#l00067">Landmarks::vacio</a>.</p>
+<p class="reference">References <a class="el" href="#l00132">Landmarks::boca</a>, <a class="el" href="#l00114">Landmarks::cejaDer</a>, <a class="el" href="#l00106">Landmarks::cejaIzq</a>, <a class="el" href="#l00030">landmarks</a>, <a class="el" href="#l00080">Landmarks::menton</a>, <a class="el" href="#l00144">Landmarks::nariz</a>, <a class="el" href="#l00098">Landmarks::ojoDer</a>, <a class="el" href="#l00089">Landmarks::ojoIzq</a>, and <a class="el" href="#l00062">Landmarks::vacio</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#l00038">ExtractorLandmarksDlib::getLandmarks()</a>, and <a class="el" href="#l00044">ExtractorLandmarksOpenCV::getLandmarks()</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="a168a42ac380edd4d1cc75e6a0454a574"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a168a42ac380edd4d1cc75e6a0454a574">&#9670;&nbsp;</a></span>landmarks</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="struct_landmarks.html">Landmarks</a>&gt; ExtractorLandmarks::landmarks</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Propiedad de las clases, vector de landmarks obtenidos. </p>
-
-<p class="reference">Referenced by <a class="el" href="#l00061">getLandmarks()</a>, and <a class="el" href="#l00024">parseLandmarks()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#l00035">ExtractorLandmarksOpenCV::get_landmarks()</a>, and <a class="el" href="#l00036">ExtractorLandmarksDlib::get_landmarks()</a>.</p>
 
 </div>
 </div>

@@ -9,7 +9,7 @@ var class_analizador_landmarks =
     [ "getLandmarks", "class_analizador_landmarks.html#a11765325876194183597fcee9dc2c9ec", null ],
     [ "getNormLandmarks", "class_analizador_landmarks.html#a5068dd944641fa8b3bc94c6bf3e10f3b", null ],
     [ "normalizarLandmarks", "class_analizador_landmarks.html#aa0720397c9bbd0e8596888965c9ce7dc", null ],
-    [ "setLandmarks", "class_analizador_landmarks.html#a134b706eb14535334a7fac40c8ffdeab", null ],
+    [ "setLandmarks", "class_analizador_landmarks.html#a48bb187118aaa3ed755a90d849b30822", null ],
     [ "landmarks", "class_analizador_landmarks.html#a81e7fd3458f51c69c164317cc026c489", null ],
     [ "landmarksNorm", "class_analizador_landmarks.html#aa47d1b137c00671ebf03404c60818f4a", null ]
 ];

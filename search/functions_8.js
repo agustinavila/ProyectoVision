@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['normalizarlandmarks_206',['normalizarLandmarks',['../class_analizador_landmarks.html#aa0720397c9bbd0e8596888965c9ce7dc',1,'AnalizadorLandmarks']]]
+  ['parselandmarks_158',['parseLandmarks',['../class_extractor_landmarks.html#ac81800e82134657ed3d7a099d6a2e932',1,'ExtractorLandmarks']]]
 ];

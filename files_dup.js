@@ -30,9 +30,7 @@ var files_dup =
       [ "FrameLogger", "class_frame_logger.html", "class_frame_logger" ]
     ] ],
     [ "kinectfeeder.cc", "kinectfeeder_8cc.html", null ],
-    [ "kinectfeeder.h", "kinectfeeder_8h.html", [
-      [ "KinectFeeder", "class_kinect_feeder.html", "class_kinect_feeder" ]
-    ] ],
+    [ "kinectfeeder.h", "kinectfeeder_8h.html", null ],
     [ "landmarkslogger.cc", "landmarkslogger_8cc.html", null ],
     [ "landmarkslogger.h", "landmarkslogger_8h.html", [
       [ "LandmarksLogger", "class_landmarks_logger.html", "class_landmarks_logger" ]
