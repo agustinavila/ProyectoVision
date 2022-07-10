@@ -10,16 +10,15 @@
 
 #if !defined(FRAMELOGGER_H)
 #define FRAMELOGGER_H
-
-#include <ctime>
-#include <iomanip>
-#include <iostream>
-#include <sstream>
-
-#include "feeder.h"
+// clang-format off
 #include <opencv2/video/video.hpp>
 #include <opencv2/videoio.hpp>
-
+#include <iostream>
+#include <iomanip>
+#include <ctime>
+#include <sstream>
+#include "feeder.h"
+// clang-format on
 using namespace std;
 using namespace cv;
 
