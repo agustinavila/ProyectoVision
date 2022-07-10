@@ -11,13 +11,14 @@
 #if !defined(FRAMELOGGER_H)
 #define FRAMELOGGER_H
 
+#include <ctime>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+
+#include "feeder.h"
 #include <opencv2/video/video.hpp>
 #include <opencv2/videoio.hpp>
-#include <iostream>
-#include <iomanip>
-#include <ctime>
-#include <sstream>
-#include "feeder.h"
 
 using namespace std;
 using namespace cv;
@@ -30,35 +31,32 @@ using namespace cv;
  * el feeder del que se proveen los fotogramas, y la fecha y hora del comienzo del registro.
  * Por lo pronto solo trabaja con videos, pero eventualmetne podria guardar secuencias de imagenes.
  */
-class FrameLogger
-{
+class FrameLogger {
 private:
-	string video_file_name_ = "Salida";
-
-	double frame_counter_ = 0;
-
-	VideoWriter video_;
+    VideoWriter video_; ///< Objeto Videowriter de Opencv, encargado de manejar la escritura y codificacion del video
+    string video_file_name_ = "Salida"; ///< Nombre base para utilizar con el archivo
+    double frame_counter_ = 0;          ///< contador para tener un registro de fotogramas
 
 public:
-	/**
+    /**
 	 * @brief Construye un nuevo objeto de la clase Frame Logger.
 	 *
 	 * @details Constructor a utilizar generalmente, se le pasa como argumentos
 	 * el nombre base del video y el tipo de feeder utilizado.
 	 */
-	FrameLogger(const string &, const FeederType &);
+    FrameLogger(const string&, const FeederType&);
 
-	/**
+    /**
 	 * @brief Constructor por defecto, genera un nombre por defecto.
 	 * @bug Puede tener problemas segun el tipo de feeder que provee los frames.
 	 */
-	FrameLogger();
+    FrameLogger();
 
-	~FrameLogger();
+    ~FrameLogger();
 
-	double get_frame_counter() { return frame_counter_; };
+    double get_frame_counter() { return frame_counter_; };
 
-	void log(const Mat &);
+    void log(const Mat&);
 };
 
 #endif // FRAMELOGGER_H

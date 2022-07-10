@@ -8,17 +8,16 @@
  * @copyright Copyright (c) 2021
  *
  */
-#include "../feeder.h"
 #include "../webcamfeeder.h"
+
+#include "../feeder.h"
 
 WebcamFeeder::WebcamFeeder(int idx_)
 {
     cout << "Abriendo webcam...";
-    if (!cap_.open(idx_))
-    {
+    if (!cap_.open(idx_)) {
         cout << "No se detectó camara, verifique conexion" << endl;
-    }
-    else
+    } else
         cout << "webcam abierta!" << endl;
 }
 

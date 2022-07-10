@@ -14,18 +14,19 @@
 
 #include <iostream>
 #include <vector>
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/core/core.hpp>
-#include "feeder.h"					   //Clase abstracta Feeder
-#include "webcamfeeder.h"			   //Clase concreta de Feeder para webcam
-#include "videofeeder.h"			   //Clase concreta de Feeder para un video
-#include "framelogger.h"			   //Clase Frame logger
-#include "extractorlandmarks.h"		   //Clase abstracta de extractor de landmarks
+
+#include "analizadorlandmarks.h"       //Clase para analizar simetria - métodos incompletos
+#include "estructuras.h"               //Estructuras, enums, excepciones
+#include "extractorlandmarks.h"        //Clase abstracta de extractor de landmarks
 #include "extractorlandmarks_dlib.h"   //Clase concreta del extractor usando dlib
 #include "extractorlandmarks_opencv.h" //Clase concreta del extractor usando openCV
-#include "analizadorlandmarks.h"	   //Clase para analizar simetria - métodos incompletos
-#include "estructuras.h"			   //Estructuras, enums, excepciones
-#include "landmarkslogger.h"		   //Clase para realizar el log de landmarks
+#include "feeder.h"                    //Clase abstracta Feeder
+#include "framelogger.h"               //Clase Frame logger
+#include "landmarkslogger.h"           //Clase para realizar el log de landmarks
+#include "videofeeder.h"               //Clase concreta de Feeder para un video
+#include "webcamfeeder.h"              //Clase concreta de Feeder para webcam
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
 #ifdef KINECT_AVAILABLE
 #include "kinectfeeder.h" //Clase concreta de Feeder para Kinect
 #endif
@@ -43,252 +44,98 @@ using namespace cv;
  * y si está habilitado el log y el extractor de landmarks, agrega el fotograma al video
  * y analiza los nuevos landmarks.
  */
-class AnalizadorSimetria
-{
+class AnalizadorSimetria {
 private:
-	/**
-	 * @brief Propiedad que cuantiza la asimetria de un rostro.
-	 *
-	 */
-	float asimetria;
+    // clang-format off
+	Feeder *ptrFeeder = NULL;					///< Puntero de la clase abstracta Feeder apuntando a la implementacion concreta
+	ExtractorLandmarks *ptrExtractor = NULL;	///< Puntero de clase abstracta ExtractorLandmarks que apunta a la implementacion concreta
+	FrameLogger *ptrVideoLogger = NULL;			///< Logger de fotogramas. Por el momento va registrando en un video
+	LandmarksLogger *ptrLandmarksLogger = NULL; ///< Logger de landmarks. Por el momento va registrando en un archivo YAML
+	AnalizadorLandmarks analizadorLandmarks;	///< Objeto que analiza y normaliza los landmarks
 
-	/**
-	 * @brief Propiedad de tipo cv::Mat que contiene el ultimo fotograma obtenido
-	 *
-	 */
-	Mat frame;
+	FeederType tipoFeeder;		 ///< Tipo de Feeder siendo utilizado
+	ExtractorType tipoExtractor; ///< Tipo de ExtractorLandmarks siendo utilizado
 
-	/**
-	 * @brief Puntero de la clase abstracta Feeder apuntando a la implementacion concreta
-	 *
-	 */
-	Feeder *ptrFeeder = NULL;
+	std::vector<Landmarks> landmarks;	  ///< Vector de landmarks actual, "crudos" como se obtuvieron del extractor
+	std::vector<Landmarks> landmarksNorm; ///< Vector de landmarks normalizado.
 
-	/**
-	 * @brief Puntero de clase abstracta ExtractorLandmarks que apunta a la implementacion concreta
-	 *
-	 */
-	ExtractorLandmarks *ptrExtractor = NULL;
+	FileStorage fs;															///< objeto de openCV que administra el fichero de configuracion.
+	string nombreFrameLogger = "Salida.avi";								///< Nombre por defecto del archivo de salida.
+	string nombreLandmarksLogger = "landmarks.yaml";						///< Nombre del archivo de salida de los landmarks
+	string nombreConf = "config.yaml";										///< Nombre del archivo de configuracion.
+	string nombreModeloDlib = "data/shape_predictor_68_face_landmarks.dat"; ///< Nombre del archivo del predictor utilizado por dlib
+	string nombreCascadeOpenCV = "data/haarcascade_frontalface_alt2.xml";	///< Nombre del archivo del detector de rostros de openCV
+	string nombreLBFOpenCV = "data/lbfmodel.yaml";							///< Nombre del archivo del detector de landmarks utilizado por openCV
+	string nombreVideoFeeder = "video.avi";									///< Nombre del archivo de salida del logger de video.
 
-	/**
-	 * @brief Logger de fotogramas. Por el momento va registrando en un video
-	 *
-	 */
-	FrameLogger *ptrVideoLogger = NULL;
+	float asimetria;	 ///< Propiedad que cuantiza la asimetria de un rostro.
+	Mat frame;			 ///< Propiedad de tipo cv::Mat que contiene el ultimo fotograma obtenido
+	float threshold = 2; ///< Nivel de umbral de asimetria para registrar o no un rostro
 
-	/**
-	 * @brief Logger de landmarks. Por el momento va registrando en un archivo YAML
-	 *
-	 */
-	LandmarksLogger *ptrLandmarksLogger = NULL;
-
-	/**
-	 * @brief Objeto que analiza y normaliza los landmarks
-	 *
-	 */
-	AnalizadorLandmarks analizadorLandmarks;
-
-	/**
-	 * @brief Vector de landmarks actual, "crudos" como se obtuvieron del extractor
-	 *
-	 */
-	std::vector<Landmarks> landmarks;
-
-	/**
-	 * @brief Vector de landmarks normalizado.
-	 *
-	 */
-	std::vector<Landmarks> landmarksNorm;
-
-	/**
-	 * @brief objeto de openCV que administra el fichero de configuracion.
-	 *
-	 */
-	FileStorage fs;
-
-	/**
-	 * @brief Nombre por defecto del archivo de salida.
-	 *
-	 */
-	string nombreFrameLogger = "Salida.avi";
-
-	/**
-	 * @brief Nombre del archivo de salida de los landmarks
-	 *
-	 */
-	string nombreLandmarksLogger = "landmarks.yaml";
-
-	/**
-	 * @brief Nombre del archivo de configuracion.
-	 *
-	 */
-	string nombreConf = "config.yaml";
-
-	/**
-	 * @brief Nombre del archivo del predictor utilizado por dlib
-	 *
-	 */
-	string nombreModeloDlib = "data/shape_predictor_68_face_landmarks.dat";
-
-	/**
-	 * @brief Nombre del archivo del detector de rostros de openCV
-	 *
-	 */
-	string nombreCascadeOpenCV = "data/haarcascade_frontalface_alt2.xml";
-
-	/**
-	 * @brief Nombre del archivo del detector de landmarks utilizado por openCV
-	 *
-	 */
-	string nombreLBFOpenCV = "data/lbfmodel.yaml";
-
-	/**
-	 * @brief Nombre del archivo de salida del logger de video.
-	 *
-	 */
-	string nombreVideoFeeder = "video.avi";
-
-	/**
-	 * @brief Nivel de umbral de asimetria para registrar o no un rostro
-	 *
-	 */
-	float threshold = 2;
-
-	/**
-	 * @brief Tipo de Feeder siendo utilizado
-	 *
-	 */
-	FeederType tipoFeeder;
-
-	/**
-	 * @brief Tipo de ExtractorLandmarks siendo utilizado
-	 *
-	 */
-	ExtractorType tipoExtractor;
-
-	/**
-	 * @brief Bandera para habilitar/deshabilitar el log de video
-	 *
-	 */
-	bool grabarVideoHabilitado = 0;
-
-	/**
-	 * @brief Bandera para habilitar/deshabilitar el log de landmarks
-	 *
-	 */
-	bool grabarLandmarksHabilitado = 0;
-
+	bool grabarVideoHabilitado = 0;		///< Bandera para habilitar/deshabilitar el log de video
+	bool grabarLandmarksHabilitado = 0; ///< Bandera para habilitar/deshabilitar el log de landmarks
+    // clang-format on
 public:
-	/**
+    /**
 	 * @brief Construye un nuevo objeto de la clase Analizador Simetria. Utiliza valores por defecto
 	 *
 	 */
-	AnalizadorSimetria();
+    AnalizadorSimetria();
 
-	/**
+    /**
 	 * @brief Construye un nuevo objeto de la clase Analizador Simetria, proveyendole un archivo de configuración
 	 *
 	 */
-	AnalizadorSimetria(const string &);
+    AnalizadorSimetria(const string&);
 
-	/**
-	 * @brief Destruye el objeto de la clase Analizador Simetria
-	 *
-	 */
-	~AnalizadorSimetria();
+    ~AnalizadorSimetria();
 
-	/**
-	 * @brief Devuelve el último frame obtenido
-	 *
-	 * @return Mat - objeto del tipo cv::Mat conteniendo el fotograma actual
-	 */
-	Mat getFrame() { return frame; };
+    Mat getFrame() { return frame; };
 
-	/**
-	 * @brief Devuelve la última asimetria calculada
-	 *
-	 * @return const float - Asimetria calculada
-	 */
-	const float getAsimetria() { return asimetria; };
+    const float getAsimetria() { return asimetria; };
 
-	/**
-	 * @brief Devuelve el ultimo vector de Landmarks calculado
-	 *
-	 * @return const std::vector<Landmarks> - Vector de Landmarks
-	 */
-	const std::vector<Landmarks> getLandmarks() { return landmarks; };
+    const std::vector<Landmarks> getLandmarks() { return landmarks; };
 
-	/**
-	 * @brief Devuelve el último vector de Landmarks normalizado
-	 *
-	 * @return const std::vector<Landmarks> - Vector de Landmarks normalizado
-	 */
-	const std::vector<Landmarks> getLandmarksNorm() { return landmarks; };
+    const std::vector<Landmarks> getLandmarksNorm() { return landmarks; };
 
-	/**
-	 * @brief Devuelve el tipo concreto de Feeder utilizado
-	 *
-	 * @return TipoFeeder
-	 */
-	FeederType get_feeder_type() { return ptrFeeder->get_feeder_type(); };
+    FeederType get_feeder_type() { return ptrFeeder->get_feeder_type(); };
 
-	/**
-	 * @brief Devuelve el tipo de  ExtractorLandmarks utilizado.
-	 *
-	 * @return ExtractorType
-	 */
-	ExtractorType getExtractor() { return ptrExtractor->get_extractor_type(); };
+    ExtractorType getExtractor() { return ptrExtractor->get_extractor_type(); };
 
-	/**
+    /**
 	 * @brief Setea tipo concreto de Feeder del analizador
 	 *
 	 * @details Genera un nuevo objeto de algun Feeder concreto.
 	 * Si se elige el mismo tipo de feeder que el actual, no hace nada.
 	 * Si no, elimina el que se estaba utilizando y genera uno nuevo.
 	 */
-	void setFeeder(FeederType);
+    void setFeeder(FeederType);
 
-	/**
+    /**
 	 * @brief Setea el tipo concreto de Extractor del analizador.
 	 *
 	 * @details Genera un nuevo objeto de un ExtractoLandmarks concreto.
 	 * Si se elige el mismo tipo que el ya establecido, no hace nada.
 	 * Si no, elimina el que se estaba utilizando y genera uno nuevo.
 	 */
-	void setExtractor(ExtractorType);
+    void setExtractor(ExtractorType);
 
-	/**
+    /**
 	 * @brief Setea el nombre base del video del logger.
 	 *
 	 * @param nombre - Nombre base del video de salida del logger
 	 */
-	void setNombreLog(const string &nombre) { this->nombreFrameLogger = nombre; };
+    void setNombreLog(const string& nombre) { this->nombreFrameLogger = nombre; };
 
-	/**
-	 * @brief Método para invocar un FrameLogger y comenzar la grabación.
-	 *
-	 */
-	void empezarVideoLog(const FeederType &);
+    void empezarVideoLog(const FeederType&);
 
-	/**
-	 * @brief Método para invocar un LandmarksLogger y comenzar la grabación.
-	 *
-	 */
-	void empezarLandmarksLog(const FeederType &);
+    void stopVideoLog();
 
-	/**
-	 * @brief Método para detener la grabación del FrameLogger
-	 *
-	 */
-	void stopVideoLog();
+    void empezarLandmarksLog(const FeederType&);
 
-	/**
-	 * @brief Método para detener la grabación del LandmarksLogger
-	 *
-	 */
-	void stopLandmarksLog();
+    void stopLandmarksLog();
 
-	/**
+    /**
 	 * @brief Método principal a llamar para operar la clase.
 	 *
 	 * @details Este método es el encargado de actualizar toda la clase.
@@ -300,14 +147,14 @@ public:
 	 *
 	 * @return Mat
 	 */
-	Mat step();
+    Mat step();
 
-	/**
+    /**
 	 * @brief Método encargado de cargar el archivo de configuración y definir las propiedades del objeto
 	 *
 	 * @param[in] nombreArchivo - Nombre del archivo de configuración.
 	 */
-	void cargarConfiguracion(const string &nombreArchivo);
+    void cargarConfiguracion(const string& nombreArchivo);
 };
 
 #endif // ANALIZADORSIMETRIA_H
