@@ -10,16 +10,15 @@
  */
 #if !defined(WEBCAMFEEDER_H)
 #define WEBCAMFEEDER_H
-
-#include <iostream>
-#include <vector>
-
+// clang-format off
 #include "feeder.h"
+#include <opencv2/videoio/videoio_c.h>
 #include <opencv2/imgproc/types_c.h>
 #include <opencv2/video/video.hpp>
 #include <opencv2/videoio.hpp>
-#include <opencv2/videoio/videoio_c.h>
-
+#include <iostream>
+#include <vector>
+// clang-format on
 using namespace std;
 using namespace cv;
 

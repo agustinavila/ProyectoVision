@@ -12,20 +12,20 @@
 #if !defined(EXTRACTORLANDMARKSDLIB_H)
 #define EXTRACTORLANDMARKSDLIB_H
 
-#include <array>
+// clang-format off
 #include <iostream>
 #include <string>
+#include <array>
 #include <vector>
-
-#include "extractorlandmarks.h"
-#include <dlib/gui_widgets.h>
-#include <dlib/image_processing.h>
 #include <dlib/image_processing/frontal_face_detector.h>
 #include <dlib/image_processing/render_face_detections.h>
+#include <dlib/image_processing.h>
+#include <dlib/gui_widgets.h>
 #include <dlib/opencv.h>
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc.hpp>
-
+#include "extractorlandmarks.h"
+// clang-format on
 using namespace dlib;
 using namespace std;
 

@@ -11,22 +11,25 @@
 
 #if !defined(ANALIZADORSIMETRIA_H)
 #define ANALIZADORSIMETRIA_H
-
+// clang-format off
 #include <iostream>
 #include <vector>
 
-#include "analizadorlandmarks.h"       //Clase para analizar simetria - métodos incompletos
-#include "estructuras.h"               //Estructuras, enums, excepciones
-#include "extractorlandmarks.h"        //Clase abstracta de extractor de landmarks
+#include <iostream>
+#include <vector>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/core/core.hpp>
+#include "feeder.h"					   //Clase abstracta Feeder
+#include "webcamfeeder.h"			   //Clase concreta de Feeder para webcam
+#include "videofeeder.h"			   //Clase concreta de Feeder para un video
+#include "framelogger.h"			   //Clase Frame logger
+#include "extractorlandmarks.h"		   //Clase abstracta de extractor de landmarks
 #include "extractorlandmarks_dlib.h"   //Clase concreta del extractor usando dlib
 #include "extractorlandmarks_opencv.h" //Clase concreta del extractor usando openCV
-#include "feeder.h"                    //Clase abstracta Feeder
-#include "framelogger.h"               //Clase Frame logger
-#include "landmarkslogger.h"           //Clase para realizar el log de landmarks
-#include "videofeeder.h"               //Clase concreta de Feeder para un video
-#include "webcamfeeder.h"              //Clase concreta de Feeder para webcam
-#include <opencv2/core/core.hpp>
-#include <opencv2/highgui/highgui.hpp>
+#include "analizadorlandmarks.h"	   //Clase para analizar simetria - métodos incompletos
+#include "estructuras.h"			   //Estructuras, enums, excepciones
+#include "landmarkslogger.h"		   //Clase para realizar el log de landmarks
+// clang-format on
 #ifdef KINECT_AVAILABLE
 #include "kinectfeeder.h" //Clase concreta de Feeder para Kinect
 #endif
