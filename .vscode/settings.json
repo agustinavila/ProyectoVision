@@ -3,6 +3,8 @@
         "*.asm": "8051",
         "string": "cpp",
         "ostream": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "chrono": "cpp",
+        "complex": "cpp"
     }
 }
