@@ -9,9 +9,9 @@
  *
  */
 
-#include "../extractorlandmarks_dlib.h"
+#include "extractorlandmarks_dlib.h"
 
-#include "../extractorlandmarks.h"
+// #include "../extractorlandmarks.h"
 
 ExtractorLandmarksDlib::ExtractorLandmarksDlib(const std::vector<string>& nombres)
 {

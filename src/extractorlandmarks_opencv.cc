@@ -9,7 +9,7 @@
  *
  */
 
-#include "../extractorlandmarks_opencv.h"
+#include "extractorlandmarks_opencv.h"
 
 ExtractorLandmarksOpenCV::ExtractorLandmarksOpenCV(const std::vector<string>& nombres)
 {

@@ -9,7 +9,7 @@
  *
  */
 
-#include "../analizadorsimetria.h"
+#include "analizadorsimetria.h"
 
 // AnalizadorSimetria::AnalizadorSimetria(Feeder *feeder = new WebcamFeeder, ExtractorLandmarks *extractor = new ExtractorLandmarksDlib) : ptrFeeder(feeder), ptrExtractor(extractor)
 // {

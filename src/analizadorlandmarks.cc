@@ -9,7 +9,7 @@
  *
  */
 
-#include "../analizadorlandmarks.h"
+#include "analizadorlandmarks.h"
 
 AnalizadorLandmarks::AnalizadorLandmarks() { cout << "Construyendo el analizador de landmarks..." << endl; }
 
@@ -19,10 +19,10 @@ void AnalizadorLandmarks::setLandmarks(const vector<Landmarks>& lm) { this->land
 
 inline const float AnalizadorLandmarks::calcularAngulo(const Point2f& a, const Point2f& b)
 {
-    if ((a.x - b.x) != 0) {
-        return atan((a.y - b.y) / (a.x - b.x)) * 180 / CV_PI;
+    if ((b.x - a.x) != 0) {
+        return atan((b.y - a.y) / (b.x - a.x)) * 180 / CV_PI;
     } else
-        return 0;
+        return ((b.y > a.y) ? 90 : -90);
 }
 
 inline const float AnalizadorLandmarks::calcularPendiente(const Point2f& a, const Point2f& b)

@@ -9,9 +9,9 @@
  *
  */
 #ifdef KINECT_AVAILABLE
-#include "../kinectfeeder.h"
+#include "kinectfeeder.h"
 
-#include "../feeder.h"
+// #include "../feeder.h"
 
 KinectFeeder::KinectFeeder()
 {

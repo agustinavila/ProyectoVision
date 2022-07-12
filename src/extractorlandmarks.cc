@@ -9,7 +9,7 @@
  *
  */
 
-#include "../extractorlandmarks.h"
+#include "extractorlandmarks.h"
 
 ExtractorLandmarks::ExtractorLandmarks(){};
 

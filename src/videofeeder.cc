@@ -9,7 +9,7 @@
  *
  */
 
-#include "../videofeeder.h"
+#include "videofeeder.h"
 
 VideoFeeder::VideoFeeder(string& nombre)
 {

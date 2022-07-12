@@ -9,7 +9,7 @@
  *
  */
 
-#include "../landmarkslogger.h"
+#include "landmarkslogger.h"
 
 LandmarksLogger::LandmarksLogger()
 {

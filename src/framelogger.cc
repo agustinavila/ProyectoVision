@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2021
  *
  */
-#include "../framelogger.h"
+#include "framelogger.h"
 
 FrameLogger::FrameLogger()
 {
