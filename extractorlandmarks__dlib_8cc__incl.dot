@@ -5,7 +5,7 @@ digraph "extractorlandmarks_dlib.cc"
   node [fontname="Helvetica",fontsize="10",shape=record];
   Node1 [label="extractorlandmarks\l_dlib.cc",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Implementacion de la clase concreta ExtractorLandmarks_dlib."];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="../extractorlandmarks\l_dlib.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$extractorlandmarks__dlib_8h.html",tooltip="Archivo de cabecera de la clase concreta ExtractorLandmarksDlib."];
+  Node2 [label="extractorlandmarks\l_dlib.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$extractorlandmarks__dlib_8h.html",tooltip="Archivo de cabecera de la clase concreta ExtractorLandmarksDlib."];
   Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="iostream",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -40,5 +40,4 @@ digraph "extractorlandmarks_dlib.cc"
   Node15 -> Node16 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node16 [label="opencv2/core/types.hpp",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node14 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node1 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }

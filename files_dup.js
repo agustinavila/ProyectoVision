@@ -4,6 +4,7 @@ var files_dup =
     [ "analizadorlandmarks.h", "analizadorlandmarks_8h.html", [
       [ "AnalizadorLandmarks", "class_analizador_landmarks.html", "class_analizador_landmarks" ]
     ] ],
+    [ "analizadorlandmarks_test.cc", null, null ],
     [ "analizadorsimetria.cc", "analizadorsimetria_8cc.html", null ],
     [ "analizadorsimetria.h", "analizadorsimetria_8h.html", [
       [ "AnalizadorSimetria", "class_analizador_simetria.html", "class_analizador_simetria" ]
@@ -40,7 +41,6 @@ var files_dup =
     [ "videofeeder.h", "videofeeder_8h.html", [
       [ "VideoFeeder", "class_video_feeder.html", "class_video_feeder" ]
     ] ],
-    [ "webcamfeeder.cc", "webcamfeeder_8cc.html", null ],
     [ "webcamfeeder.h", "webcamfeeder_8h.html", [
       [ "WebcamFeeder", "class_webcam_feeder.html", "class_webcam_feeder" ]
     ] ]
