@@ -17,19 +17,6 @@ AnalizadorLandmarks::~AnalizadorLandmarks() { cout << "destructor del analizador
 
 void AnalizadorLandmarks::setLandmarks(const vector<Landmarks>& lm) { this->landmarks = lm; }
 
-inline const float AnalizadorLandmarks::calcularAngulo(const Point2f& a, const Point2f& b)
-{
-    if ((b.x - a.x) != 0) {
-        return atan((b.y - a.y) / (b.x - a.x)) * 180 / CV_PI;
-    } else
-        return ((b.y > a.y) ? 90 : -90);
-}
-
-inline const float AnalizadorLandmarks::calcularPendiente(const Point2f& a, const Point2f& b)
-{
-    return abs((a.x - b.x) / (a.y - b.y));
-}
-
 void AnalizadorLandmarks::normalizarLandmarks()
 {
     Mat matrizRotacion;
@@ -81,11 +68,4 @@ const float AnalizadorLandmarks::calcularAsimetria()
     return asimetria;
 }
 
-inline const float AnalizadorLandmarks::calcularMax(const float& a, const float& b)
-{
-    if (a > b) {
-        return a;
-    } else {
-        return b;
-    }
-}
+// inline const float AnalizadorLandmarks::calcularMax(const float& a, const float& b)
