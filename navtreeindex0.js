@@ -24,6 +24,7 @@ var NAVTREEINDEX0 =
 ".html":[4,0,21],
 ".html":[4,0,22],
 ".html":[4,0,23],
+".html":[4,0,24],
 "analizadorlandmarks_8cc.html":[4,0,0],
 "analizadorlandmarks_8h.html":[4,0,1],
 "analizadorsimetria_8cc.html":[4,0,3],
@@ -153,11 +154,11 @@ var NAVTREEINDEX0 =
 "class_webcam_feeder.html":[3,0,11],
 "class_webcam_feeder.html#a137ad4a6ab51081287c9d0374919cab4":[3,0,11,4],
 "class_webcam_feeder.html#a186cb28abd7e072299446a58993827d8":[3,0,11,5],
-"class_webcam_feeder.html#a4bf87e8588fab44bd253e8fb45ef5c3c":[3,0,11,1],
 "class_webcam_feeder.html#a4c2ab43b6a57360ea9164ac2df4afd18":[3,0,11,0],
 "class_webcam_feeder.html#a5acf255837740145a83c0efb04f64fec":[3,0,11,2],
+"class_webcam_feeder.html#a6523f124cfb619a89c676353fe51d432":[3,0,11,3],
+"class_webcam_feeder.html#a765cfb04b73c6e4e02e10a93eb980846":[3,0,11,1],
 "class_webcam_feeder.html#a9947a78666657ee69cd5f5bfdf2f1271":[3,0,11,6],
-"class_webcam_feeder.html#ae6f8d2e5c5d381e06d6c1113f27327a1":[3,0,11,3],
 "estructuras_8h.html":[4,0,5],
 "estructuras_8h.html#a88c388db54b6b4a5cc6dd37ea89ecbd4":[4,0,5,3],
 "estructuras_8h.html#a88c388db54b6b4a5cc6dd37ea89ecbd4a0d323fdc04319f0ee9b3198401580dfb":[4,0,5,3,1],
@@ -230,5 +231,6 @@ var NAVTREEINDEX0 =
 "todo.html":[1],
 "videofeeder_8cc.html":[4,0,21],
 "videofeeder_8h.html":[4,0,22],
-"webcamfeeder_8h.html":[4,0,23]
+"webcamfeeder_8cc.html":[4,0,23],
+"webcamfeeder_8h.html":[4,0,24]
 };

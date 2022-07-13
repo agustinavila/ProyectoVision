@@ -41,6 +41,7 @@ var files_dup =
     [ "videofeeder.h", "videofeeder_8h.html", [
       [ "VideoFeeder", "class_video_feeder.html", "class_video_feeder" ]
     ] ],
+    [ "webcamfeeder.cc", "webcamfeeder_8cc.html", null ],
     [ "webcamfeeder.h", "webcamfeeder_8h.html", [
       [ "WebcamFeeder", "class_webcam_feeder.html", "class_webcam_feeder" ]
     ] ]
