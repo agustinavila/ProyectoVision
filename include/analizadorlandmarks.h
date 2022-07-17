@@ -12,12 +12,12 @@
 #if !defined(ANALIZADORLANDMARKS_H)
 #define ANALIZADORLANDMARKS_H
 
-#include <iostream>
-#include <vector>
-
 #include "estructuras.h"
+
+#include <iostream>
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
+#include <vector>
 
 using namespace std;
 using namespace cv;
@@ -58,11 +58,14 @@ public:
 	 */
     std::vector<Landmarks> getNormLandmarks() { return this->landmarksNorm; };
 
-    inline const float calcularAngulo(const Point2f&, const Point2f&);
+    const inline float calcularAngulo(const Point2f& a, const Point2f& b)
+    {
+        return atan2((b.y - a.y), (b.x - a.x)) * 180 / CV_PI;
+    }
 
-    inline const float calcularPendiente(const Point2f&, const Point2f&);
+    const inline float calcularPendiente(const Point2f& a, const Point2f& b) { return abs((a.x - b.x) / (a.y - b.y)); }
 
-    inline const float calcularMax(const float&, const float&);
+    const inline float calcularMax(const float& a, const float& b) { return ((a > b) ? a : b); }
 
     /**
 	 * @brief Método principal de la clase, analiza la asimetria de un rostro
