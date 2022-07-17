@@ -28,9 +28,6 @@ include_directories(include/)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# file(GLOB all_SRCS "${PROJECT_SOURCE_DIR}/src/*.cc")
-# set(srcs src/*.cc)
-
 add_compile_options(-Wall -Wextra -Wpedantic -Wno-ignored-qualifiers)
 add_compile_definitions(USE_AVX_INSTRUCTIONS=ON)
 
