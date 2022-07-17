@@ -32,11 +32,10 @@ add_compile_options(-Wall -Wextra -Wpedantic -Wno-ignored-qualifiers)
 add_compile_definitions(USE_AVX_INSTRUCTIONS=ON)
 
 add_executable(mainProyectoVision mainProyectoVision.cc)
-
 add_subdirectory(src)
-# add_subdirectory(test)
+add_subdirectory(test)
 target_link_libraries( mainProyectoVision dlib)
-target_link_libraries( mainProyectoVision fuente)
+target_link_libraries(mainProyectoVision fuente)
 target_link_libraries( mainProyectoVision ${OpenCV_LIBS} )
 
 # Copy necessary files to build folder
