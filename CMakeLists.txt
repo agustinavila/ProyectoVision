@@ -8,7 +8,7 @@ set(CMAKE_DEBUG_POSTFIX d)
 add_library(tutorial_compiler_flags INTERFACE)
 
 # Include OpenCV
-find_package( OpenCV REQUIRED)
+find_package( OpenCV 4.0.0 REQUIRED)
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 
 # Include Dlib v19.22
@@ -24,14 +24,21 @@ include_directories( ${dlib_SOURCE_DIR} )
 file( COPY data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 include_directories(include/)
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-file(GLOB all_SRCS "${PROJECT_SOURCE_DIR}/src/*.cc")
-add_compile_options(-Wall -Wextra -Wpedantic)
+
+# file(GLOB all_SRCS "${PROJECT_SOURCE_DIR}/src/*.cc")
+# set(srcs src/*.cc)
+
+add_compile_options(-Wall -Wextra -Wpedantic -Wno-ignored-qualifiers)
 add_compile_definitions(USE_AVX_INSTRUCTIONS=ON)
-add_executable(mainProyectoVision mainProyectoVision.cc ${all_SRCS})
+
+add_executable(mainProyectoVision mainProyectoVision.cc)
+add_subdirectory(src)
 add_subdirectory(test)
 target_link_libraries( mainProyectoVision dlib)
+target_link_libraries(mainProyectoVision fuente)
 target_link_libraries( mainProyectoVision ${OpenCV_LIBS} )
 
 # Copy necessary files to build folder
