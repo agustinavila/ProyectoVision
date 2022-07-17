@@ -4,5 +4,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="AnalizadorSimetria",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_analizador_simetria.html",tooltip="Clase principal del programa."];
+  Node0 [label="AnalizadorLandmarks",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_analizador_landmarks.html",tooltip="Clase que maneja los metodos para analizar los landmarks."];
 }

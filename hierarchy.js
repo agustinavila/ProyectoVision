@@ -15,5 +15,8 @@ var hierarchy =
     [ "LandmarksLogger", "class_landmarks_logger.html", null ],
     [ "std::exception", null, [
       [ "MiExcepcion", "class_mi_excepcion.html", null ]
+    ] ],
+    [ "Test", null, [
+      [ "Analizador_test", "struct_analizador__test.html", null ]
     ] ]
 ];

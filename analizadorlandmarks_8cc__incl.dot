@@ -7,16 +7,16 @@ digraph "analizadorlandmarks.cc"
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="analizadorlandmarks.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$analizadorlandmarks_8h.html",tooltip="Archivo de cabecera de la clase AnalizadorLandmarks."];
   Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="iostream",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
-  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="estructuras.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$estructuras_8h.html",tooltip="Descripcion de distintas estructuras de datos usadas por la clase."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node4 [label="vector",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
-  Node2 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 [label="estructuras.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$estructuras_8h.html",tooltip="Descripcion de distintas estructuras de datos usadas por la clase."];
-  Node5 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node6 [label="opencv2/core/types.hpp",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="opencv2/core/types.hpp",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node2 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="iostream",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node2 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node7 [label="opencv2/core/core.hpp",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node2 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node8 [label="opencv2/imgproc/imgproc.hpp",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }

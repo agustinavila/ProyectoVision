@@ -101,11 +101,11 @@ digraph "analizadorsimetria.h"
   Node31 -> Node30 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node33 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node33 [label="analizadorlandmarks.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$analizadorlandmarks_8h.html",tooltip="Archivo de cabecera de la clase AnalizadorLandmarks."];
-  Node33 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node33 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node33 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node33 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node33 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node33 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node33 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node34 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node34 [label="landmarkslogger.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$landmarkslogger_8h.html",tooltip="Archivo de cabecera de la clase LandmarksLogger."];

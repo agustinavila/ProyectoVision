@@ -1,5 +1,6 @@
 var annotated_dup =
 [
+    [ "Analizador_test", "struct_analizador__test.html", "struct_analizador__test" ],
     [ "AnalizadorLandmarks", "class_analizador_landmarks.html", "class_analizador_landmarks" ],
     [ "AnalizadorSimetria", "class_analizador_simetria.html", "class_analizador_simetria" ],
     [ "ExtractorLandmarks", "class_extractor_landmarks.html", "class_extractor_landmarks" ],

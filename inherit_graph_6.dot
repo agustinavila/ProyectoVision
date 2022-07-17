@@ -4,5 +4,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="LandmarksLogger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_landmarks_logger.html",tooltip="Clase para guardar los landmarks. Por defecto genera un video."];
+  Node0 [label="Landmarks",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_landmarks.html",tooltip="Estructura para almacenar los landmarks, discriminados segun rasgo facial."];
 }
