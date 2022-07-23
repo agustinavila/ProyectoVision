@@ -6,6 +6,9 @@ Debug/*
 .project
 build
 docs
+.idea
+cmake-build-debug
+cmake-build-release
 
 # Tipos de archivos:
 *.jpg
